@@ -6,13 +6,14 @@ import styled from 'styled-components';
 const Container = styled.div`
     flex: 1;
     text-align: center;
-    background-color: darkgrey;
+    background-color: lightgrey;
     font-family: sans-serif;
     display: flex;
     height: 100px;
 `;
 
 const Wrapper = styled.div`
+    margin: auto;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -32,23 +33,26 @@ const SearchContainer = styled.div`
     width: 200px;
     display: flex;
     align-items: center;
-    margin: 20px;
+    margin: 5px;
     padding: 5px;
 `;
 
 const Input = styled.input`
     border: none;
     width: 200px;
+    height: 30px;
     placeholder: "Search";
 `;
 
 const Center = styled.div`
     flex: 1;
+    margin: auto;
     text-align: center;
     width: 100%;
     height: 60px;
 `;
 const Logo = styled.h1`
+    margin: 0px 200px;
     font-weight: bold;
 `;
 
@@ -79,7 +83,7 @@ const Navbar = () => {
                 </Left>
                 <Center>
                     <Logo>
-                    <img src="../Images/Logo.JPG" alt="Logo" height="100px" width="300px"/>
+                    <img src="../Images/Logo.JPG" alt="Logo" height="120px" width="120px"/>
                         Welcome to Sweets & More HomePage
                     </Logo>
                 </Center>
