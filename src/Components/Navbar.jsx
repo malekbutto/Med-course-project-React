@@ -52,7 +52,7 @@ const Center = styled.div`
     height: 60px;
 `;
 const Logo = styled.h1`
-    margin: 0px 200px;
+    margin: 0px 500px;
     font-weight: bold;
 `;
 
@@ -77,14 +77,14 @@ const Navbar = () => {
                 <Left>
                     {/* <Language>EN</Language> */}
                     <SearchContainer>
-                        <Input />
+                        <Input placeholder="Search"/>
                         <Search style={{color: "grey", fontSize:16}}/>
                     </SearchContainer>
                 </Left>
                 <Center>
                     <Logo>
                     <img src="../Images/Logo.JPG" alt="Logo" height="120px" width="120px"/>
-                        Welcome to Sweets & More HomePage
+                        {/* Welcome to Sweets & More HomePage */}
                     </Logo>
                 </Center>
                 <Right>
