@@ -76,7 +76,9 @@ const Footer = () => {
                 </Desc>
                 <SocialContainer>
                     <SocialIcon color="3B5999">
-                       <Facebook />
+                        <a href="www.facebook.com/Sweets-more-by-Um-Anas-1742962809327410" target="top">
+                            <Facebook />
+                        </a>
                     </SocialIcon>
                     <SocialIcon color="E4405F">
                         <Instagram />
@@ -102,15 +104,15 @@ const Footer = () => {
             <Right>
                 <Title>Contact</Title>
                 <ContactItem>
-                    <Room style={{marginRight:"10px"}}/>1006/21 , Nazareth-Israel, 1650100
+                    <Room style={{ marginRight: "10px" }} />1006/21 , Nazareth-Israel, 1650100
                 </ContactItem>
                 <ContactItem>
-                    <Phone style={{marginRight:"10px"}}/>+972 52-474-1860
+                    <Phone style={{ marginRight: "10px" }} />+972 52-474-1860
                 </ContactItem>
                 <ContactItem>
-                    <Phone style={{marginRight:"10px"}}/>+972 4-667-5170
+                    <Phone style={{ marginRight: "10px" }} />+972 4-667-5170
                 </ContactItem>
-        <Payment src="https://i.ibb.co./Qfvn4z6/payment.png" />
+                <Payment src="https://i.ibb.co./Qfvn4z6/payment.png" />
             </Right>
         </Container>
     )
