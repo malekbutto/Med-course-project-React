@@ -3,7 +3,6 @@ import Navbar from "../Components/Navbar";
 import Products from "../Components/Products";
 import Footer from "../Components/Footer";
 
-
 const Container = styled.div`
 
 `;
