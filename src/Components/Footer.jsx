@@ -2,9 +2,12 @@ import { Room } from "@material-ui/icons";
 import { Phone } from "@material-ui/icons";
 import { Facebook, Instagram } from "@material-ui/icons";
 import styled from "styled-components";
+import { mobile } from "../responsive";
+
 
 const Container = styled.div`
     display: flex;
+    ${mobile({ flexDirection: "column" })}
 `;
 const Left = styled.div`
     flex: 1;
@@ -37,6 +40,7 @@ const SocialIcon = styled.div`
 const Center = styled.div`
     flex: 1;
     padding: 20px;
+    ${mobile({ display: "none" })}
 `;
 const Title = styled.h3`
     margin-bottom: 30px;
@@ -55,15 +59,16 @@ const ListItem = styled.li`
 const Right = styled.div`
     flex: 1;
     padding: 20px;
+    ${mobile({ backgroundColor: "#f5fbfd" })}
 `;
 const ContactItem = styled.div`
     margin-bottom: 20px;
     display: flex;
     align-items: center;
 `;
-const Payment = styled.img`
-    width: 50%;
-`;
+// const Payment = styled.img`
+//     width: 50%;
+// `;
 
 
 const Footer = () => {
@@ -72,17 +77,19 @@ const Footer = () => {
             <Left>
                 <Logo></Logo>
                 <Desc>
-                    Visit us on:
+                    Follow us:
                 </Desc>
                 <SocialContainer>
-                    <SocialIcon color="3B5999">
-                        <a href="www.facebook.com/Sweets-more-by-Um-Anas-1742962809327410" target="top">
+                    <a href="https://www.facebook.com/Sweets-more-by-Um-Anas-1742962809327410">
+                        <SocialIcon color="3B5999">
                             <Facebook />
-                        </a>
-                    </SocialIcon>
-                    <SocialIcon color="E4405F">
-                        <Instagram />
-                    </SocialIcon>
+                        </SocialIcon>
+                    </a>
+                    <a href="https://www.instagram.com/um.anas.sweets/">
+                        <SocialIcon color="E4405F">
+                            <Instagram />
+                        </SocialIcon>
+                    </a>
                 </SocialContainer>
             </Left>
             <Center>
@@ -112,9 +119,9 @@ const Footer = () => {
                 <ContactItem>
                     <Phone style={{ marginRight: "10px" }} />+972 4-667-5170
                 </ContactItem>
-                <Payment src="https://i.ibb.co./Qfvn4z6/payment.png" />
+                {/* <Payment src="https://i.ibb.co./Qfvn4z6/payment.png" /> */}
             </Right>
-        </Container>
+        </Container >
     )
 }
 

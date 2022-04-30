@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
     width: 90vw;
@@ -7,7 +8,7 @@ const Container = styled.div`
         rgba(255, 255, 255, 0.5),
         rgba(255, 255, 255, 0.5)
         ),
-        url("../images/Logo1.JPG")
+        url("../images/Logo-LoginPage.JPG")
             center;
     background-size: cover;
     display: flex;
@@ -19,6 +20,7 @@ const Wrapper = styled.div`
     width: 25%;
     padding: 20px;
     background-color: skyblue;
+    ${mobile({ width: "75%" })}
 `;
 const Title = styled.h1`
     font-size: 24px;
@@ -45,14 +47,23 @@ const Button = styled.button`
 `;
 
 const Login = () => {
+    const myFunction = () => {
+        var userName = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if (userName==="Admin" && password==="12345")
+            alert("Success");
+        else
+            alert("Failed");
+    }
+
   return (
     <Container>
       <Wrapper>
           <Title>Sign In</Title>
           <Form>
-              <Input placeholder="Username" />
-              <Input placeholder="Password" />
-              <Button>LogIn</Button>
+              <Input type="text" id="username" placeholder="Username" />
+              <Input type="password" id="password" placeholder="Password" />
+              <Button onClick={myFunction}>LogIn</Button>
           </Form>
       </Wrapper>
     </Container>

@@ -1,4 +1,3 @@
-//import { styled } from "@material-ui/core";
 import { ShoppingCartOutlined, SearchOutlined, FavoriteBorderOutlined } from "@material-ui/icons"    
 import styled from "styled-components";
 
@@ -39,7 +38,9 @@ const Circle = styled.div`
     position: absolute;
 `;
 const Image = styled.img`
-    height: 75%;
+    border-radius: 50px;
+    height: 28vh;
+    width: 100%;
     z-index: 2;
 `;
 const Icon = styled.div`

@@ -1,4 +1,3 @@
-//import { styled } from '@material-ui/core';
 import { popularProducts } from '../data'
 import styled from "styled-components";
 import Product from './Product'
