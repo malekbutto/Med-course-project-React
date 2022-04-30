@@ -34,16 +34,19 @@ export const categories = [
         id: 1,
         img: "./Images/Category/Sweets.jpg",
         title: "Sweets",
+        url: "/SweetsCategory",
     },
     {
         id: 2,
         img: "./Images/Category/Pastries.jpg",
         title: "Pastries",
+        url: "/PastriesCategory",
     },
     {
         id: 3,
         img: "./Images/Category/Other.jpg",
         title: "Other",
+        url: "/OtherCategory",
     }
 ];
 
@@ -200,4 +203,165 @@ export const popularProducts = [
         id: 38,
         img: "./Images/Category/Other/Shish_Barak.jpg",
     },
+];
+
+export const sweets = [
+    {
+        id: 1,
+        img: "./Images/Category/Sweets/Trilece_Caramel2.jpg",
+    },
+    {
+        id: 2,
+        img: "./Images/Category/Sweets/Trilece_Strawberry.jpg",
+    },
+    {
+        id: 3,
+        img: "./Images/Category/Sweets/Kinder_Bueno.jpg",
+    },
+    {
+        id: 4,
+        img: "./Images/Category/Sweets/Lutos.jpg",
+    },
+    {
+        id: 5,
+        img: "./Images/Category/Sweets/Beirut_Nights.jpg",
+    },
+    {
+        id: 6,
+        img: "./Images/Category/Sweets/Trilece_Pistachio.jpg",
+    },
+    {
+        id: 7,
+        img: "./Images/Category/Sweets/Tiramisu.jpg",
+    },
+    {
+        id: 8,
+        img: "./Images/Category/Sweets/Khashkhash.jpg",
+    },
+    {
+        id: 9,
+        img: "./Images/Category/Sweets/Alfajores.jpg",
+    },
+    {
+        id: 10,
+        img: "./Images/Category/Sweets/Alfajores2.jpg",
+    },
+    {
+        id: 11,
+        img: "./Images/Category/Sweets/Betefour.jpg",
+    },
+    {
+        id: 12,
+        img: "./Images/Category/Sweets/Contessa.jpg",
+    },
+    {
+        id: 13,
+        img: "./Images/Category/Sweets/English_Cake.jpg",
+    },
+    {
+        id: 14,
+        img: "./Images/Category/Sweets/Dates_Cake.jpg",
+    },
+    {
+        id: 15,
+        img: "./Images/Category/Sweets/Ghraybe.jpg",
+    },
+    {
+        id: 16,
+        img: "./Images/Category/Sweets/Cups.jpg",
+    },
+    {
+        id: 17,
+        img: "./Images/Category/Sweets/Strawberry_Cake.jpg",
+    },
+    {
+        id: 18,
+        img: "./Images/Category/Sweets/Ferrero_Cake.jpg",
+    },
+    {
+        id: 19,
+        img: "./Images/Category/Sweets/Nutella_Cake.jpg",
+    },
+    {
+        id: 20,
+        img: "./Images/Category/Sweets/Oreo_Cake.jpg",
+    }
+];
+
+export const pastries = [
+    {
+        id: 1,
+        img: "./Images/Category/Pastries/Beef_Meat.jpg",
+    },
+    {
+        id: 2,
+        img: "./Images/Category/Pastries/Chicken.jpg",
+    },
+    {
+        id: 3,
+        img: "./Images/Category/Pastries/Potato.jpg",
+    },
+    {
+        id: 4,
+        img: "./Images/Category/Pastries/Potato_Roll.jpg",
+    },
+    {
+        id: 5,
+        img: "./Images/Category/Pastries/Sausage.jpg",
+    },
+    {
+        id: 6,
+        img: "./Images/Category/Pastries/Tuna.jpg",
+    },
+    {
+        id: 7,
+        img: "./Images/Category/Pastries/Pizza1.jpg",
+    },
+    {
+        id: 8,
+        img: "./Images/Category/Pastries/Pizza2.jpg",
+    },
+    {
+        id: 9,
+        img: "./Images/Category/Pastries/Olives.jpg",
+    },
+    {
+        id: 0,
+        img: "./Images/Category/Pastries/Mozzarella_Sticks.jpg",
+    },
+    {
+        id: 11,
+        img: "./Images/Category/Pastries/Fatayer.jpg",
+    },
+    {
+        id: 12,
+        img: "./Images/Category/Pastries/Kubba.jpg",
+    }
+];
+
+export const other = [
+    {
+        id: 1,
+        img: "./Images/Category/Other/Cabbage_Roll.jpg",
+    },
+    {
+        id: 2,
+        img: "./Images/Category/Other/Grape_leaves.jpg",
+    },
+    {
+        id: 3,
+        img: "./Images/Category/Other/Maftool.jpg",
+    },
+    {
+        id: 4,
+        img: "./Images/Category/Other/Schnitzel.jpg",
+    },
+    {
+        id: 5,
+        img: "./Images/Category/Other/Shawarma_Roll.jpg",
+    },
+    {
+        id: 6,
+        img: "./Images/Category/Other/Shish_Barak.jpg",
+    }
 ];

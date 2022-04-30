@@ -1,5 +1,4 @@
-// import { ShoppingCartOutlined, SearchOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
-import { ShoppingCartOutlined, FavoriteBorderOutlined } from "@material-ui/icons";    
+import { ShoppingCartOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 
 const Info = styled.div`
@@ -61,7 +60,7 @@ const Icon = styled.div`
     }
 `;
 
-const Product = ({ item }) => {
+const Other = ({ item }) => {
     return (
         <Container>
             <Circle>
@@ -82,4 +81,4 @@ const Product = ({ item }) => {
     )
 }
 
-export default Product;
+export default Other;

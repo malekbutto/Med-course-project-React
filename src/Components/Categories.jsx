@@ -1,4 +1,5 @@
 import styled from "styled-components";
+// import { categories } from "Categories.json";
 import { categories } from "../data"
 import CategoryItem from "./CategoryItem"
 import {mobile} from "../responsive";

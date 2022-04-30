@@ -36,8 +36,7 @@ function Login() {
         <div>
             {home ? (
             <form onSubmit={handleLogin} className='form'>
-                <h1>Sweets & More <br />
-                    Login Page</h1>
+                <h1>Sweets & More</h1>
                 <div className='form-group'>
                     <label className='label'>Username:</label>
                     <input

@@ -1,4 +1,3 @@
-//import '../css/App.css';
 import React from 'react';
 import Navbar from '../Components/Navbar';
 import Slider from '../Components/Slider';
@@ -10,7 +9,7 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <Slider />
+            {/* <Slider /> */}
             <Categories />
             <Products />
             <Footer />
