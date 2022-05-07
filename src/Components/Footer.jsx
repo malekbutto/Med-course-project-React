@@ -3,6 +3,7 @@ import { Phone } from "@material-ui/icons";
 import { Facebook, Instagram } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -36,7 +37,6 @@ const SocialIcon = styled.div`
     justify-content: center;
     margin-right: 20px;
 `;
-
 const Center = styled.div`
     flex: 1;
     padding: 20px;
@@ -50,6 +50,9 @@ const List = styled.ul`
     padding: 0;
     list-style: none;
     display: flex;
+    align-items: center;
+    text-align: left;
+    justify-content: space-between;
     flex-wrap: wrap;
 `;
 const ListItem = styled.li`
@@ -70,12 +73,10 @@ const ContactItem = styled.div`
 //     width: 50%;
 // `;
 
-
 const Footer = () => {
     return (
         <Container>
             <Left>
-                <Logo></Logo>
                 <Desc>
                     Follow us:
                 </Desc>
@@ -94,16 +95,13 @@ const Footer = () => {
             </Left>
             <Center>
                 <Title>
-                    UseFul Links
+                    UseFull Links
                 </Title>
                 <List>
-                    <ListItem><a href="Home">Home</a></ListItem>
-                    <ListItem>Cart</ListItem>
-                    <ListItem><a href="SweetsCategory">Sweets</a></ListItem>
-                    <ListItem>WishList</ListItem>
-                    <ListItem><a href="PastriesCategory">Pastries</a></ListItem>
-                    <ListItem><a href="About">About</a></ListItem>
-                    <ListItem><a href="OtherCategory">Other Products</a></ListItem>
+                    <ListItem><Link to="/SweetsCategory" target={"_top"}>Sweets</Link></ListItem>
+                    <ListItem><Link to="/PastriesCategory" target={"_top"}>Pastries</Link></ListItem>
+                    <ListItem><Link to="/OtherCategory" target={"_top"}>Other Products</Link></ListItem>
+                    <ListItem><Link to="/Cart" target={"_top"}>Cart</Link></ListItem>
                 </List>
             </Center>
             <Right>
