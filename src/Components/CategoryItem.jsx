@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {mobile} from "../responsive";
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     flex: 1;
@@ -24,7 +25,6 @@ const Info = styled.div`
     align-items: center;
     justify-content: center;
 `;
-
 const Title = styled.h1`
     color: white;
     margin-bottom: 20px;
@@ -43,7 +43,7 @@ const CategoryItem = ({ item }) => {
             <Image src={item.img} alt='CategoryImage' />
             <Info>
                 <Title>{item.title}</Title>
-                <Button><a href={item.url}>Shop Now</a></Button>
+                <Button><Link to={item.url} target="_top">Shop Now</Link></Button>
             </Info>
         </Container>
     )

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+// import axios from 'axios';
+import React, { useState } from 'react';
+// import { Alert } from "react-bootstrap";
+import Home from "./Home";
 
 const Container = styled.div`
     width: 90vw;
@@ -47,27 +51,62 @@ const Button = styled.button`
 `;
 
 const Login = () => {
-    const myFunction = () => {
-        var userName = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        if (userName==="Admin" && password==="12345")
-            alert("Success");
-        else
-            alert("Failed");
+    const [userNameLog, setUserNameLog] = useState("");
+    const [PasswordLog, setPasswordLog] = useState("");
+    const [flag, setFlag] = useState(false);
+    const [home, setHome] = useState(true);
+
+    function handleLogin(e) {
+        e.preventDefault();
+        // let users = axios.get('users.json');
+        // const admin = users.users[0];
+        // const user = users.users[1];
+
+        // const password = admin.password;
+        // let inputPass = localStorage.getItem("password").replace(/"/g, "");
+
     }
 
-  return (
-    <Container>
-      <Wrapper>
-          <Title>Sign In</Title>
-          <Form>
-              <Input type="text" id="username" placeholder="Username" />
-              <Input type="password" id="password" placeholder="Password" />
-              <Button onClick={myFunction}>LogIn</Button>
-          </Form>
-      </Wrapper>
-    </Container>
-  )
+    // const myFunction = () => {
+    //     var userName = document.getElementById("username").value;
+    //     var password = document.getElementById("password").value;
+    //     if (userName==="Admin" && password==="12345")
+    //         alert("Success");
+    //     else
+    //         alert("Failed");
+    // }
+
+    return (
+
+        <Container>
+            <Wrapper>
+                <div>
+                    {home ? (
+                        <Form onSubmit={handleLogin}>
+                            <Title>Sign In</Title>
+                            <Input
+                                type="text"
+                                id="username"
+                                placeholder="Username"
+                                onChange={(event) => setUserNameLog(event.target.value)} />
+                            <Input
+                                type="password"
+                                id="password"
+                                placeholder="Password"
+                                onChange={(event) => setPasswordLog(event.target.value)} />
+                            <Button type='submit' className='btn btn-dark btl-lg btn-block'>Login</Button>
+                            {/* {flag && (
+                                <Alert color="primary" variant="danger">
+                                    Please Fill All fields
+                                </Alert>
+                            )} */}
+                        </Form>
+                    ) : (
+                        <Home />)}
+                </div>
+            </Wrapper>
+        </Container>
+    )
 }
 
-export default Login
+export default Login;

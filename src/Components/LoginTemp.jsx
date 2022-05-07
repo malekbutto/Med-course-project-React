@@ -13,9 +13,22 @@ function Login() {
     function handleLogin(e)
     {
         e.preventDefault();
-        let userName = localStorage.getItem("userName").replace(/"/g, "");
-        let pass = localStorage.getItem("Password").replace(/"/g, "");
+        let users = await axios.get('users.json');
+        const admin = users.users[0];
+        const user = users.users[1];
+
+
+        const password = admin.password;
+        let inputPass = localStorage.getItem("password").replace(/"/g, "");
+
+        localStorage.setItem('isLogged', true);
+        localStorage.setItem('isAdmin', true);
+        localStorage.setItem('username', 'Malek');
     
+
+        localStorage.removeItem('isLogged');
+    
+
         if (!userNameLog || !PasswordLog)
         {
             setFlag(true);
@@ -35,10 +48,10 @@ function Login() {
     return (
         <div>
             {home ? (
-            <form onSubmit={handleLogin} className='form'>
+            <form onSubmit={handleLogin}>
                 <h1>Sweets & More</h1>
-                <div className='form-group'>
-                    <label className='label'>Username:</label>
+                <div>
+                    <label>Username:</label>
                     <input
                         type='text'
                         className='form-control'

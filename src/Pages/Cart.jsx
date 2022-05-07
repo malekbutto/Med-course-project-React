@@ -11,12 +11,10 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 20px;
     ${mobile({ padding: "10px" })}
-
 `;
 const Title = styled.h1`
     font-weight: 300;
     text-align: center;
-
 `;
 const Top = styled.div`
     display: flex;
@@ -43,7 +41,6 @@ const TopText = styled.span`
     cursor: pointer;
     margin: 0px 10px;
 `;
-
 const Bottom = styled.div`
     display: flex;
     justify-content: space-between;
@@ -63,7 +60,6 @@ const ProductDetail = styled.div`
 `;
 const Image = styled.img`
     width: 200px;
-
 `;
 const Details = styled.div`
     padding: 20px;
@@ -140,16 +136,25 @@ const Button = styled.button`
 
 
 const Cart = () => {
+    var count = 0;
+    function AddAmountFunc() {
+        count = document.getElementById('ProductAmount').value;
+        ++count;
+    }
+    function RemoveAmountFunc() {
+        count = document.getElementById('ProductAmount').value;
+        if (count!==0)
+            count--;
+    }
+
     return (
         <Container>
-            <Navbar />
             <Wrapper>
                 <Title>Your Basket</Title>
                 <Top>
                     <TopButton>Continue Shopping</TopButton>
                     <TopTexts>
                         <TopText>Shopping Bag(2)</TopText>
-                        <TopText>Your Wishlist(0)</TopText>
                     </TopTexts>
                     <TopButton type="filled">Checkout Now</TopButton>
                 </Top>
@@ -160,7 +165,7 @@ const Cart = () => {
                                 <Image src="./Images/Category/Sweets/Trilece_Caramel2.jpg" />
                                 <Details>
                                     <ProductName>
-                                        <b>Product:</b> Trilece Strawberry
+                                        <b>Product:</b> Trilece Caramel
                                     </ProductName>
                                     <ProductId>
                                         <b>ID:</b> 1
@@ -172,7 +177,16 @@ const Cart = () => {
                             </ProductDetail>
                             <PriceDetails>
                                 <ProductAmountContainer>
-                                    <Add/> <ProductAmount>2</ProductAmount> <Remove/>
+                                    <Add onClick={AddAmountFunc}>
+                                        <img src="./Images/Icons/Add.png" alt="AddIcon" />
+                                    </Add>
+                                    <ProductAmount className="ProductAmount">{count}</ProductAmount>
+                                    <Remove onClick={RemoveAmountFunc}>
+                                        <img src="./Images/Icons/Remove.png" alt="RemoveIcon" />
+                                    </Remove>
+                                    {/* <Add />
+                                    <ProductAmount>2</ProductAmount>
+                                    <Remove /> */}
                                 </ProductAmountContainer>
                                 <ProductPrice>12 nis</ProductPrice>
                             </PriceDetails>
@@ -195,9 +209,13 @@ const Cart = () => {
                             </ProductDetail>
                             <PriceDetails>
                                 <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove />
+                                    <div onClick={AddAmountFunc}>
+                                        <img src="./Images/Icons/Add.png" alt="AddIcon" />
+                                    </div>
+                                    <ProductAmount className="ProductAmount">{count}</ProductAmount>
+                                    <div onClick={RemoveAmountFunc}>
+                                        <img src="./Images/Icons/Remove.png" alt="RemoveIcon" />
+                                    </div>
                                 </ProductAmountContainer>
                                 <ProductPrice>15 nis</ProductPrice>
                             </PriceDetails>
@@ -207,7 +225,7 @@ const Cart = () => {
                         <SummaryTitle>Order Summary</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>SubTotal</SummaryItemText>
-                            <SummaryItemPrice>30 nis</SummaryItemPrice>
+                            <SummaryItemPrice>{ProductPrice*count}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -226,7 +244,7 @@ const Cart = () => {
                 </Bottom>
             </Wrapper>
             <Footer />
-        </Container>
+        </Container >
     )
 }
 

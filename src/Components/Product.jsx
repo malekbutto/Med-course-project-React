@@ -1,5 +1,5 @@
 // import { ShoppingCartOutlined, SearchOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
-import { ShoppingCartOutlined, FavoriteBorderOutlined } from "@material-ui/icons";    
+import { ShoppingCartOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 
 const Info = styled.div`
@@ -17,6 +17,11 @@ const Info = styled.div`
     transition: all 0.5s ease;
     cursor: pointer;
 `;
+const Title = styled.h1`
+    font-size: 24px;
+    text-align: center;
+`;
+
 const Container = styled.div`
     flex: 1;
     margin: 5px;
@@ -25,9 +30,9 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5fbfd;  
+    background-color: #${(props) => props.bg};  
     position: relative;
-    &:hover ${Info} {
+    &:hover ${Info}{
         opacity: 1;
     }
 `;
@@ -63,22 +68,26 @@ const Icon = styled.div`
 
 const Product = ({ item }) => {
     return (
-        <Container>
+        <Container bg={item.bg}>
             <Circle>
-                <Image src={item.img} alt='ProduntImage'/>
+                <Image src={item.img} alt='ProduntImage' />
                 <Info>
-                    <Icon>
-                        <ShoppingCartOutlined/>
+                    <Icon onclick="">
+                        <ShoppingCartOutlined />
                     </Icon>
                     {/* <Icon>
                         <SearchOutlined />
                     </Icon> */}
-                    <Icon>
-                        <FavoriteBorderOutlined/>
-                    </Icon>
+                    {/* <Icon>
+                        <FavoriteBorderOutlined />
+                    </Icon> */}
                 </Info>
+                <Title>
+                    {item.title}
+                </Title>
             </Circle>
         </Container>
+
     )
 }
 

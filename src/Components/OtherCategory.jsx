@@ -1,7 +1,6 @@
 import { other } from '../data'
 import styled from "styled-components";
 import Other from './Other';
-import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Container = styled.div`
@@ -21,7 +20,6 @@ const Title = styled.h1`
 const OtherCategory = () => {
   return (
     <div>
-        <Navbar />
         <Title>Other Products</Title>
     <Container>
       {other.map(item=>(

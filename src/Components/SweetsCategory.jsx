@@ -1,7 +1,6 @@
 import { sweets } from '../data'
 import styled from "styled-components";
 import Sweets from './Sweets';
-import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Container = styled.div`
@@ -21,7 +20,6 @@ const Title = styled.h1`
 const SweetsCategory = () => {
   return (
     <div>
-        <Navbar />
         <Title>The Sweets</Title>
     <Container>
       {sweets.map(item=>(
