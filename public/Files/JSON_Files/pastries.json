@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "img": "./Images/Category/Pastries/Beef_Meat.jpg",
+        "bg": "f5fbfd",
+        "title": "Beef Meat",
+        "desc": "Pastry filled with Beef Meat",
+        "price": 40
+    },
+    {
+        "id": 2,
+        "img": "./Images/Category/Pastries/Chicken.jpg",
+        "bg": "f5fbfd",
+        "title": "Chicken",
+        "desc": "Pastry filled with Chicken",
+        "price": 35
+    },
+    {
+        "id": 3,
+        "img": "./Images/Category/Pastries/Potato.jpg",
+        "bg": "f5fbfd",
+        "title": "Potato",
+        "desc": "Pastry filled with Potato",
+        "price": 35
+    },
+    {
+        "id": 4,
+        "img": "./Images/Category/Pastries/Potato_Discs.jpg",
+        "bg": "f5fbfd",
+        "title": "Potato Discs",
+        "desc": "Potato discs covered by bread crumbs",
+        "price": 35
+    },
+    {
+        "id": 5,
+        "img": "./Images/Category/Pastries/Sausage.jpg",
+        "bg": "f5fbfd",
+        "title": "Sausage",
+        "desc": "Pastry filled with Sausage",
+        "price": 35
+    },
+    {
+        "id": 6,
+        "img": "./Images/Category/Pastries/Tuna.jpg",
+        "bg": "f5fbfd",
+        "title": "Tuna",
+        "desc": "Pastry filled with Tuna",
+        "price": 35
+    },
+    {
+        "id": 7,
+        "img": "./Images/Category/Pastries/Pizza1.jpg",
+        "bg": "f5fbfd",
+        "title": "Pizza",
+        "desc": "Pizza Pastry",
+        "price": 35
+    },
+    {
+        "id": 8,
+        "img": "./Images/Category/Pastries/Pizza2.jpg",
+        "bg": "f5fbfd",
+        "title": "Pizza",
+        "desc": "Pastry filled with Pizza mix",
+        "price": 35
+    },
+    {
+        "id": 9,
+        "img": "./Images/Category/Pastries/Olives.jpg",
+        "bg": "f5fbfd",
+        "title": "Olives",
+        "desc": "Pastry filled with Olives",
+        "price": 35
+    },
+    {
+        "id": 10,
+        "img": "./Images/Category/Pastries/Mozzarella_Sticks.jpg",
+        "bg": "f5fbfd",
+        "title": "Mozzarella Sticks",
+        "desc": "Mozzarella cheese covered by bread crumbs",
+        "price": 35
+    },
+    {
+        "id": 11,
+        "img": "./Images/Category/Pastries/Fatayer.jpg",
+        "bg": "f5fbfd",
+        "title": "Fatayer",
+        "desc": "Fatayer filled with Spinach or Zaatar",
+        "price": 65
+    },
+    {
+        "id": 12,
+        "img": "./Images/Category/Pastries/Kibbeh.jpg",
+        "bg": "f5fbfd",
+        "title": "Kibbeh",
+        "desc": "Kibbeh is a family of dishes based on spiced ground meat, onions, and grain, popular in Middle Eastern cuisine. In Levantine cuisine, kibbeh is usually made by pounding bulgur wheat together with meat into a fine paste and forming it into balls with toasted pine nuts and spices",
+        "price": 4
+    }
+]

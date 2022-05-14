@@ -1,0 +1,22 @@
+[
+    {
+        "username": "Admin",
+        "password": "12345",
+        "fName": "Malek",
+        "lName": "Butto",
+        "userID": "1",
+        "email": "malek@mail.com",
+        "ِadmin": "true",
+        "pfp": "./Images/pfp/Admin.jpg"
+    },
+    {
+        "username": "user",
+        "password": "123",
+        "fName": "John",
+        "lName": "Doe",
+        "userID": "2",
+        "email": "John@mail.com",
+        "admin": "false",
+        "pfp": "./Images/pfp/User.jpg"
+    }
+]

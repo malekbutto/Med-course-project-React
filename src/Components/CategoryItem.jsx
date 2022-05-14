@@ -2,6 +2,17 @@ import styled from "styled-components";
 import {mobile} from "../responsive";
 import { Link } from 'react-router-dom';
 
+const Info = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
 const Container = styled.div`
     flex: 1;
     margin: 3px;
@@ -14,20 +25,14 @@ const Image = styled.img`
     object-fit: cover;
     ${mobile({ height: "30vh" })}
 `;
-const Info = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
 const Title = styled.h1`
     color: white;
     margin-bottom: 20px;
+    &:hover {
+        background-color: #797EAB;
+        color: white;
+        transform: scale(1.2);
+    }
 `;
 const Button = styled.button`
     border: none;
@@ -35,7 +40,7 @@ const Button = styled.button`
     background-color: white;
     color: gray;
     cursor: pointer;
-    font-weight: 600
+    font-weight: 600;
 `;
 const CategoryItem = ({ item }) => {
     return (
@@ -43,7 +48,7 @@ const CategoryItem = ({ item }) => {
             <Image src={item.img} alt='CategoryImage' />
             <Info>
                 <Title>{item.title}</Title>
-                <Button><Link to={item.url} target="_top">Shop Now</Link></Button>
+                <Button><Link to={item.url} target="_top">Watch</Link></Button>
             </Info>
         </Container>
     )

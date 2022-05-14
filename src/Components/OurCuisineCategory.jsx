@@ -1,9 +1,10 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
 import { useState } from 'react';
-import { pastries } from '../data';
 import { mobile } from "../responsive";
 import styled from "styled-components";
+import { ourCuisine } from '../data'
 import Footer from './Footer';
+// import OurCuisine from './OurCuisine';
 
 // const Container = styled.div`
 //   padding: 20px;
@@ -101,25 +102,28 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const PastriesCategory = () => {
+
+
+
+const OurCuisineCategory = () => {
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (pastries.length - 1));
+      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (ourCuisine.length - 1));
     } else {
-      setSlideIndex(slideIndex < (pastries.length - 1) ? (slideIndex + 1) : 0);
+      setSlideIndex(slideIndex < (ourCuisine.length - 1) ? (slideIndex + 1) : 0);
     }
   };
 
   return (
     <div>
-      <TopTitle>The Pastries</TopTitle>
+      <TopTitle>Our Cuisine</TopTitle>
       <Container>
         <Arrow direction="left" onMouseDown={() => handleClick("left")}>
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {pastries.map((item) => (
+          {ourCuisine.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} alt='SlideImage' />
@@ -138,14 +142,15 @@ const PastriesCategory = () => {
         </Arrow>
       </Container>
 
-      {/* <Title>The Pastries</Title>
-    <Container>
-      {pastries.map(item=>(
-          <Pastries item={item} key={item.id}/> 
-      ))}
-    </Container> */}
+
+      {/* <Title>Our Cuisine</Title>
+      <Container>
+        {ourCuisine.map(item => (
+          <OurCuisine item={item} key={item.id} />
+        ))}
+      </Container> */}
       <Footer />
     </div>
   )
 }
-export default PastriesCategory;
+export default OurCuisineCategory;

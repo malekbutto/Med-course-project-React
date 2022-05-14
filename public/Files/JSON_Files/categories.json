@@ -14,8 +14,8 @@
             },
             {
                 "id": 3,
-                "img": "./Images/Category/Other.jpg",
-                "title": "Other"
+                "img": "./Images/Category/OurCuisine.jpg",
+                "title": "OurCuisine"
             }
         ]
     }

@@ -2,8 +2,8 @@ import { Remove } from "@material-ui/icons";
 import { Add } from "@material-ui/icons";
 import styled from "styled-components";
 import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
 import { mobile } from "../responsive";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Container = styled.div`
      
@@ -97,6 +97,7 @@ const ProductPrice = styled.div`
     font-size: 30px;
     font-weight: 200;
     ${mobile({ marginBottom: "20px" })}
+    padding: 20px;
 `;
 const Hr = styled.hr`
     background-color: #eee;
@@ -136,33 +137,143 @@ const Button = styled.button`
 
 
 const Cart = () => {
-    var count = 0;
-    function AddAmountFunc() {
-        count = document.getElementById('ProductAmount').value;
-        ++count;
+
+    const ready = () => {
+        // var removeCartItemIcon = document.getElementsByClassName('btn-danger');
+        // for (var i = 0; i < removeCartItemIcon.length; i++) {
+        //     var RemoveIcon = removeCartItemIcon[i];
+        //     RemoveIcon.addEventListener('click', removeCartItem)
+        // }
+
+        var quantityInputs = document.getElementsByClassName('cart-quantity-input');
+        for (var j = 0; j < quantityInputs.length; j++) {
+            var input = quantityInputs[j];
+            input.addEventListener('change', quantityChanged);
+        }
+
+        // var addToCartButtons = document.getElementsByClassName('shop-item-button');
+        // for (var i = 0; i < addToCartButtons.length; i++) {
+        //   var button = addToCartButtons[i];
+        //   button.addEventListener('clicked', addToCartClicked)
+        // }
+    
+        // document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+    
     }
-    function RemoveAmountFunc() {
-        count = document.getElementById('ProductAmount').value;
-        if (count!==0)
-            count--;
+
+//     const addItemToCart = (title, imageSrc, price) => {
+//         var cartRow = document.getElementsByClassName('div');
+//         cartRow.classList.add('cart-row');
+//         var cartItems = document.getElementsByClassName('cart-items')[0];
+//         var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
+//         for (var i = 0; i < cartItemNames.length; i++) {
+//           if (cartItemNames[i].innerText == title) {
+//             alert('this items alredy added to cart')
+//             return
+//           }
+
+          
+//     var cartRowContents = `
+//     <ImgContainer className="cart-item cart-column">
+//                 <Image src=${imageSrc} className="shop-item-image" />
+//               </ImgContainer>
+//               <InfoContainer>
+//                 <Title className="shop-item-title">${title}</Title>
+//                 <Desc>{item.desc}</Desc>
+//                 <Price className="shop-item-price">${price}</Price>
+//                 <Button className="btn btn-primary shop-item-button">Add To Cart</Button>
+//               </InfoContainer>
+//     `;
+//     cartRow.innerText = cartRowContents;
+//     cartItems.append(cartRow);
+//     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('clicked', removeCartItem);
+//     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+//   }
+// }
+    // const addToCartClicked = (event) => {
+    //     var button = event.target;
+    //     var shopItem = button.parentElement.parentElement;
+    //     var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
+    //     var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
+    //     var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
+    //     addItemToCart(title, imageSrc, price)
+    //     updateCartTotal();
+    //   }
+
+    const removeCartItem = (event) => {
+        var IconClicked = event.target;
+        IconClicked.parentElement.parentElement.parentElement.parentElement.remove();
+        updateCartTotal();
     }
+
+    const quantityChanged = (event) => {
+        var input = event.target;
+        if (isNaN(input.value) || input.value <= 0) {
+            input.value = 1;
+        }
+        updateCartTotal();
+    }
+
+    const purchaseClicked = () => {
+        alert("Thank you");
+
+    }
+
+    const updateCartTotal = () => {
+        var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+        var cartRows = cartItemContainer.getElementsByClassName('cart-row');
+        var total = 0;
+        for (var i = 0; i < cartRows.length; i++) {
+            var cartRow = cartRows[i];
+            var priceElement = cartRow.getElementsByClassName('cart-price')[0];
+            var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
+            var price = parseFloat(priceElement.innerText.replace('nis', ''));
+            var quantity = quantityElement.value;
+            total = total + (price * quantity);
+        }
+        total = Math.round(total * 100) / 100;
+        document.getElementsByClassName('cart-total-price')[0].innerText = total + ' nis';
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', ready);
+    }
+    else {
+        ready();
+    }
+
+    // var count = 0;
+    // function AddAmountFunc() {
+    //     count = document.getElementById('ProductAmount').value;
+    //     ++count;
+    // }
+    // function RemoveAmountFunc() {
+    //     count = document.getElementById('ProductAmount').value;
+    //     if (count !== 0)
+    //         count--;
+    // }
 
     return (
         <Container>
             <Wrapper>
                 <Title>Your Basket</Title>
-                <Top>
+                <div className="cart-row">
+                        <span className="cart-item cart-header cart-column">Item</span>
+                        <span className="cart-price cart-header cart-column">Price</span>
+                        <span className="cart-quantity cart-header cart-column">Quantity</span>
+                    </div>
+                {/* <Top>
                     <TopButton>Continue Shopping</TopButton>
                     <TopTexts>
                         <TopText>Shopping Bag(2)</TopText>
                     </TopTexts>
                     <TopButton type="filled">Checkout Now</TopButton>
-                </Top>
+                </Top> */}
                 <Bottom>
-                    <Info>
-                        <Product>
-                            <ProductDetail>
-                                <Image src="./Images/Category/Sweets/Trilece_Caramel2.jpg" />
+                    <Info className="cart-items">
+                        <Product className="cart-row">
+                            <ProductDetail className="cart-item cart-column">
+                                <Image classname="cart-item-image" src="./Images/Category/Sweets/Trilece_Caramel2.jpg" />
                                 <Details>
                                     <ProductName>
                                         <b>Product:</b> Trilece Caramel
@@ -176,25 +287,22 @@ const Cart = () => {
                                 </Details>
                             </ProductDetail>
                             <PriceDetails>
+                                <ProductPrice className="cart-price cart-column">
+                                    12 nis
+                                </ProductPrice>
                                 <ProductAmountContainer>
-                                    <Add onClick={AddAmountFunc}>
-                                        <img src="./Images/Icons/Add.png" alt="AddIcon" />
-                                    </Add>
-                                    <ProductAmount className="ProductAmount">{count}</ProductAmount>
-                                    <Remove onClick={RemoveAmountFunc}>
-                                        <img src="./Images/Icons/Remove.png" alt="RemoveIcon" />
-                                    </Remove>
-                                    {/* <Add />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove /> */}
+                                    <input className="cart-quantity-input" type="number" defaultValue="2" min="1" max="15" />
+                                    <DeleteIcon className="btn btn-danger" cursor="pointer"/>
+                                    {/* <button className="btn btn-danger" type="button">
+                                        Remove
+                                    </button> */}
                                 </ProductAmountContainer>
-                                <ProductPrice>12 nis</ProductPrice>
                             </PriceDetails>
                         </Product>
                         <Hr />
-                        <Product>
-                            <ProductDetail>
-                                <Image src="./Images/Category/Sweets/Trilece_Strawberry.jpg" />
+                        <Product className="cart-row">
+                            <ProductDetail className="cart-item cart-column">
+                                <Image classname="cart-item-image" src="./Images/Category/Sweets/Trilece_Strawberry.jpg" />
                                 <Details>
                                     <ProductName>
                                         <b>Product:</b> Trilece Strawberry
@@ -208,36 +316,31 @@ const Cart = () => {
                                 </Details>
                             </ProductDetail>
                             <PriceDetails>
+                                <ProductPrice className="cart-price cart-column">
+                                    15 nis
+                                </ProductPrice>
                                 <ProductAmountContainer>
-                                    <div onClick={AddAmountFunc}>
+                                    <input id="cart-quantity-input" className="cart-quantity-input" type="number" defaultValue="1" min="1" max="15"></input>
+                                    <DeleteIcon className="btn btn-danger" cursor="pointer"/>
+                                    {/* <button className="btn btn-danger" type="button">
+                                        Remove
+                                    </button> */}
+                                    {/* <div onClick={AddAmountFunc}>
                                         <img src="./Images/Icons/Add.png" alt="AddIcon" />
                                     </div>
                                     <ProductAmount className="ProductAmount">{count}</ProductAmount>
                                     <div onClick={RemoveAmountFunc}>
                                         <img src="./Images/Icons/Remove.png" alt="RemoveIcon" />
-                                    </div>
+                                    </div> */}
                                 </ProductAmountContainer>
-                                <ProductPrice>15 nis</ProductPrice>
                             </PriceDetails>
                         </Product>
                     </Info>
                     <Summary>
                         <SummaryTitle>Order Summary</SummaryTitle>
-                        <SummaryItem>
-                            <SummaryItemText>SubTotal</SummaryItemText>
-                            <SummaryItemPrice>{ProductPrice*count}</SummaryItemPrice>
-                        </SummaryItem>
-                        <SummaryItem>
-                            <SummaryItemText>Estimated Shipping</SummaryItemText>
-                            <SummaryItemPrice>30 nis</SummaryItemPrice>
-                        </SummaryItem>
-                        <SummaryItem>
-                            <SummaryItemText>Shipping Discount</SummaryItemText>
-                            <SummaryItemPrice>-30 nis</SummaryItemPrice>
-                        </SummaryItem>
                         <SummaryItem type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>30 nis</SummaryItemPrice>
+                            <SummaryItemPrice className="btn btn-primary btn-purchase">{0} nis</SummaryItemPrice>
                         </SummaryItem>
                         <Button>Checkout Now</Button>
                     </Summary>

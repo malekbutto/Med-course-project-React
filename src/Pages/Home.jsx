@@ -6,9 +6,7 @@ import Footer from '../Components/Footer';
 
 
 const Home = () => {
-    // if (!user) {
-    //     return <Navigate to="/Home" replace />;
-    //   }
+    
     return (
         <div>
             {/* <Slider /> */}

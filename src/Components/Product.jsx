@@ -1,5 +1,5 @@
 // import { ShoppingCartOutlined, SearchOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
-import { ShoppingCartOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 
 const Info = styled.div`
@@ -73,7 +73,7 @@ const Product = ({ item }) => {
                 <Image src={item.img} alt='ProduntImage' />
                 <Info>
                     <Icon onclick="">
-                        <ShoppingCartOutlined />
+                        <ShoppingCartOutlined className="btn btn-primary shop-item-button" />
                     </Icon>
                     {/* <Icon>
                         <SearchOutlined />

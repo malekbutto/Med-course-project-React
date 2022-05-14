@@ -13,10 +13,9 @@ function Login() {
     function handleLogin(e)
     {
         e.preventDefault();
-        let users = await axios.get('users.json');
+        const users = await axios.get('/Files/users.json');
         const admin = users.users[0];
         const user = users.users[1];
-
 
         const password = admin.password;
         let inputPass = localStorage.getItem("password").replace(/"/g, "");

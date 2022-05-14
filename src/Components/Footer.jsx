@@ -15,9 +15,7 @@ const Left = styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
-`;
-const Logo = styled.h1`
-
+    ${mobile({ margin: "auto"})}
 `;
 const Desc = styled.p`
     font-weight: bold;
@@ -95,12 +93,12 @@ const Footer = () => {
             </Left>
             <Center>
                 <Title>
-                    UseFull Links
+                    Site Map
                 </Title>
                 <List>
                     <ListItem><Link to="/SweetsCategory" target={"_top"}>Sweets</Link></ListItem>
                     <ListItem><Link to="/PastriesCategory" target={"_top"}>Pastries</Link></ListItem>
-                    <ListItem><Link to="/OtherCategory" target={"_top"}>Other Products</Link></ListItem>
+                    <ListItem><Link to="/OurCuisineCategory" target={"_top"}>Our Cuisine</Link></ListItem>
                     <ListItem><Link to="/Cart" target={"_top"}>Cart</Link></ListItem>
                 </List>
             </Center>
