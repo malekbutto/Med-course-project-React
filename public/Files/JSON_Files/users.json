@@ -1,12 +1,12 @@
 [
     {
-        "username": "Admin",
+        "username": "admin",
         "password": "12345",
         "fName": "Malek",
         "lName": "Butto",
         "userID": "1",
         "email": "malek@mail.com",
-        "ِadmin": "true",
+        "ِadmin": true,
         "pfp": "./Images/pfp/Admin.jpg"
     },
     {
@@ -16,7 +16,7 @@
         "lName": "Doe",
         "userID": "2",
         "email": "John@mail.com",
-        "admin": "false",
+        "admin": false,
         "pfp": "./Images/pfp/User.jpg"
     }
 ]

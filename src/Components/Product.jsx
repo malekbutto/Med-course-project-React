@@ -1,6 +1,9 @@
 // import { ShoppingCartOutlined, SearchOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
+import axios from "axios";
+import { React, useEffect, useState } from "react";
+
 
 const Info = styled.div`
     opacity: 0;
@@ -9,7 +12,7 @@ const Info = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.0);
     z-index: 3;
     display: flex;
     align-items: center;
@@ -21,7 +24,6 @@ const Title = styled.h1`
     font-size: 24px;
     text-align: center;
 `;
-
 const Container = styled.div`
     flex: 1;
     margin: 5px;
@@ -67,13 +69,24 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+
+    // const [productImage, setProductImage] = useState();
+    // console.log(productImg);
+
+    // useEffect(() => {
+    //     if (productImg.img.includes('fakepath'))
+    //         setProductImage('./Images/Category/No_Image.jpeg');
+    //     else
+    //         setProductImage(productImg.img);
+    // }, [productImage]);
+
     return (
         <Container bg={item.bg}>
             <Circle>
-                <Image src={item.img} alt='ProduntImage' />
+                <Image src={item.img} alt='ProductImage' />
                 <Info>
-                    <Icon onclick="">
-                        <ShoppingCartOutlined className="btn btn-primary shop-item-button" />
+                    <Icon>
+                        <ShoppingCartOutlined />
                     </Icon>
                     {/* <Icon>
                         <SearchOutlined />

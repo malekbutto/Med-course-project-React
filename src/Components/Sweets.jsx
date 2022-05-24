@@ -8,7 +8,7 @@ const Info = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.0);
     z-index: 3;
     display: flex;
     align-items: center;
@@ -76,9 +76,9 @@ const Sweets = ({ item }) => {
                     {/* <Icon>
                         <SearchOutlined />
                     </Icon> */}
-                    <Icon>
+                    {/* <Icon>
                         <FavoriteBorderOutlined />
-                    </Icon>
+                    </Icon> */}
                 </Info>
                 <Title>
                     {item.title}

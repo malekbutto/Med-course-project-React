@@ -1,9 +1,32 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
-import { useState } from 'react';
 import { pastries } from '../data';
 import { mobile } from "../responsive";
-import styled from "styled-components";
 import Footer from './Footer';
+import axios from "axios";
+import { React, useEffect, useState } from "react";
+import Pastries from './Pastries';
+
+//Components
+import Drawer from '@material-ui/core/Drawer';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Grid from '@material-ui/core/Grid';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Badge from '@material-ui/core/Badge';
+//Styled
+import styled from "styled-components";
+import { useQuery } from 'react-query';
+import { CircleNotifications, LineAxisOutlined } from '@mui/icons-material';
+//types
+// export type CartItemType = {
+//   id: number;
+//   img: String;
+//   bg: String;
+//   title: String;
+//   description: String;
+//   price: number;
+//   amount: Number;
+// };
+
 
 // const Container = styled.div`
 //   padding: 20px;
@@ -35,6 +58,8 @@ const Container = styled.div`
     display: flex;
     position: relative;
     overflow: hidden;
+    flex-wrap: wrap;
+  justify-content: space-between; 
     ${mobile({ display: "none" })}
 `;
 const Arrow = styled.div`
@@ -101,15 +126,44 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
+// const getProducts = async (): Promise<CartItemType> =>
+
 const PastriesCategory = () => {
+
+  const [data, setData] = useState();
+  let pastriesData;
+
+  useEffect(() => {
+    const getProducts = async () => {
+      pastriesData = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
+      setData(pastriesData);
+      console.log(pastriesData)
+
+    }
+    getProducts();
+  }, []);
+
+
+  const getTotalItems = () => null;
+
+  const handleAddToCart = () => null;
+
+  const handleRemoveFromCart = () => null;
+
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (pastries.length - 1));
+      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (pastriesData.length - 1));
     } else {
-      setSlideIndex(slideIndex < (pastries.length - 1) ? (slideIndex + 1) : 0);
+      setSlideIndex(slideIndex < (pastriesData.length - 1) ? (slideIndex + 1) : 0);
     }
   };
+
+  // if (isLoading) return <Circle />
+  // if (error) return <div>Something went wrong...</div>
+
+
+
 
   return (
     <div>
@@ -119,7 +173,7 @@ const PastriesCategory = () => {
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {pastries.map((item) => (
+          {data.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} alt='SlideImage' />
@@ -139,11 +193,11 @@ const PastriesCategory = () => {
       </Container>
 
       {/* <Title>The Pastries</Title>
-    <Container>
-      {pastries.map(item=>(
-          <Pastries item={item} key={item.id}/> 
-      ))}
-    </Container> */}
+      <Container>
+        {pastries.map(item => (
+          <Pastries item={item} key={item.id} />
+        ))}
+      </Container> */}
       <Footer />
     </div>
   )

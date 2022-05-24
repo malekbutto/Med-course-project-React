@@ -1,11 +1,13 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
-import { useState } from 'react';
 import { sweets } from '../data';
 import { mobile } from "../responsive";
 // import { sweets } from '../data'
 import styled from "styled-components";
 // import Sweets from './Sweets';
 import Footer from './Footer';
+import axios from "axios";
+import { React, useEffect, useState } from "react";
+import Sweets from './Sweets';
 
 // const Container = styled.div`
 //   padding: 20px;
@@ -37,6 +39,8 @@ const Container = styled.div`
     display: flex;
     position: relative;
     overflow: hidden;
+    flex-wrap: wrap;
+  justify-content: space-between;
     ${mobile({ display: "none" })}
 `;
 const Arrow = styled.div`
@@ -63,20 +67,20 @@ const Wrapper = styled.div`
     transition: all 1.5s ease;
     transform: translateX(${(props) => (props.slideIndex * -100)}vw);
 `;
-const FilterContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-const Filter = styled.div`
-    margin: 20px;
-    ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
-`;
-const FilterText = styled.span`
-    font-size: 20px;
-    font-weight: 600;
-    margin-right: 20px;
-    ${mobile({ marginRight: "0px" })}
-  `;
+// const FilterContainer = styled.div`
+//     display: flex;
+//     justify-content: space-between;
+// `;
+// const Filter = styled.div`
+//     margin: 20px;
+//     ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
+// `;
+// const FilterText = styled.span`
+//     font-size: 20px;
+//     font-weight: 600;
+//     margin-right: 20px;
+//     ${mobile({ marginRight: "0px" })}
+//   `;
 const Slide = styled.div`
     width: 100vw;
     height: 85%;
@@ -123,6 +127,17 @@ const SweetsCategory = () => {
   const [title, setTitle] = useState();
   const [desc, setDesc] = useState();
   const [price, setPrice] = useState();
+  // const [data, setData] = useState();
+
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     const sweetsData = await axios.get("http://localhost:3000/sweets").then((res) => res.data);
+  //     setData(sweetsData);
+  //     console.log(data);
+  //   };
+  //   getProducts();
+  // }, []);
+
 
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
@@ -133,115 +148,24 @@ const SweetsCategory = () => {
     }
   };
 
-  const ready = () => {
-    var removeCartItemIcon = document.getElementsByClassName('btn-danger');
-    for (var i = 0; i < removeCartItemIcon.length; i++) {
-      var RemoveIcon = removeCartItemIcon[i];
-      RemoveIcon.addEventListener('click', removeCartItem)
-    }
-
-    var quantityInputs = document.getElementsByClassName('cart-quantity-input');
-    for (var j = 0; j < quantityInputs.length; j++) {
-      var input = quantityInputs[j];
-      input.addEventListener('change', quantityChanged);
-    }
-  }
-
-
-  const addToCartClicked = (event) => {
-    var button = event.target;
-    var shopItem = button.parentElement.parentElement;
-    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
-    var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
-    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-    addItemToCart(title, imageSrc, price)
-    updateCartTotal();
-  }
-
-  const addItemToCart = (title, imageSrc, price) => {
-    var cartRow = document.getElementsByClassName('div');
-    cartRow.classList.add('cart-row');
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-    var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
-    for (var i = 0; i < cartItemNames.length; i++) {
-      if (cartItemNames[i].innerText == title) {
-        alert('this items alredy added to cart')
-        return
-      }
-
-    }
-    var cartRowContents = `
-    <ImgContainer className="cart-item cart-column">
-                <Image src=${imageSrc} className="shop-item-image" />
-              </ImgContainer>
-              <InfoContainer>
-                <Title className="shop-item-title">${title}</Title>
-                <Desc>{item.desc}</Desc>
-                <Price className="shop-item-price">${price}</Price>
-                <Button className="btn btn-primary shop-item-button">Add To Cart</Button>
-              </InfoContainer>
-    `;
-    cartRow.innerText = cartRowContents;
-    cartItems.append(cartRow);
-    cartRow.getElementsByClassName('btn-danger')[0].addEventListener('clicked', removeCartItem);
-    cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
-  }
-
-  const removeCartItem = (event) => {
-    var IconClicked = event.target;
-    IconClicked.parentElement.parentElement.parentElement.parentElement.remove();
-    updateCartTotal();
-  }
-
-  const quantityChanged = (event) => {
-    var input = event.target;
-    if (isNaN(input.value) || input.value <= 0) {
-      input.value = 1;
-    }
-    updateCartTotal();
-  }
-
-  const updateCartTotal = () => {
-    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
-    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-    var total = 0;
-    for (var i = 0; i < cartRows.length; i++) {
-      var cartRow = cartRows[i];
-      var priceElement = cartRow.getElementsByClassName('cart-price')[0];
-      var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
-      var price = parseFloat(priceElement.innerText.replace('nis', ''));
-      var quantity = quantityElement.value;
-      total = total + (price * quantity);
-    }
-    total = Math.round(total * 100) / 100;
-    document.getElementsByClassName('cart-total-price')[0].innerText = total + ' nis';
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', ready);
-  }
-  else {
-    ready();
-  }
-
   return (
     <div>
       <TopTitle>The Sweets</TopTitle>
-      <Container className="cart-item">
+      <Container>
         <Arrow direction="left" onMouseDown={() => handleClick("left")}>
           <ArrowLeftOutlined />
         </Arrow>
-        <Wrapper slideIndex={slideIndex} className="cart-row">
+        <Wrapper slideIndex={slideIndex}>
           {sweets.map((item) => (
             <Slide bg={item.bg} key={item.id}>
-              <ImgContainer className="cart-item cart-column">
-                <Image src={item.img} className="shop-item-image" />
+              <ImgContainer>
+                <Image src={item.img} />
               </ImgContainer>
               <InfoContainer>
-                <Title className="shop-item-title">{item.title}</Title>
+                <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
-                <Price className="shop-item-price">{item.price} nis</Price>
-                <Button className="btn btn-primary shop-item-button">Add To Cart</Button>
+                <Price>{item.price} nis</Price>
+                <Button>Add To Cart</Button>
               </InfoContainer>
             </Slide>
           ))}
@@ -253,10 +177,10 @@ const SweetsCategory = () => {
 
 
       {/* <Container>
-      {sweets.map(item=>(
-          <Sweets item={item} key={item.id}/> 
-      ))}
-    </Container> */}
+        {sweets.map(item => (
+          <Sweets item={item} key={item.id} />
+        ))}
+      </Container> */}
       <Footer />
     </div>
   )

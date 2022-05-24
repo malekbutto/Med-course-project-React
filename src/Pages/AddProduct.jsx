@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import axios from "axios";
-import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { sweets, pastries, popularProducts, ourCuisine } from '../data';
+import { React, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { sweets, pastries, popularProducts, ourCuisine } from '../data';
 // import sweets from './File/';
 import Footer from "../Components/Footer";
 // import { Alert } from "react-bootstrap";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 const Container = styled.div`
     width: 90vw;
-    height: 90vh;
+    height: 90%;
     background: linear-gradient(
         rgba(255, 255, 255, 0.5),
         rgba(255, 255, 255, 0.5)
@@ -29,7 +30,7 @@ const Wrapper = styled.div`
     width: 25%;
     padding: 20px;
     background-color: #f5fbfd;
-    ${mobile({ width: "75%" ,height: "20vw"})}
+    ${mobile({ width: "75%", height: "20vw" })}
 `;
 const Title = styled.h1`
     font-size: 24px;
@@ -38,13 +39,17 @@ const Title = styled.h1`
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    ${mobile({ height: "20vw" })}
+    ${mobile({ height: "30%",margin: "auto", justifyContent: "center" })}
 `;
 const Input = styled.input`
     flex: 1;
     min-width: 40%;
-    margin: 10px 0px;
-    padding: 10px;
+    margin: 0px 0px;
+    padding: 5x;
+    ${mobile({ height: "30%" })}
+`;
+const Textarea = styled.textarea`
+        resize: none;
 `;
 const Select = styled.select`
     padding: 10px;
@@ -63,64 +68,95 @@ const Button = styled.button`
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
+    border-radius: 50%;
+    margin: auto;
+`;
+const FooterDiv = styled.div`
+    ${mobile({ display: "none" })}
 `;
 
 const AddProduct = () => {
-
-    const notify = () => toast("Product added successfully!");
-
     // const [Id, setId] = useState();
     const [img, setImg] = useState();
-    const [title, setTitle] = useState();
-    const [desc, setDesc] = useState();
-    const [price, setPrice] = useState();
+    const [productName, setProductName] = useState();
+    const [productDesc, setProductDesc] = useState();
+    const [productPrice, setProductPrice] = useState();
 
-    let Id;
+    let inputCategory;
     let filePath;
+    let validInput;
+
+    const validation = (e) => {
+        if (productPrice > 250) {
+            toast.error("Max price is 250!", {
+                position: "top-center",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            validInput = false;
+            e.target[4] = "autoFocus";
+        }
+        else
+            validInput = true;
+    }
+
 
     const newProduct = (ev) => {
         ev.preventDefault();
-        let inputCategory = ev.target[2].value;
+        inputCategory = ev.target[2].value;
         let selectedbg;
         switch (inputCategory) {
             case "sweets":
                 selectedbg = "fcf1ed";
-                filePath = ".\sweets.json";
+                filePath = "http://localhost:3000/sweets";
                 break;
             case "pastries":
                 selectedbg = "f5fbfd";
-                filePath = ".\pastries.json";
+                filePath = "http://localhost:3000/pastries";
                 break;
             case "ourCuisine":
                 selectedbg = "fbf0f4";
-                filePath = ".\ourCuisine.json";
+                filePath = "http://localhost:3000/ourCuisine";
                 break;
             default:
         }
-        axios.get(filePath).then((res) => {
-            // setId(res.data.length);
-            Id = (res.data.length);
-            console.log(Id);
-        });
-        const product = JSON.stringify ({
-            id: Id,
+
+
+        // const jsonString = JSON.stringify(filePath);
+        // console.log(jsonString);
+
+        // axios.get(filePath).then((res) => {
+        //     console.log(res);
+        //     // setId(res.data.length);
+        //     Id = (res.data[res.data.length - 1].id);
+        //     console.log(Id);
+        // });
+        const product = {
+            // id: Id,
             img: img,
             bg: selectedbg,
-            title: title,
-            desc: desc,
-            price: price,
-        });
-        document.forms[0].reset();
-        axios.post('https://httpbin.org/post', product, {
-            headers: {
-                'content-Type': filePath
-            }  
-        });
+            title: productName,
+            desc: productDesc,
+            price: productPrice,
+        };
+        // document.forms[0].reset();
 
-        // res.data.data;
-
-        // axios.post({filePath}, {product});
-        console.warn('added', { product });
+        if (validInput) {
+            axios.post(filePath, product);
+            toast.success("Product added successfully!", {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
     }
 
     return (
@@ -130,37 +166,45 @@ const AddProduct = () => {
                     <div>
                         <Form onSubmit={newProduct}>
                             <Title>Add New Product</Title>
+                            <label name="ProductName">Product Name:</label>
                             <Input
                                 type="text"
                                 id="ProductName"
                                 name="ProductName"
-                                placeholder="Product Name"
+                                placeholder="Product Name   (max 25 - only Chars)"
                                 required
+                                minLength="1"
+                                maxLength="25"
+                                autoFocus
                                 fullWidth
                                 autoComplete="ProductName"
-                                autoFocus
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                value={productName}
+                                onChange={(ev) => setProductName(ev.target.value.replace(/[^a-z][^a-z\s]*$/gi, ''))}
                             />
-                            <Input
+                            <br />
+                            <label name="Description">Description:</label>
+                            <Textarea
                                 type="text"
                                 id="description"
                                 name="description"
-                                placeholder="Description of the Product"
+                                placeholder="Description   (max 200 Chars)"
                                 required
-                                fullWidth
+                                minLength="1"
+                                maxLength="200"
+                                rows={4}
+                                cols={5}
                                 autoComplete="description"
-                                value={desc}
-                                onChange={(e) => setDesc(e.target.value)}
+                                value={productDesc}
+                                onChange={(ev) => setProductDesc(ev.target.value)}
                             />
-                            <label for="Category">Choose a Category:</label>
+                            <br />
+                            <label name="Category">Choose a Category:</label>
                             <Select
                                 type="text"
                                 id="category"
                                 name="category"
                                 required
                                 fullWidth
-                                autoComplete="category"
                                 size="3"
                                 font-size="30px"
                             >
@@ -169,29 +213,31 @@ const AddProduct = () => {
                                 <Option value="ourCuisine">Our Cuisine</Option>
                             </Select>
                             <br />
-                            <label for="img">Upload Image:</label>
-                            <input type="file" id="img" name="img" accept="image/*" value={img}
+                            <label name="img">Upload Image:</label>
+                            <input type="file" id="img" name="img" accept="image/*" required
                                 onChange={(e) => setImg(e.target.value)} />
                             <br />
+                            <label name="Price">Price:</label>
                             <Input
                                 type="number"
                                 id="price"
                                 name="price"
-                                placeholder="Price of the Product (nis)"
+                                placeholder="Price (nis)   (max 250 nis - only numbers) "
                                 required
-                                fullWidth
                                 autoComplete="Price"
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
-                                pattern
+                                value={productPrice}
+                                onChange={(ev) => setProductPrice(ev.target.value.replace(/\D/g, ''))}
                             />
-                            <Button type='submit' onclick={notify}fullWidth className='btn btn-dark btl-lg btn-block'>Add Product</Button>
+                            <br />
+                            <Button type='submit' onClick={validation} fullWidth>Add Product</Button>
 
                         </Form>
                     </div>
                 </Wrapper>
             </Container>
-            <Footer />
+            <FooterDiv>
+                <Footer />
+            </FooterDiv>
         </div>
     )
 }

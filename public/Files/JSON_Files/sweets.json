@@ -1,5 +1,6 @@
-[
-    {
+{
+    "sweets": [
+         {
         "id": 1,
         "img": "./Images/Category/Sweets/Trilece_Caramel2.jpg",
         "bg": "fcf1ed",
@@ -160,3 +161,4 @@
         "price": 100
     }
 ]
+}

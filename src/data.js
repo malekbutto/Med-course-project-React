@@ -56,6 +56,7 @@ export const popularProducts = [
         img: "./Images/Category/Sweets/Trilece_Caramel2.jpg",
         bg: "fcf1ed",
         title: "Trilece Caramel",
+        price: 15
     },
     {
         id: 2,
@@ -511,7 +512,7 @@ export const pastries = [
         id: 8,
         img: "./Images/Category/Pastries/Pizza2.jpg",
         bg: "f5fbfd",
-        title: "Pizza",
+        title: "Pizza Filling",
         desc: "Pastry filled with Pizza mix",
         price: 35
     },

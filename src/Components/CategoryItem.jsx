@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import {mobile} from "../responsive";
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Info = styled.div`
     position: absolute;
@@ -40,9 +42,12 @@ const Button = styled.button`
     background-color: white;
     color: gray;
     cursor: pointer;
+    font-size: 24px;
     font-weight: 600;
+    border-radius: 50%;
 `;
 const CategoryItem = ({ item }) => {
+
     return (
         <Container>
             <Image src={item.img} alt='CategoryImage' />

@@ -55,10 +55,12 @@ const Login = ({setUser }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.get("./Files/JSON_Files/users.json").then((res) => {
+            const inputUserName = e.target[0].value.toLowerCase();
+            const inputPassword = e.target[1].value;
             const tempUser = res.data.find(
               (obj) =>
-                obj.username.toLowerCase() === e.target[0].value.toLowerCase() &&
-                obj.password === e.target[1].value
+                obj.username === inputUserName &&
+                obj.password === inputPassword
             );
             setUser(tempUser);
             if (tempUser !== undefined && tempUser !== null) {
@@ -68,24 +70,6 @@ const Login = ({setUser }) => {
             }
           });
         };
-        
-    // const Login = () => {
-    //     const [userNameLog, setUserNameLog] = useState("");
-    //     const [PasswordLog, setPasswordLog] = useState("");
-    //     const [flag, setFlag] = useState(false);
-    //     const [home, setHome] = useState(true);
-
-    //     function handleLogin(e) {
-    //         e.preventDefault();
-    //         // let users = axios.get('users.json');
-    //         // const admin = users.users[0];
-    //         // const user = users.users[1];
-
-    //         // const password = admin.password;
-    //         // let inputPass = localStorage.getItem("password").replace(/"/g, "");
-
-    //     }
-
 
     return (
         <Container>
@@ -102,7 +86,6 @@ const Login = ({setUser }) => {
                             fullWidth
                             autoComplete="username"
                             autoFocus
-                        // onChange={(event) => setUserNameLog(event.target.value)} 
                         />
                         <Input
                             type="password"
@@ -112,9 +95,8 @@ const Login = ({setUser }) => {
                             required
                             fullWidth
                             autoComplete="current-password"
-                        // onChange={(event) => setPasswordLog(event.target.value)}
                         />
-                        <Button type='submit' fullWidth className='btn btn-dark btl-lg btn-block'>Login</Button>
+                        <Button type='submit' fullWidth>Login</Button>
                         {/* {flag && (
                                 <Alert color="primary" variant="danger">
                                     Please Fill All fields

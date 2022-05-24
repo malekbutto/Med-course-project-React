@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import { sweets, pastries, ourCuisine } from '../data';
 import axios from "axios";
-import { React, useState, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import Footer from "../Components/Footer";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Container = styled.div`
     width: 90vw;
-    height: 90vh;
+    height: 90%;
     background: linear-gradient(
         rgba(255, 255, 255, 0.5),
         rgba(255, 255, 255, 0.5)
@@ -35,13 +35,23 @@ const Title = styled.h1`
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    ${mobile({ height: "20vw" })}
+    height: 100%;
+    ${mobile({ height: "30%", margin: "auto", justifyContent: "center" })}
+
 `;
 const Input = styled.input`
     flex: 1;
     min-width: 40%;
-    margin: 10px 0px;
-    padding: 10px;
+    margin: 0px 0px;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    ${mobile({ height: "30%" })}
+`;
+const Textarea = styled.textarea`
+    resize: none;
+    font-size: 14px;
+    font-weight: 600;
 `;
 const Select = styled.select`
     padding: 10px;
@@ -50,7 +60,13 @@ const Select = styled.select`
 `;
 const Option = styled.option`
     font-size: 14px;
+    font-weight: 600;
     fontFamily: Poppins,
+`;
+const PFP = styled.div`
+    margin: auto;
+    align-items: center;
+    justify-content: center;
 `;
 const Button = styled.button`
     width: 40%;
@@ -60,38 +76,100 @@ const Button = styled.button`
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
+    border-radius: 50%;
+    margin: auto;
+`;
+const FooterDiv = styled.div`
+    ${mobile({ display: "none" })}
 `;
 
 
 const EditProduct = () => {
 
-    const notify = () => toast("Product edited successfully");
+    // const [productDetails, setProductDetails] = useState([]);
+    const [productsList, setProductsList] = useState([]);
+    const [productId, setProductId] = useState();
+    const [productName, setProductName] = useState("");
+    const [productDesc, setProductDesc] = useState();
+    const [productImage, setProductImage] = useState();
+    const [productPrice, setProductPrice] = useState();
+    const [filePath, setFilePath] = useState();
+    const [sweetsCategory, setSweetsCategory] = useState();
+    const [pastriesCategory, setPastriesCategory] = useState();
+    const [ourCuisineCategory, setOurCuisineCategory] = useState();
 
-    const [img, setImg] = useState();
-    const [title, setTitle] = useState();
-    const [desc, setDesc] = useState();
-    const [price, setPrice] = useState();
+    // const [category, setCategory] = useState();
 
-    let Id;
-    let filePath;
     let category;
-    let productsArray;
     let tempProduct;
+    let validInput;
+
+    const validation = (e) => {
+        if (productPrice > 250) {
+            toast.error("Max price is 250!", {
+                position: "top-center",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            validInput = false;
+        }
+        else
+            validInput = true;
+    }
+
+    useEffect(() => {
+        const getProducts = async () => {
+            const sweetsData = await axios.get("http://localhost:3000/sweets");
+            const pastriesData = await axios.get("http://localhost:3000/pastries");
+            const ourCuisineData = await axios.get("http://localhost:3000/ourCuisine");
+            setSweetsCategory(sweetsData.data);
+            setPastriesCategory(pastriesData.data);
+            setOurCuisineCategory(ourCuisineData.data);
+        }
+        getProducts();
+        }, []);
+
+    // useEffect(() => {
+
+    // },[productImage])
 
     const editProduct = (ev) => {
         ev.preventDefault();
-        CategoryChoosed(ev);
-    }
 
-    const ProductChoosed = (e) => {
-        setTitle = (e.target.value);
-        axios.get(filePath).then((res) => {
-            tempProduct = res.data.find(
-                (obj) =>
-                    obj.title.toLowerCase() === e.target[0]
-            );
+        if (validInput) {
+            axios.get(filePath).then((res) => {
+                tempProduct = res.data.find(
+                    (item) =>
+                        item.title === productName
+                );
+                const product = {
+                    id: productId,
+                    img: productImage,
+                    title: productName,
+                    desc: productDesc,
+                    price: productPrice
+                };
+                setFilePath(filePath + productId);
+                axios.put(filePath + "/" + productId, product);
+                console.log(filePath);
+                console.log(product);
+                document.forms[0].reset();
+
+                toast.success(productName + " edited successfully!", {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            });
         }
-        )
     }
 
     const CategoryChoosed = (e) => {
@@ -102,45 +180,45 @@ const EditProduct = () => {
     const showProducts = (e) => {
         switch (category) {
             case "sweets":
-                filePath = "./Files/JSON_Files/sweets.json";
-                setTitle(sweets.map((product) => {
-                    setDesc(tempProduct.desc);
-                    return (
-                        <tr> product.title</tr>
-                    )
+                setFilePath("http://localhost:3000/sweets");
+                setProductsList(sweetsCategory.map((product) => {
+                    return <Option key={product.id}>{product.title}</Option>
                 }
                 ));
-
-                // for (var i = 0; i < productsArray.length; i++) {
-                //     console.log(productsArray[i]);
-                //     setTitle(productsArray[i]);
-                // }
                 break;
             case "pastries":
-                filePath = "./Files/JSON_Files/pastries.json";
-                setTitle(pastries.map((product) => {
-                    return product.title
+                setFilePath("http://localhost:3000/pastries");
+                setProductsList(pastriesCategory.map((product) => {
+                    return <Option key={product.id}>{product.title}</Option>
                 }
                 ));
-                // for (var i = 0; i < productsArray.length; i++) {
-                //     console.log(productsArray[i]);
-                //     setTitle(productsArray[i]);
-                // }
                 break;
             case "ourCuisine":
-                filePath = "./Files/JSON_Files/ourCuisine.json";
-                setTitle(ourCuisine.map((product) => {
-                    return product.title
+                setFilePath("http://localhost:3000/ourCuisine");
+                setProductsList(ourCuisineCategory.map((product) => {
+                    return <Option key={product.id}>{product.title}</Option>
                 }
                 ));
-                // for (var i = 0; i < productsArray.length; i++) {
-                //     console.log(productsArray[i]);
-                //     setTitle(productsArray[i]);
-                // }
                 break;
             default:
         }
+    }
 
+    const ProductChoosed = (e) => {
+        setProductName(e.target.value);
+        axios.get(filePath).then((res) => {
+            tempProduct = res.data.find(
+                (item) =>
+                    item.title === e.target.value
+            );
+            setProductId(tempProduct.id);
+            setProductDesc(tempProduct.desc);
+            setProductPrice(tempProduct.price);
+            if (tempProduct.img.includes('fakepath'))
+                setProductImage('./Images/Category/No_Image.jpeg');
+            else
+                setProductImage(tempProduct.img);
+        })
     }
 
 
@@ -151,7 +229,7 @@ const EditProduct = () => {
                     <div>
                         <Form onSubmit={editProduct}>
                             <Title>Edit Product</Title>
-                            <label for="Category" >Choose a Category:</label>
+                            <label name="Category" >Choose a Category:</label>
                             <Select
                                 type="text"
                                 id="category"
@@ -160,58 +238,71 @@ const EditProduct = () => {
                                 fullWidth
                                 autoComplete="category"
                                 size="3"
-                                font-size="30px"
                                 onChange={CategoryChoosed}
                             >
                                 <Option value="sweets">Sweets</Option>
                                 <Option value="pastries">Pastries</Option>
                                 <Option value="ourCuisine">Our Cuisine</Option>
                             </Select>
-                            <label for="Product">Choose a Product:</label>
+                            <br />
+                            <label name="Product">Choose a Product:</label>
                             <Select
                                 type="text"
                                 id="product"
                                 name="product"
                                 required
                                 fullWidth
-                                size="3"
+                                size="7"
                                 font-size="30px"
                                 onChange={ProductChoosed}
                             >
-                                <Option>{title}</Option>
+                                {productsList}
                             </Select>
+                            <br />
+                            <label name="Category" >Product Name:</label>
                             <Input
                                 type="text"
                                 id="ProductName"
                                 name="ProductName"
-                                placeholder="Product Name"
+                                placeholder="Product Name   (max 25 - only Chars)"
                                 required
-                                fullWidth
+                                minLength="1"
+                                maxLength="25"
                                 autoComplete="ProductName"
-                                value={title}
-                                autoFocus
-                                onChange={(e) => setTitle(e.target.value)}
+                                onChange={(e)=>setProductName(e.target.value)}
+                                defaultValue={productName}
                             >
-                                {/* {title} */}
                             </Input>
-                            <Input
+                            <br />
+                            <label name="Category" >Description:</label>
+                            <Textarea
                                 type="text"
                                 id="description"
                                 name="description"
-                                placeholder="Description of the Product"
+                                placeholder="Description of the Product   (max 200 Chars)"
                                 required
-                                fullWidth
+                                minLength="1"
+                                maxLength="200"
+                                rows={3}
+                                cols={5}
                                 autoComplete="description"
-                                value={desc}
-                                onChange={(e) => setDesc(e.target.value)}
+                                defaultValue={productDesc}
+                                onChange={(ev) => setProductDesc(ev.target.value.replace(/[^a-z]/, ' '))}
                             >
-                                {/* {desc} */}
-                            </Input>
-                            <label for="img">Upload Image:</label>
-                            <Input type="file" id="img" name="img" accept="image/*" value={img}
-                                onChange={(e) => setImg(e.target.value)}
+                            </Textarea>
+                            <br />
+                            <label name="img">Upload Image:</label>
+                            <Input type="file"
+                                id="img"
+                                name="img"
+                                accept="image/*"
+                                onChange={(ev) => setProductImage(ev.target.value)}
                             >
                             </Input>
+                            <PFP>
+                                {<img src={productImage} width="100vw" height="100vh" />}
+                            </PFP>
+                            <label name="Category" >Price:</label>
                             <Input
                                 type="number"
                                 id="price"
@@ -220,16 +311,19 @@ const EditProduct = () => {
                                 required
                                 fullWidth
                                 autoComplete="Price"
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
+                                defaultValue={productPrice}
+                                onChange={(ev) => setProductPrice(ev.target.value.replace(/\D/g, ''))}
                             >
                             </Input>
-                            <Button type='submit' onclick={notify} fullWidth className='btn btn-dark btl-lg btn-block'>Edit Product</Button>
+                            <br />
+                            <Button type='submit' onClick={validation} fullWidth>Edit Product</Button>
                         </Form>
                     </div>
                 </Wrapper>
             </Container>
-            <Footer />
+            <FooterDiv>
+                <Footer />
+            </FooterDiv>
         </div>
     )
 }

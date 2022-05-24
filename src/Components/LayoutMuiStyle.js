@@ -1,8 +1,10 @@
 export const buttonStyle = [
     {
-      backgroundColor: "#797EAB",
+      backgroundColor: "#f5fbfd",
       fontFamily: "Poppins, sans-serif",
-      width: "75%",
+      width: "85%",
+      color: "black",
+      fontWeight: "600",
     },
     {
       ":hover": {
