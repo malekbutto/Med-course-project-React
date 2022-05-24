@@ -28,7 +28,7 @@ const TopButton = styled.button`
     cursor: pointer;
     border: ${(props) => props.type === "filled" && "none"};
     background-color: ${(props) => props.type === "filled" ? "black" : "transparent"};
-    color: ${(props) => props.type === "filled" && "white"};
+    color: ${(props) => props.type  = "filled" && "white"};
 `;
 const TopTexts = styled.div`
     ${mobile({ display: "none" })}

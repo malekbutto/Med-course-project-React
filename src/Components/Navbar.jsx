@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Badge } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Badge, List, TableBody } from "@material-ui/core";
 import { ShoppingCartOutlined } from '@material-ui/icons';
 import { Search } from '@material-ui/icons';
 import styled from 'styled-components';
@@ -23,7 +23,8 @@ import axios from "axios";
 
 const Container = styled.div`
     height: 100px;    
-    ${mobile({ height: "50px" })}
+    
+    ${mobile({ height: "50px", alignItems: "center" })}
     // flex: 1;
     // text-align: center;
     background-color: #f5fbfd;
@@ -38,6 +39,7 @@ const Wrapper = styled.div`
     text-align: center;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     ${mobile({ padding: "10px 0px" })}
 `;
 const Left = styled.div`
@@ -46,26 +48,43 @@ const Left = styled.div`
     align-items: left;
     text-align: center;
     justify-content: left;
-    width: 100px;
+    width: 100%;
     padding: 0px 20px;
     margin: 10px;
 `;
-const Logo = styled.div`
+const LogoLeft = styled.div`
     margin: auto;
     font-weight: bold;
-    ${mobile({ fontSize: "24px" })}
+    ${mobile({ fontSize: "24px", display: "none" })}
+`;
+const LogoCenter = styled.div`
+    margin: auto;
+    font-weight: bold;
+    display: none;
+    ${mobile({ fontSize: "24px", display: "flex" })}
 `;
 const SearchContainer = styled.div`
     border: 0.5px solid lightgray;
     display: flex;
     align-items: center;
-    margin: 55px;
-    padding: 5px;
-    background-color: #797EAB;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px;
+    padding: 0px;
+    background-color: #f5fbfd;
+    ${mobile({ display: "none" })}
 `;
 const Input = styled.input`
     border: none;
+    height: 30px;
+    font-size: 18px;
+    padding-left: 10px;
+    display: grid;
     ${mobile({ width: "50px" }, { display: "none" })}
+`;
+const Image = styled.img`
+    border: none;
+    display: grid;
 `;
 const LeftCenter = styled.div`
     flex: 1;
@@ -75,7 +94,7 @@ const LeftCenter = styled.div`
     justify-content: space-evenly;
     // justify-content: start;
     padding: 0px 10px;
-    width: 300px;
+    width: 100%;
 `;
 const GreetingsText = styled.div`
     background-color: turkez;
@@ -95,8 +114,12 @@ const Center = styled.div`
     align-items: center;
     text-align: center;
     justify-content: space-between;
-    width: 55%;
+    width: 100%;
     padding: 0px 100px;
+    ${mobile({ display: "flex" })}
+`;
+const MiddleButton = styled.div`
+    ${mobile({ display: "none" })}
 `;
 const RightCenter = styled.div`
     flex: 4;
@@ -104,11 +127,14 @@ const RightCenter = styled.div`
     align-items: center;
     text-align: center;
     justify-content: center;
-    width: 9vw;
+    width: 20%;
     padding: 0px 100px;
     font-size: 24px;
     font-weight: 600;
+    ${mobile({ display: "none", flex: "0" })}
+    
 `;
+// ${mobile({ flexDirection: "row", width: "20%" })}
 const AllOrders = styled.div`
 
 `;
@@ -125,13 +151,13 @@ const SignInOut = styled.div`
 
 `;
 const Right = styled.div`
-    flex: 4;
+    flex: 1;
     display: flex;
     align-items: center;
     text-align: right;
     justify-content: center;
     ${mobile({ justifyContent: "center" })}
-    width: 190px;
+    width: 100%;
     margin: 0px 20px;
 `;
 // const Nav = styled.nav`
@@ -153,6 +179,10 @@ const MenuItem = styled.div`
     margin-left: 20px;
     ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+const Table = styled.table`
+
+`;
+
 
 
 const theme = createTheme({
@@ -174,44 +204,40 @@ const theme = createTheme({
 
 const Navbar = ({ user, setUser }) => {
 
-    const [product, setProduct] = useState();
+    const [keyword, setKeyword] = useState("");
+    const [matchProducts, setMatchProducts] = useState([]);
+    const [data, setData] = useState([]);
     const [productsList, setProductsList] = useState([]);
-    axios.get("./Files/JSON_Files/users.json").then((res) => {
-        setProductsList(res.data.map((item) =>
-            item.title)
-        )
-    });
+    const [foundList, setFoundList] = useState([]);
 
-    const search = (e) => {
-        let keyword = e.target.value;
-        let foundList = [];
-        if (keyword && keyword.toString().trim().length > 0)
-          {
-            foundList = productsList.filter((product) =>
-            {
-              return productsList.name.indexOf(keyword) > -1;//(user.name.toLowerCase().startsWith(keyWord.toLowerCase()));
-            });
-          }
-          setProduct(keyword);
-          setProductsList(foundList);
-          console.log(keyword, foundList)
+    // Search
+    useEffect(() => {
+        const getProducts = async () => {
+            const sweets = await axios.get("http://localhost:3000/sweets").then((res) => res.data);
+            const pastries = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
+            const ourCuisine = await axios.get("http://localhost:3000/ourCuisine").then((res) => res.data);
+            const allProducts = sweets.concat(pastries, ourCuisine);
+
+            setData(allProducts);
+            console.log(allProducts);
+
         };
-        //
-        // onSelectedItem = (item) => {
-        //   this.setState({name: item.name, list:null});
-        // };
-    
-    const notify = () => {
-    toast.info("Hello", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        });
-    }
+        getProducts();
+    }, []);
+
+    const onSearchChange = (e) => {
+        let foundListArray;
+        if (e.target.value && e.target.value.toString().trim().length > 0) {
+            foundListArray = data.filter((product) => {
+                return product.title.toLowerCase().includes(e.target.value.toLowerCase());
+            });
+            setFoundList(foundListArray);
+        }
+        setMatchProducts(e.target.value);
+        console.log(foundListArray);
+        // setProductsList(foundList);
+        // console.log(e.target.value);
+    };
 
     const CalcTime = () => {
         const today = new Date();
@@ -240,6 +266,9 @@ const Navbar = ({ user, setUser }) => {
             return navigate("/");
         }
     };
+    // const handleCartIcon = () => {
+    //     return navigate("/ShoppingCart");
+    // }
 
     return (
         <>
@@ -248,9 +277,9 @@ const Navbar = ({ user, setUser }) => {
                     <Wrapper>
                         <Left>
                             <Link to="/Home">
-                                <Logo>
+                                <LogoLeft>
                                     <img src="../Images/Logo.JPG" alt="Logo" height="100vh" width="100vw" />
-                                </Logo>
+                                </LogoLeft>
                             </Link>
                             {/* <GreetingsText>
                                 {CalcTime()} {user !== undefined ? user?.fName : "Guest"}
@@ -258,33 +287,53 @@ const Navbar = ({ user, setUser }) => {
                         </Left>
                         <LeftCenter>
                             <SearchContainer>
-                                <Input placeholder="Search" />
-                                <Search style={{ color: "white", fontSize: 16 }} />
+                                {/* value={product}  */}
+                                <Input
+                                    type="text"
+                                    placeholder="Search"
+                                    onChange={onSearchChange}
+                                />
+                                <List>
+                                    {foundList.map(product => {
+                                        return <div><tr key={product.id}>{product.title}</tr>
+                                        <Image src={product.img} alt="" width="70vw" height="70vh"/>
+                                        </div>
+                                    })}
+                                </List>
+                                {<table data={foundList} >
+
+                                </table>}
+
                             </SearchContainer>
                         </LeftCenter>
                         <Center>
-                            <Link to="/Home">
-                                <Button sx={buttonStyle}
-                                    variant="contained"
-                                >
-                                    Home
-                                </Button>
-                            </Link>
-                            <Link to="/About">
-                                <Button sx={buttonStyle}
-                                    variant="contained"
-                                >
-                                    About
-                                </Button>
-                            </Link>
+                            <LogoCenter>
+                                <img src="../Images/Logo.JPG" alt="Logo" height="100vh" width="100vw" />
+                            </LogoCenter>
+                            <MiddleButton>
+                                <Link to="/Home">
+                                    <Button sx={buttonStyle}
+                                        variant="contained"
+                                    >
+                                        Home
+                                    </Button>
+                                </Link>
+                            </MiddleButton>
+                            <MiddleButton>
+                                <Link to="/About">
+                                    <Button sx={buttonStyle}
+                                        variant="contained"
+                                    >
+                                        About
+                                    </Button>
+                                </Link>
+                            </MiddleButton>
                             {/* <PFP>
                                 {user !== undefined ? <img src={user?.pfp} width="40px" height="40px" /> : ""}
                             </PFP> */}
-                            
 
                         </Center>
                         <RightCenter>
-
                             <AddProduct>
                                 <Link to="/AddProduct">
                                     {user?.fName === "Malek" ? (
@@ -323,7 +372,6 @@ const Navbar = ({ user, setUser }) => {
                                     {user?.fName === "Malek" ? (
                                         <Button sx={buttonStyle}
                                             variant="contained"
-                                            onclick={notify}
                                         >
                                             All Orders
                                         </Button>
@@ -356,11 +404,15 @@ const Navbar = ({ user, setUser }) => {
                                 }
                             </SignInOut>
                             <MenuItem>
-                                <Link to="/ShoppingCart">
-                                    <Badge badgeContent={0} color="secondary" >
-                                        <ShoppingCartOutlined />
-                                    </Badge>
-                                </Link>
+                                {
+                                    // user === undefined ? onClick = { handleSignIn } :
+
+                                    <Link to="/ShoppingCart">
+                                        <Badge badgeContent={0} color="secondary" >
+                                            <ShoppingCartOutlined />
+                                        </Badge>
+                                    </Link>
+                                }
                             </MenuItem>
                         </Right>
                     </Wrapper>
