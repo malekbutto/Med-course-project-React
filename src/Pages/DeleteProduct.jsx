@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { sweets, pastries, ourCuisine } from '../data';
 import axios from "axios";
 import { React, useState, useEffect } from "react";
 import Footer from "../Components/Footer";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -76,8 +76,6 @@ const FooterDiv = styled.div`
     ${mobile({ display: "none" })}
 `;
 
-
-
 const DeleteProduct = () => {
 
     const [productsList, setProductsList] = useState();
@@ -92,6 +90,8 @@ const DeleteProduct = () => {
     let category;
     let tempProduct;
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const getProducts = async () => {
             const sweetsData = await axios.get("http://localhost:3000/sweets");
@@ -100,26 +100,9 @@ const DeleteProduct = () => {
             setSweetsCategory(sweetsData.data);
             setPastriesCategory(pastriesData.data);
             setOurCuisineCategory(ouCuisineData.data);
-            console.log(sweetsData);
         }
         getProducts();
     }, []);
-
-    const deleteProduct = (ev) => {
-        ev.preventDefault();
-
-        axios.delete(filePath + "/" + productId);
-        toast.success(productName + " deleted successfully!", {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        document.forms[0].reset();
-    }
 
     const CategoryChoosed = (e) => {
         category = e.target.value;
@@ -150,7 +133,22 @@ const DeleteProduct = () => {
                 ));
                 break;
         }
+    }
 
+    const deleteProduct = (ev) => {
+        ev.preventDefault();
+
+        axios.delete(filePath + "/" + productId);
+        toast.success(productName + " deleted successfully!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        navigate("../Home");
     }
 
     const ProductChoosed = (e) => {

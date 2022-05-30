@@ -1,18 +1,17 @@
 import React from 'react';
-// import Slider from '../Components/Slider';
 import Categories from '../Components/Categories';
 import Products from '../Components/Products';
 import Footer from '../Components/Footer';
 import { ToastContainer } from 'react-toastify';
 
 
-const Home = ({handleAddToCart}) => {
+const Home = ({handleAddToCart, user, setUser}) => {
 
     return (
         <div>
             <ToastContainer
                 position="bottom-right"
-                autoClose={1500}
+                autoClose={700}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -20,10 +19,9 @@ const Home = ({handleAddToCart}) => {
                 draggable
                 limit={1}
             />
-            {/* <Slider /> */}
             <Categories />
             <Products handleAddToCart={handleAddToCart}/>
-            <Footer />
+            <Footer user={user} setUser={setUser}/>
         </div>
     )
 }

@@ -1,7 +1,5 @@
-// import { ShoppingCartOutlined, SearchOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
-import axios from "axios";
 import { React, useEffect, useState } from "react";
 
 

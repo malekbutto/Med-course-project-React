@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     width: 25%;
     padding: 20px;
     background-color: #f5fbfd;
-    ${mobile({ width: "75%" ,height: "20vw"})}
+    ${mobile({ width: "75%", height: "20vw" })}
 `;
 const Title = styled.h1`
     font-size: 24px;
@@ -42,21 +42,14 @@ const Input = styled.input`
 `;
 
 
-const AllOrders = () => {
-
-    const showOrders = (ev) => {
-        ev.preventDefault();
-    
-    }
+const AllOrders = ({ ordersList }) => {
     return (
         <div>
             <Container>
                 <Wrapper>
                     <div>
-                        <Form onSubmit={showOrders}>
                         <Title>All Orders</Title>
-
-                        </Form>
+                        <div>{ordersList.title}</div>
                     </div>
                 </Wrapper>
             </Container>

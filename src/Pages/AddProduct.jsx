@@ -9,6 +9,7 @@ import Footer from "../Components/Footer";
 // import { Alert } from "react-bootstrap";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -39,7 +40,7 @@ const Title = styled.h1`
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    ${mobile({ height: "30%",margin: "auto", justifyContent: "center" })}
+    ${mobile({ height: "30%", margin: "auto", justifyContent: "center" })}
 `;
 const Input = styled.input`
     flex: 1;
@@ -86,6 +87,8 @@ const AddProduct = () => {
     let inputCategory;
     let filePath;
     let validInput;
+
+    const navigate = useNavigate();
 
     const validation = (e) => {
         if (productPrice > 250) {
@@ -143,12 +146,13 @@ const AddProduct = () => {
             title: productName,
             desc: productDesc,
             price: productPrice,
+            amount: 1,
         };
         document.forms[0].reset();
 
         if (validInput) {
             axios.post(filePath, product);
-            toast.success("Product added successfully!", {
+            toast.success(productName + " added successfully!", {
                 position: "top-right",
                 autoClose: 1500,
                 hideProgressBar: false,
@@ -157,6 +161,8 @@ const AddProduct = () => {
                 draggable: true,
                 progress: undefined,
             });
+            navigate("../Home");
+
         }
     }
 
@@ -180,7 +186,7 @@ const AddProduct = () => {
                                 fullWidth
                                 autoComplete="ProductName"
                                 value={productName}
-                                onChange={(ev) => setProductName(ev.target.value.replace(/[^a-z][^a-z\s]*$/gi, ''))}
+                                onChange={(ev) => setProductName(ev.target.value.replace(/[^a-z\s]*$/gi, ''))}
                             />
                             <br />
                             <label name="Description">Description:</label>

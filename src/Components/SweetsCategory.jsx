@@ -1,10 +1,11 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
-import { sweets } from '../data';
+// import { sweets } from '../data';
 import { mobile } from "../responsive";
 import styled from "styled-components";
 import Footer from './Footer';
 import axios from "axios";
 import { React, useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 const TopTitle = styled.h1`
     display: flex;
@@ -92,26 +93,27 @@ const Button = styled.button`
 
 const SweetsCategory = ({handleAddToCart}) => {
 
-  const [img, setImg] = useState();
-  const [title, setTitle] = useState();
-  const [desc, setDesc] = useState();
-  const [price, setPrice] = useState();
-  // const [data, setData] = useState();
+  const [data, setData] = useState([]);
+  const location = useLocation();
 
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const sweetsData = await axios.get("http://localhost:3000/sweets").then((res) => res.data);
-  //     setData(sweetsData);
-  //     console.log(data);
-  //   };
-  //   getProducts();
-  // }, []);
+  useEffect(()=>{
+    console.log(location.state);
+  },[])
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const sweetsData = await axios.get("http://localhost:3000/sweets").then((res) => res.data);
+      setData(sweetsData);
+    };
+    getProducts();
+  }, []);
+
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (sweets.length - 1));
+      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (data.length - 1));
     } else {
-      setSlideIndex(slideIndex < (sweets.length - 1) ? (slideIndex + 1) : 0);
+      setSlideIndex(slideIndex < (data.length - 1) ? (slideIndex + 1) : 0);
     }
   };
 
@@ -123,7 +125,7 @@ const SweetsCategory = ({handleAddToCart}) => {
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {sweets?.map((item) => (
+          {data?.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} />

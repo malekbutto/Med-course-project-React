@@ -6,6 +6,8 @@ import Footer from './Footer';
 import OurCuisine from './OurCuisine';
 import axios from "axios";
 import { React, useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
+
 
 // const Container = styled.div`
 //   padding: 20px;
@@ -107,24 +109,22 @@ const Button = styled.button`
 
 const OurCuisineCategory = ({handleAddToCart}) => {
 
-  // const [ourCuisineCategory, setOurCuisineCategory] = useState();
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const ourCuisineData = await axios.get("http://localhost:3000/ourCuisine").then((res) => res.data);
-  //     setOurCuisineCategory(ourCuisineData);
-  //   }
-  //   getProducts();
-  // }, []);
-
-
+  useEffect(() => {
+    const getProducts = async () => {
+      const ourCuisineData = await axios.get("http://localhost:3000/ourCuisine").then((res) => res.data);
+      setData(ourCuisineData);
+    }
+    getProducts();
+  }, []);
 
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (ourCuisine.length - 1));
+      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (data.length - 1));
     } else {
-      setSlideIndex(slideIndex < (ourCuisine.length - 1) ? (slideIndex + 1) : 0);
+      setSlideIndex(slideIndex < (data.length - 1) ? (slideIndex + 1) : 0);
     }
   };
 
@@ -136,7 +136,7 @@ const OurCuisineCategory = ({handleAddToCart}) => {
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {ourCuisine.map((item) => (
+          {data.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} alt='SlideImage' />

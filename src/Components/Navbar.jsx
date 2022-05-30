@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Badge, List, TableBody } from "@material-ui/core";
-import { ShoppingCartOutlined } from '@material-ui/icons';
+import React, { useState } from "react";
 import { Search } from '@material-ui/icons';
 import styled from 'styled-components';
 import { mobile } from "../responsive";
@@ -8,29 +6,15 @@ import { useNavigate, Outlet, Link } from 'react-router-dom';
 import { buttonStyle } from "./LayoutMuiStyle";
 import { createTheme } from "@mui/system";
 import Button from "@mui/material/Button";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import Login from "../Pages/Login";
-import Cart from "../Pages/Cart";
 
-//import Time from DateTime;
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import About from '../Components/About';
-// import Login from '../Pages/Login';
-// import Home from "../Pages/Home";
-// import { NavLink} from "react-router-dom";
-
-// import App from "../App";
 
 const Container = styled.div`
     height: 100px;    
     
     ${mobile({ height: "50px", alignItems: "center" })}
-    // flex: 1;
-    // text-align: center;
     background-color: #f5fbfd;
-    // font-family: sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,24 +69,36 @@ const Input = styled.input`
     display: grid;
     ${mobile({ width: "50px" }, { display: "none" })}
 `;
+const Hr = styled.hr`
+    background-color: #eee;
+    width: 100%;
+    margin: 1px 0px;
+    border: 0.5px solid gray;
+`;
 const Image = styled.img`
     display: grid;
 `;
-const TableList = styled.table`
-    flex: 1;
-    display: inline-flex;
+const SearchList = styled.div`
+    display: column;
     align-items: center;
-    text-align: left;
+    text-align: center;
+    position: relative;
     justify-content: space-between;
     padding: 0px 0px;
     margin: 5px;
     width: 100%;
 `;
-const TH = styled.th`
-    border: 0.5px solid black;
-    display: grid;
+const TBODY = styled.tbody`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+const TD = styled.td`
+    border: 0.5px solid gray;
+    background-color: none;
     align-items: center;
     text-align: center;
+    justify-content: center;
     position: relative;
     font-size: 14px;
     padding: 0px;
@@ -117,18 +113,6 @@ const LeftCenter = styled.div`
     // justify-content: start;
     padding: 0px 50px;
     width: 100%;
-`;
-const GreetingsText = styled.div`
-    background-color: turkez;
-    color: black;
-    padding: 1px;
-    margin: auto;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 500;
-`;
-const PFP = styled.div`
-    margin: 10px;
 `;
 const Center = styled.div`
     flex: 1;
@@ -154,9 +138,7 @@ const RightCenter = styled.div`
     font-size: 24px;
     font-weight: 600;
     ${mobile({ display: "none", flex: "0" })}
-    
 `;
-// ${mobile({ flexDirection: "row", width: "20%" })}
 const AllOrders = styled.div`
 
 `;
@@ -182,18 +164,6 @@ const Right = styled.div`
     width: 100%;
     margin: 0px 20px;
 `;
-// const Nav = styled.nav`
-//     font-size: 50px;
-//     font-weight: 700;
-//     align-items: center;
-//     border: none;
-//     justify-content: center;
-//     display: flex;
-//     width: 50px;
-//     padding: 1px;
-//     margin: 10px;
-//     background-size: cover;
-// `;
 const MenuItem = styled.div`
     font-size: 20px;
     font-weight: 600;
@@ -211,7 +181,6 @@ const MenuItem = styled.div`
 const SpanMyShop = styled.span`
     font-size: 1.5rem;
     font-weight: bold;
-
 `;
 const CartDiv = styled.div`
     cursor: pointer;
@@ -228,13 +197,6 @@ const SpanKid2 = styled.span`
     position: relative;
     top: -15px;
 `;
-
-
-const Table = styled.table`
-
-`;
-
-
 
 const theme = createTheme({
     components: {
@@ -263,7 +225,8 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
     let foundListArray;
 
     // Search
-    useEffect(() => {
+    const onSearchClicked = () => {
+
         const getProducts = async () => {
             const sweets = await axios.get("http://localhost:3000/sweets").then((res) => res.data);
             const pastries = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
@@ -273,11 +236,9 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
 
             setCategories(category);
             setData(allProducts);
-            console.log(allProducts);
-
         };
         getProducts();
-    }, []);
+    }
 
     const onSearchChange = (e) => {
         // if (e.target.value == "")
@@ -290,63 +251,34 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
             setFoundList(foundListArray);
         }
         setMatchProducts(e.target.value);
-        console.log(foundListArray);
     };
 
-    const onSelectedItem = async (e) => {
+    const onSelectedFromSearchBar = async (e) => {
         let categoryName;
         let Id;
         const clickedProduct = e.target;
         console.log(foundListArray);
         axios.get(foundListArray).then((res) => {
             Id = res.data.find(
-              (obj) =>
-                obj.img === clickedProduct
+                (obj) =>
+                    obj.img === clickedProduct
             );
-            console.log(Id);
         })
 
-        console.log(Id);
-        if (clickedProduct.src.includes("Sweets"))
+        if (clickedProduct.includes("Sweets"))
             categoryName = "SweetsCategory";
         else if (clickedProduct.src.includes("Pastries"))
             categoryName = "PastriesCategory";
         else if (clickedProduct.src.includes("OurCuisine"))
             categoryName = "OurCuisineCategory";
 
-        navigate("../" + categoryName, { replace: true});
+        navigate("./" + categoryName, { state: { id: Id } });
     }
 
-
-    // const CalcTime = () => {
-    //     const today = new Date();
-    //     if ((today.getHours() >= 0) && (today.getHours() < 12)) {
-    //         return "Good morning";
-    //     }
-    //     else if ((today.getHours() >= 12) && (today.getHours() <= 17)) {
-    //         return "Good afternoon";
-    //     }
-    //     else if ((today.getHours() > 17) && (today.getHours() < 20)) {
-    //         return "Good evening";
-    //     }
-    //     else if ((today.getHours() >= 20) && (today.getHours() <= 23)) {
-    //         return "Good night";
-    //     }
-    // };
-    //
     const navigate = useNavigate();
 
     const handleSignIn = () => {
         return (user === undefined ? navigate("/login") : navigate("/"));
-    };
-
-    const handleClick = () => {
-        return (user === undefined ?
-            (
-                <Login />
-            ) : (
-                <CartDiv />
-            ));
     };
 
     const handleSignOut = () => {
@@ -356,9 +288,6 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
             return navigate("/");
         }
     };
-    // const handleCartIcon = () => {
-    //     return navigate("/ShoppingCart");
-    // }
 
     return (
         <>
@@ -371,33 +300,45 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
                                     <img src="../Images/Logo.JPG" alt="Logo" height="100vh" width="100vw" />
                                 </LogoLeft>
                             </Link>
-                            {/* <GreetingsText>
-                                {CalcTime()} {user !== undefined ? user?.fName : "Guest"}
-                            </GreetingsText> */}
                         </Left>
                         <LeftCenter>
                             <SearchContainer>
-                                <div>
+                                <Input
+                                    type="text"
+                                    placeholder="Search"
+                                    onChange={onSearchChange}
+                                    onClick={onSearchClicked}
+                                />
+                                {foundList && foundList.map((product, i) =>
+                                    <SearchList>
+                                        <button key={i} onClick={(e) => onSelectedFromSearchBar(e)}>
+                                            {product.title}
+                                            <Hr />
+                                        </button>
+                                    </SearchList>
+                                )}
+                                {/* <div>
                                     <Input
                                         type="text"
                                         placeholder="Search"
                                         onChange={onSearchChange}
+                                        onClick={onSearchClicked}
                                     />
                                 </div>
                                 <TableList>
-                                    {foundList.map(product => {
-                                        return <tbody>
-                                            <td>
-                                                <button key={product.id} onClick={(e) => onSelectedItem(e)}>
+                                    {foundList && foundList.map(product => {
+                                        return <TBODY>
+                                            <TD key={product.id}>
+                                                <button cursor="pointer" key={product.id} onClick={(e) => onSelectedFromSearchBar(e)}>
                                                     {product.title}
                                                 </button>
-                                                <button>
-                                                    <Image src={product.img} alt="" width="50vw" height="50vh" onClick={(e) => onSelectedItem(e)} />
+                                                <button cursor="pointer">
+                                                    <Image src={product.img} alt="" width="50vw" height="50vh" onClick={(e) => onSelectedFromSearchBar(e)} />
                                                 </button>
-                                            </td>
-                                        </tbody>
+                                            </TD>
+                                        </TBODY>
                                     })}
-                                </TableList>
+                                </TableList> */}
                             </SearchContainer>
                         </LeftCenter>
                         <Center>
@@ -511,11 +452,6 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
                                         </SpanKid1>
                                         <SpanKid2>{size}</SpanKid2>
                                     </CartDiv>
-                                    {/* <Link to="/ShoppingCart">
-                                        <Badge badgeContent={0} color="secondary" >
-                                            <ShoppingCartOutlined />
-                                        </Badge>
-                                    </Link> */}
                                 </MenuItem>
                             </nav>
                         </Right>

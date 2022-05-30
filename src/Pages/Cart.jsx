@@ -5,6 +5,11 @@ import Footer from "../Components/Footer";
 import { mobile } from "../responsive";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect, useState } from "react";
+import { Fab } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+
 
 const Container = styled.div`
      
@@ -14,7 +19,7 @@ const Wrapper = styled.div`
     ${mobile({ padding: "10px" })}
 `;
 const Title = styled.h1`
-    font-weight: 300;
+    font-weight: 600;
     text-align: center;
 `;
 const TopText = styled.h1`
@@ -39,9 +44,11 @@ const Product = styled.div`
     ${mobile({ flexDirection: "column" })}
 `;
 const ProductDetail = styled.div`
-    flex: 1;
+    flex-direction: column;
     display: flex;
     justify-content: space-between;
+    font-size: 24px;
+    font-weight: 200;
 `;
 const Image = styled.img`
     width: 200px;
@@ -49,7 +56,7 @@ const Image = styled.img`
 const Details = styled.div`
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
 `;
 const ProductName = styled.span`
@@ -70,14 +77,16 @@ const PriceDetails = styled.span`
     justify-content: center;
 `;
 const ProductAmountContainer = styled.div`
-    border: 1px solid black;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
+    margin: 20px;
 `;
-const ProductAmount = styled.button`
+const ProductAmount = styled.div`
     font-size: 24px;
     margin: 5px;
+    padding: 10px;
     ${mobile({ margin: "5px 15px" })}
 `;
 const ProductPrice = styled.div`
@@ -92,8 +101,8 @@ const ProductPrice = styled.div`
 `;
 const Hr = styled.hr`
     background-color: #eee;
-    border: none;
-    height: 2px;
+    width: 100%;
+    border: 0.5px solid gray;
 `;
 const Summary = styled.div`
     flex: 1;
@@ -125,6 +134,7 @@ const SummaryItemPrice = styled.span`
 const Button = styled.button`
     width: 100%;
     padding: 10px;
+    cursor: pointer;
     background-color: black;
     color: white;
     font-weight: 600;
@@ -135,16 +145,34 @@ const Cart = ({ cart, setCart, handleChange }) => {
 
     const [price, setPrice] = useState(0);
     const [productImage, setProductImage] = useState();
+    const [hover, sethover] = useState(false);
 
-    useEffect(() => {
-        console.log(cart);
-        if (cart.includes('fakepath'))
-            setProductImage('./Images/Category/No_Image.jpeg');
-        else
-            setProductImage(cart.img);
-    }, []);
+    const useStyles = makeStyles(theme => ({
+        iconHover: {
+            '&:hover': {
+                border: '1px solid green',
+                //TODO display the text CREATE ITEM instead of AddIcon
+            }
+        },
 
+        floatBtn: {
+            marginRight: theme.spacing(1),
+        },
+    }));
 
+    const classes = useStyles();
+
+    // useEffect(() => {
+    //     console.log(cart)
+    //     if (cart.img?.includes('fakepath'))
+    //         setProductImage('./Images/Category/No_Image.jpeg');
+    //     else
+    //         setProductImage(cart.img);
+    // }, []);
+
+    // useEffect(()=>{
+    //     console.log(cart)
+    // })
 
     const handleRemove = (id) => {
         const arr = cart.filter((item) => item.id !== id);
@@ -162,8 +190,21 @@ const Cart = ({ cart, setCart, handleChange }) => {
         handlePrice();
     });
 
-    const purchaseClicked = () => {
-        alert("Thank you");
+    const navigate = useNavigate();
+
+    const placeOrder = () => {
+        if (cart.length === 0)
+            toast.error("Cart is empty", {
+                position: "top-center",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        else
+            navigate("/PlaceOrder");
     }
 
     return (
@@ -178,26 +219,33 @@ const Cart = ({ cart, setCart, handleChange }) => {
                                 <div key={item.id}>
                                     <Details>
                                         <ProductDetail>
-                                            <Image src={item.img} alt={item.title} width="250px" length="250px"></Image>
+                                            <Image src={item.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.img } alt={item.title} width="250px" length="250px"></Image>
+                                            <b>{item.title}</b>
                                         </ProductDetail>
-                                        <ProductName>
-                                            <b>Product: </b>{item.title}
-                                        </ProductName>
-                                    <PriceDetails>
-                                        <ProductPrice>
-                                            <b>Price: </b>{item.price}
-                                        </ProductPrice>
-                                        <ProductAmountContainer>
-                                            {/* <button onClick={() => handleChange(item,1)}>+</button> */}
-                                            <Add cursor="pointer" onClick={() => handleChange(item,1)}/>
-                                            <ProductAmount>{item.amount}</ProductAmount>
-                                            {/* <button onClick={() => handleChange(item,-1)}>-</button> */}
-                                            <Remove cursor="pointer" onClick={()=>handleChange(item,-1)} />
-                                        </ProductAmountContainer>
-                                        <DeleteIcon cursor="pointer" onClick={()=>handleRemove(item.id)}/>
-                                    </PriceDetails>
-                                    <Hr />
+                                        {/* <ProductName>
+                                        </ProductName> */}
+                                        <PriceDetails>
+                                            <ProductPrice>
+                                                <b>Price: </b>{item.price}
+                                            </ProductPrice>
+                                            <ProductAmountContainer>
+                                                <Button onClick={() => handleChange(item, 1)}>
+                                                    <Add />
+                                                </Button>
+                                                <ProductAmount>{item.amount}</ProductAmount>
+                                                <Button onClick={() => handleChange(item, -1)}>
+                                                    <Remove />
+                                                </Button>
+                                            </ProductAmountContainer>
+                                            <Fab onMouseOver={() => sethover(true)}
+                                                onMouseOut={() => sethover(false)}
+                                                size="small" color="secondary" aria-label="Remove"
+                                                cursor="pointer" onClick={() => handleRemove(item.id)}>
+                                                <DeleteIcon />
+                                            </Fab>
+                                        </PriceDetails>
                                     </Details>
+                                    <Hr />
                                 </div>
                             ))
                             }
@@ -209,7 +257,7 @@ const Cart = ({ cart, setCart, handleChange }) => {
                             <SummaryItemText>Total</SummaryItemText>
                             <SummaryItemPrice>{price} nis</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>Place Order</Button>
+                        <Button onClick={placeOrder}>Place Order</Button>
                     </Summary>
                 </Bottom>
             </Wrapper>

@@ -4,6 +4,7 @@ import { Facebook, Instagram } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 
 const Container = styled.div`
@@ -56,6 +57,7 @@ const List = styled.ul`
 const ListItem = styled.li`
     width: 50%;
     margin-bottom: 10px;
+    cursor: pointer;
 `;
 const Right = styled.div`
     flex: 1;
@@ -67,9 +69,6 @@ const ContactItem = styled.div`
     display: flex;
     align-items: center;
 `;
-const CartDiv = styled.div`
-    cursor: pointer;
-`;
 // const Payment = styled.img`
 //     width: 50%;
 // `;
@@ -77,6 +76,10 @@ const CartDiv = styled.div`
 const Footer = ({user, setUser, cart, setCart, handleChange}) => {
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+    },[user])
+
 
     return (
         <Container>
@@ -105,13 +108,14 @@ const Footer = ({user, setUser, cart, setCart, handleChange}) => {
                     <ListItem><Link to="/SweetsCategory" target={"_top"}>Sweets</Link></ListItem>
                     <ListItem><Link to="/PastriesCategory" target={"_top"}>Pastries</Link></ListItem>
                     <ListItem><Link to="/OurCuisineCategory" target={"_top"}>Our Cuisine</Link></ListItem>
-                    <ListItem><CartDiv onClick={() => (user === undefined ?
+                    <ListItem onClick={() => (user === undefined ?
                                             (
-                                                navigate("/login")
-                                                // <Link to="/Login" target={"_top"}></Link>
+                                                navigate("../Login", user={user}, setUser={setUser})
+                                                // <Link to="/Login" target={"_top"} />
                                             ) : (
-                                                navigate("Cart", cart={cart}, setCart={setCart}, handleChange={handleChange} )
-                                            ))}>Cart</CartDiv></ListItem>
+                                                // <Link to="/Cart" target={"_top"} cart={cart} setCart={setCart} handleChange={handleChange} />
+                                                navigate("../Cart", cart={cart}, setCart={setCart}, handleChange={handleChange} )
+                                            ))}>Cart</ListItem>
                 </List>
             </Center>
             <Right>

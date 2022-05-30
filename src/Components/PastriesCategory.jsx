@@ -1,9 +1,11 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
-import { pastries } from '../data';
+// import { pastries } from '../data';
 import { mobile } from "../responsive";
 import Footer from './Footer';
 import axios from "axios";
 import { React, useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
+
 //Components
 import Drawer from '@material-ui/core/Drawer';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -101,37 +103,24 @@ const Button = styled.button`
 
 const PastriesCategory = ({handleAddToCart}) => {
 
-  // const [data, setData] = useState();
-  // let pastriesData;
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     pastriesData = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
-  //     setData(pastriesData);
-  //     console.log(pastriesData)
-
-  //   }
-  //   getProducts();
-  // }, []);
-
-
-  const getTotalItems = () => null;
-
-  const handleRemoveFromCart = () => null;
+  useEffect(() => {
+    const getProducts = async () => {
+      const pastriesData = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
+      setData(pastriesData);
+    }
+    getProducts();
+  }, []);
 
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (pastries.length - 1));
+      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (data.length - 1));
     } else {
-      setSlideIndex(slideIndex < (pastries.length - 1) ? (slideIndex + 1) : 0);
+      setSlideIndex(slideIndex < (data.length - 1) ? (slideIndex + 1) : 0);
     }
   };
-
-  // if (isLoading) return <Circle />
-  // if (error) return <div>Something went wrong...</div>
-
-
 
 
   return (
@@ -142,7 +131,7 @@ const PastriesCategory = ({handleAddToCart}) => {
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {pastries.map((item) => (
+          {data.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} alt='SlideImage' />
