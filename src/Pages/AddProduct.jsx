@@ -58,7 +58,8 @@ const Select = styled.select`
 `;
 const Option = styled.option`
     font-size: 14px;
-    fontFamily: Poppins,
+    font-weight: 600;
+    fontFamily: tahoma;
 `;
 const Button = styled.button`
     width: 40%;
@@ -143,7 +144,7 @@ const AddProduct = () => {
             desc: productDesc,
             price: productPrice,
         };
-        // document.forms[0].reset();
+        document.forms[0].reset();
 
         if (validInput) {
             axios.post(filePath, product);

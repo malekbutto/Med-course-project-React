@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Footer from "../Components/Footer";
 import { mobile } from "../responsive";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
      
@@ -16,30 +17,11 @@ const Title = styled.h1`
     font-weight: 300;
     text-align: center;
 `;
-const Top = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-`;
-const TopButton = styled.button`
-    padding: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    border: ${(props) => props.type === "filled" && "none"};
-    background-color: ${(props) => props.type === "filled" ? "black" : "transparent"};
-    color: ${(props) => props.type  = "filled" && "white"};
-`;
-const TopTexts = styled.div`
-    ${mobile({ display: "none" })}
-    padding: 10px;
-    font-weight: 600;
-    cursor: pointer;
-`;
-const TopText = styled.span`
-    text-decoration: underline;
-    cursor: pointer;
+const TopText = styled.h1`
     margin: 0px 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 `;
 const Bottom = styled.div`
     display: flex;
@@ -51,12 +33,15 @@ const Info = styled.div`
 `;
 const Product = styled.div`
     display: flex;
+    flex-direction: column;
+    align-items: left;
     justify-content: space-between;
     ${mobile({ flexDirection: "column" })}
 `;
 const ProductDetail = styled.div`
-    flex: 2;
+    flex: 1;
     display: flex;
+    justify-content: space-between;
 `;
 const Image = styled.img`
     width: 200px;
@@ -68,7 +53,8 @@ const Details = styled.div`
     justify-content: space-around;
 `;
 const ProductName = styled.span`
-
+    font-size: 24px;
+    font-weight: 200;
 `;
 const ProductId = styled.span`
 
@@ -79,21 +65,26 @@ const ProductSize = styled.span`
 const PriceDetails = styled.span`
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 `;
 const ProductAmountContainer = styled.div`
+    border: 1px solid black;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 `;
-const ProductAmount = styled.div`
+const ProductAmount = styled.button`
     font-size: 24px;
     margin: 5px;
     ${mobile({ margin: "5px 15px" })}
 `;
 const ProductPrice = styled.div`
+    display: flex;
+    flex-direction: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 30px;
     font-weight: 200;
     ${mobile({ marginBottom: "20px" })}
@@ -102,7 +93,7 @@ const ProductPrice = styled.div`
 const Hr = styled.hr`
     background-color: #eee;
     border: none;
-    height: 1px;
+    height: 2px;
 `;
 const Summary = styled.div`
     flex: 1;
@@ -123,9 +114,13 @@ const SummaryItem = styled.div`
 `;
 const SummaryItemText = styled.span`
     flex: 1;
+    font-size: 24px;
+    font-weight: 600;
 `;
 const SummaryItemPrice = styled.span`
     flex: 1;
+    font-size: 24px;
+    font-weight: 600;
 `;
 const Button = styled.button`
     width: 100%;
@@ -136,213 +131,85 @@ const Button = styled.button`
 `;
 
 
-const Cart = () => {
+const Cart = ({ cart, setCart, handleChange }) => {
 
-    const ready = () => {
-        // var removeCartItemIcon = document.getElementsByClassName('btn-danger');
-        // for (var i = 0; i < removeCartItemIcon.length; i++) {
-        //     var RemoveIcon = removeCartItemIcon[i];
-        //     RemoveIcon.addEventListener('click', removeCartItem)
-        // }
+    const [price, setPrice] = useState(0);
+    const [productImage, setProductImage] = useState();
 
-        var quantityInputs = document.getElementsByClassName('cart-quantity-input');
-        for (var j = 0; j < quantityInputs.length; j++) {
-            var input = quantityInputs[j];
-            input.addEventListener('change', quantityChanged);
-        }
+    useEffect(() => {
+        console.log(cart);
+        if (cart.includes('fakepath'))
+            setProductImage('./Images/Category/No_Image.jpeg');
+        else
+            setProductImage(cart.img);
+    }, []);
 
-        // var addToCartButtons = document.getElementsByClassName('shop-item-button');
-        // for (var i = 0; i < addToCartButtons.length; i++) {
-        //   var button = addToCartButtons[i];
-        //   button.addEventListener('clicked', addToCartClicked)
-        // }
-    
-        // document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
-    
-    }
 
-//     const addItemToCart = (title, imageSrc, price) => {
-//         var cartRow = document.getElementsByClassName('div');
-//         cartRow.classList.add('cart-row');
-//         var cartItems = document.getElementsByClassName('cart-items')[0];
-//         var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
-//         for (var i = 0; i < cartItemNames.length; i++) {
-//           if (cartItemNames[i].innerText == title) {
-//             alert('this items alredy added to cart')
-//             return
-//           }
 
-          
-//     var cartRowContents = `
-//     <ImgContainer className="cart-item cart-column">
-//                 <Image src=${imageSrc} className="shop-item-image" />
-//               </ImgContainer>
-//               <InfoContainer>
-//                 <Title className="shop-item-title">${title}</Title>
-//                 <Desc>{item.desc}</Desc>
-//                 <Price className="shop-item-price">${price}</Price>
-//                 <Button className="btn btn-primary shop-item-button">Add To Cart</Button>
-//               </InfoContainer>
-//     `;
-//     cartRow.innerText = cartRowContents;
-//     cartItems.append(cartRow);
-//     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('clicked', removeCartItem);
-//     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
-//   }
-// }
-    // const addToCartClicked = (event) => {
-    //     var button = event.target;
-    //     var shopItem = button.parentElement.parentElement;
-    //     var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
-    //     var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
-    //     var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-    //     addItemToCart(title, imageSrc, price)
-    //     updateCartTotal();
-    //   }
+    const handleRemove = (id) => {
+        const arr = cart.filter((item) => item.id !== id);
+        setCart(arr);
+        handlePrice();
+    };
 
-    const removeCartItem = (event) => {
-        var IconClicked = event.target;
-        IconClicked.parentElement.parentElement.parentElement.parentElement.remove();
-        updateCartTotal();
-    }
+    const handlePrice = () => {
+        let total = 0;
+        cart.map((item) => (total += item.amount * item.price));
+        setPrice(total);
+    };
 
-    const quantityChanged = (event) => {
-        var input = event.target;
-        if (isNaN(input.value) || input.value <= 0) {
-            input.value = 1;
-        }
-        updateCartTotal();
-    }
+    useEffect(() => {
+        handlePrice();
+    });
 
     const purchaseClicked = () => {
         alert("Thank you");
-
     }
-
-    const updateCartTotal = () => {
-        var cartItemContainer = document.getElementsByClassName('cart-items')[0];
-        var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-        var total = 0;
-        for (var i = 0; i < cartRows.length; i++) {
-            var cartRow = cartRows[i];
-            var priceElement = cartRow.getElementsByClassName('cart-price')[0];
-            var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
-            var price = parseFloat(priceElement.innerText.replace('nis', ''));
-            var quantity = quantityElement.value;
-            total = total + (price * quantity);
-        }
-        total = Math.round(total * 100) / 100;
-        document.getElementsByClassName('cart-total-price')[0].innerText = total + ' nis';
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', ready);
-    }
-    else {
-        ready();
-    }
-
-    // var count = 0;
-    // function AddAmountFunc() {
-    //     count = document.getElementById('ProductAmount').value;
-    //     ++count;
-    // }
-    // function RemoveAmountFunc() {
-    //     count = document.getElementById('ProductAmount').value;
-    //     if (count !== 0)
-    //         count--;
-    // }
 
     return (
         <Container>
             <Wrapper>
                 <Title>Your Basket</Title>
-                <div className="cart-row">
-                        <span className="cart-item cart-header cart-column">Item</span>
-                        <span className="cart-price cart-header cart-column">Price</span>
-                        <span className="cart-quantity cart-header cart-column">Quantity</span>
-                    </div>
-                {/* <Top>
-                    <TopButton>Continue Shopping</TopButton>
-                    <TopTexts>
-                        <TopText>Shopping Bag(2)</TopText>
-                    </TopTexts>
-                    <TopButton type="filled">Checkout Now</TopButton>
-                </Top> */}
                 <Bottom>
                     <Info className="cart-items">
-                        <Product className="cart-row">
-                            <ProductDetail className="cart-item cart-column">
-                                <Image classname="cart-item-image" src="./Images/Category/Sweets/Trilece_Caramel2.jpg" />
-                                <Details>
-                                    <ProductName>
-                                        <b>Product:</b> Trilece Caramel
-                                    </ProductName>
-                                    <ProductId>
-                                        <b>ID:</b> 1
-                                    </ProductId>
-                                    <ProductSize>
-                                        <b>Size:</b> Personal
-                                    </ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetails>
-                                <ProductPrice className="cart-price cart-column">
-                                    12 nis
-                                </ProductPrice>
-                                <ProductAmountContainer>
-                                    <input className="cart-quantity-input" type="number" defaultValue="2" min="1" max="15" />
-                                    <DeleteIcon className="btn btn-danger" cursor="pointer"/>
-                                    {/* <button className="btn btn-danger" type="button">
-                                        Remove
-                                    </button> */}
-                                </ProductAmountContainer>
-                            </PriceDetails>
-                        </Product>
-                        <Hr />
-                        <Product className="cart-row">
-                            <ProductDetail className="cart-item cart-column">
-                                <Image classname="cart-item-image" src="./Images/Category/Sweets/Trilece_Strawberry.jpg" />
-                                <Details>
-                                    <ProductName>
-                                        <b>Product:</b> Trilece Strawberry
-                                    </ProductName>
-                                    <ProductId>
-                                        <b>ID:</b> 2
-                                    </ProductId>
-                                    <ProductSize>
-                                        <b>Size:</b> Personal
-                                    </ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetails>
-                                <ProductPrice className="cart-price cart-column">
-                                    15 nis
-                                </ProductPrice>
-                                <ProductAmountContainer>
-                                    <input id="cart-quantity-input" className="cart-quantity-input" type="number" defaultValue="1" min="1" max="15"></input>
-                                    <DeleteIcon className="btn btn-danger" cursor="pointer"/>
-                                    {/* <button className="btn btn-danger" type="button">
-                                        Remove
-                                    </button> */}
-                                    {/* <div onClick={AddAmountFunc}>
-                                        <img src="./Images/Icons/Add.png" alt="AddIcon" />
-                                    </div>
-                                    <ProductAmount className="ProductAmount">{count}</ProductAmount>
-                                    <div onClick={RemoveAmountFunc}>
-                                        <img src="./Images/Icons/Remove.png" alt="RemoveIcon" />
-                                    </div> */}
-                                </ProductAmountContainer>
-                            </PriceDetails>
+                        <Product>
+                            <TopText>{cart?.length === 0 && <div>Cart Is Empty</div>}</TopText>
+                            {cart?.map((item) => (
+                                <div key={item.id}>
+                                    <Details>
+                                        <ProductDetail>
+                                            <Image src={item.img} alt={item.title} width="250px" length="250px"></Image>
+                                        </ProductDetail>
+                                        <ProductName>
+                                            <b>Product: </b>{item.title}
+                                        </ProductName>
+                                    <PriceDetails>
+                                        <ProductPrice>
+                                            <b>Price: </b>{item.price}
+                                        </ProductPrice>
+                                        <ProductAmountContainer>
+                                            {/* <button onClick={() => handleChange(item,1)}>+</button> */}
+                                            <Add cursor="pointer" onClick={() => handleChange(item,1)}/>
+                                            <ProductAmount>{item.amount}</ProductAmount>
+                                            {/* <button onClick={() => handleChange(item,-1)}>-</button> */}
+                                            <Remove cursor="pointer" onClick={()=>handleChange(item,-1)} />
+                                        </ProductAmountContainer>
+                                        <DeleteIcon cursor="pointer" onClick={()=>handleRemove(item.id)}/>
+                                    </PriceDetails>
+                                    <Hr />
+                                    </Details>
+                                </div>
+                            ))
+                            }
                         </Product>
                     </Info>
                     <Summary>
                         <SummaryTitle>Order Summary</SummaryTitle>
-                        <SummaryItem type="total">
+                        <SummaryItem>
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice className="btn btn-primary btn-purchase">{0} nis</SummaryItemPrice>
+                            <SummaryItemPrice>{price} nis</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>Checkout Now</Button>
+                        <Button>Place Order</Button>
                     </Summary>
                 </Bottom>
             </Wrapper>

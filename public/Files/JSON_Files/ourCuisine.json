@@ -5,7 +5,8 @@
         "bg": "fbf0f4",
         "title": "Cabbage Roll",
         "desc": "Filled with rice & Beaf or Lamb meat",
-        "price": 50
+        "price": 50,
+        "amount": 1
     },
     {
         "id": 2,
@@ -13,7 +14,8 @@
         "bg": "fbf0f4",
         "title": "Grape leaves",
         "desc": "Filled with rcse & Beaf or Lamb meat",
-        "price": 50
+        "price": 50,
+        "amount": 1
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "bg": "fbf0f4",
         "title": "Maftool",
         "desc": "“Palestinian couscous” with chicken and chickpeas",
-        "price": 40
+        "price": 40,
+        "amount": 1
     },
     {
         "id": 4,
@@ -29,7 +32,8 @@
         "bg": "fbf0f4",
         "title": "Schnitzel",
         "desc": "Traditional chicken meat",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 5,
@@ -37,7 +41,8 @@
         "bg": "fbf0f4",
         "title": "Shawarma Roll",
         "desc": "Saj Bread filled with Beaf meat",
-        "price": 40
+        "price": 40,
+        "amount": 1
     },
     {
         "id": 6,
@@ -45,7 +50,8 @@
         "bg": "fbf0f4",
         "title": "Shish Barak",
         "desc": "These are Middle Eastern meat filled dumplings cooked in a yogurt based sauce. It is one of the top comfort foods in Arabic cuisine",
-        "price": 60
+        "price": 60,
+        "amount": 1
     },
     {
         "id": 7,
@@ -53,6 +59,7 @@
         "bg": "fbf0f4",
         "title": "Sweet Pumpkin",
         "desc": "Pumpkin cooked and covered by Sugar&Water syrop",
-        "price": 40
+        "price": 40,
+        "amount": 1
     }
 ]

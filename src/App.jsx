@@ -22,10 +22,12 @@ import AllOrders from './Pages/AllOrders';
 import Footer from './Components/Footer';
 import ShoppingCart from './Components/ShoppingCart';
 import { ToastContainer } from 'react-toastify';
+import { Box } from '@material-ui/core';
 
 const App = () => {
+
   const [user, setUser] = useState();
-  // const [users, setUsers] = useState([]);
+
 
   const checkForUser = () => {
     if (JSON.parse(localStorage.getItem("currUser") !== null))
@@ -33,38 +35,47 @@ const App = () => {
     else setUser(undefined);
   };
   useEffect(() => {
-    // const usersData = await axios.get("/Files/JSON_Files/users.json");
-    // const recieveData = usersData.data.map((item) => {
-    //   delete item.password;
-    //   delete item.email;
-    //   return item;
-    // });
     checkForUser();
-    //
-    // setUsers(recieveData);
-
-    // localStorage.setItem("usersList", JSON.stringify(recieveData));
   }, []);
+
+
+
+  const [cart, setCart] = useState([]);
+
+  const handleAddToCart = (item) => {
+    if (cart.indexOf(item) !== -1) return;
+    setCart([...cart, item]);
+  };
+
+  const handleChange = (item, d) => {
+    const ind = cart.indexOf(item);
+    const arr = cart;
+    arr[ind].amount += d;
+
+    if (arr[ind].amount === 0)
+      arr[ind].amount = 1;
+    setCart([...arr]);
+  };
 
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar user={user} setUser={setUser} />}>
+          <Route path="/" element={<Navbar user={user} setUser={setUser} size={cart.length} />}>
             <Route index element={<Home />} />
-            <Route path="Home" element={<Home user={user} />} />
+            <Route path="Home" element={<Home user={user} handleAddToCart={handleAddToCart} />} />
             <Route path="About" element={<About />} />
             <Route path="AddProduct" element={<AddProduct />} />
             <Route path="EditProduct" element={<EditProduct />} />
             <Route path="DeleteProduct" element={<DeleteProduct />} />
             <Route path="AllOrders" element={<AllOrders />} />
             <Route path="Login" element={<Login user={user} setUser={setUser} />} />
-            <Route path="PastriesCategory" element={<PastriesCategory />} />
-            <Route path="SweetsCategory" element={<SweetsCategory />} />
-            <Route path="OurCuisineCategory" element={<OurCuisineCategory />} />
-            <Route path="Cart" element={<Cart />} />
+            <Route path="PastriesCategory" element={<PastriesCategory handleAddToCart={handleAddToCart} />} />
+            <Route path="SweetsCategory" element={<SweetsCategory handleAddToCart={handleAddToCart} />} />
+            <Route path="OurCuisineCategory" element={<OurCuisineCategory handleAddToCart={handleAddToCart} />} />
+            <Route path="Cart" element={<Cart cart={cart} setCart={setCart} handleAddToCart={handleAddToCart} handleChange={handleChange} />} />
             <Route path="ShoppingCart" element={<ShoppingCart />} />
-            <Route path="Footer" element={<Footer user={user} />} />
+            <Route path="Footer" element={<Footer user={user} setUser={setUser} />} />
           </Route>
         </Routes>
       </BrowserRouter>

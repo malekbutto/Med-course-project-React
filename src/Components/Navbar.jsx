@@ -11,6 +11,8 @@ import Button from "@mui/material/Button";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import Login from "../Pages/Login";
+import Cart from "../Pages/Cart";
 
 //import Time from DateTime;
 // import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -69,8 +71,9 @@ const SearchContainer = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    margin: 50px;
+    margin: 20px;
     padding: 0px;
+    position: absolute;
     background-color: #f5fbfd;
     ${mobile({ display: "none" })}
 `;
@@ -83,8 +86,27 @@ const Input = styled.input`
     ${mobile({ width: "50px" }, { display: "none" })}
 `;
 const Image = styled.img`
-    border: none;
     display: grid;
+`;
+const TableList = styled.table`
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+    justify-content: space-between;
+    padding: 0px 0px;
+    margin: 5px;
+    width: 100%;
+`;
+const TH = styled.th`
+    border: 0.5px solid black;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+    padding: 0px;
+    width: 60%;
 `;
 const LeftCenter = styled.div`
     flex: 1;
@@ -93,7 +115,7 @@ const LeftCenter = styled.div`
     text-align: left;
     justify-content: space-evenly;
     // justify-content: start;
-    padding: 0px 10px;
+    padding: 0px 50px;
     width: 100%;
 `;
 const GreetingsText = styled.div`
@@ -151,7 +173,7 @@ const SignInOut = styled.div`
 
 `;
 const Right = styled.div`
-    flex: 1;
+    flex: 2;
     display: flex;
     align-items: center;
     text-align: right;
@@ -177,8 +199,37 @@ const MenuItem = styled.div`
     font-weight: 600;
     cursor: pointer;
     margin-left: 20px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 60px;
+    padding: 5px;
     ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+const SpanMyShop = styled.span`
+    font-size: 1.5rem;
+    font-weight: bold;
+
+`;
+const CartDiv = styled.div`
+    cursor: pointer;
+`;
+const SpanKid1 = styled.span`
+    font-size: 2rem;
+`;
+const SpanKid2 = styled.span`
+    padding: 0 3px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    position: relative;
+    top: -15px;
+`;
+
+
 const Table = styled.table`
 
 `;
@@ -202,13 +253,14 @@ const theme = createTheme({
     },
 });
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
 
-    const [keyword, setKeyword] = useState("");
     const [matchProducts, setMatchProducts] = useState([]);
     const [data, setData] = useState([]);
-    const [productsList, setProductsList] = useState([]);
     const [foundList, setFoundList] = useState([]);
+    const [categories, setCategories] = useState([]);
+
+    let foundListArray;
 
     // Search
     useEffect(() => {
@@ -216,8 +268,10 @@ const Navbar = ({ user, setUser }) => {
             const sweets = await axios.get("http://localhost:3000/sweets").then((res) => res.data);
             const pastries = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
             const ourCuisine = await axios.get("http://localhost:3000/ourCuisine").then((res) => res.data);
+            const category = await axios.get("http://localhost:3000/categories").then((res) => res.data);
             const allProducts = sweets.concat(pastries, ourCuisine);
 
+            setCategories(category);
             setData(allProducts);
             console.log(allProducts);
 
@@ -226,7 +280,9 @@ const Navbar = ({ user, setUser }) => {
     }, []);
 
     const onSearchChange = (e) => {
-        let foundListArray;
+        // if (e.target.value == "")
+        //     foundListArray = "";
+        // else
         if (e.target.value && e.target.value.toString().trim().length > 0) {
             foundListArray = data.filter((product) => {
                 return product.title.toLowerCase().includes(e.target.value.toLowerCase());
@@ -235,30 +291,64 @@ const Navbar = ({ user, setUser }) => {
         }
         setMatchProducts(e.target.value);
         console.log(foundListArray);
-        // setProductsList(foundList);
-        // console.log(e.target.value);
     };
 
-    const CalcTime = () => {
-        const today = new Date();
-        if ((today.getHours() >= 0) && (today.getHours() < 12)) {
-            return "Good morning";
-        }
-        else if ((today.getHours() >= 12) && (today.getHours() <= 17)) {
-            return "Good afternoon";
-        }
-        else if ((today.getHours() > 17) && (today.getHours() < 20)) {
-            return "Good evening";
-        }
-        else if ((today.getHours() >= 20) && (today.getHours() <= 23)) {
-            return "Good night";
-        }
-    };
+    const onSelectedItem = async (e) => {
+        let categoryName;
+        let Id;
+        const clickedProduct = e.target;
+        console.log(foundListArray);
+        axios.get(foundListArray).then((res) => {
+            Id = res.data.find(
+              (obj) =>
+                obj.img === clickedProduct
+            );
+            console.log(Id);
+        })
+
+        console.log(Id);
+        if (clickedProduct.src.includes("Sweets"))
+            categoryName = "SweetsCategory";
+        else if (clickedProduct.src.includes("Pastries"))
+            categoryName = "PastriesCategory";
+        else if (clickedProduct.src.includes("OurCuisine"))
+            categoryName = "OurCuisineCategory";
+
+        navigate("../" + categoryName, { replace: true});
+    }
+
+
+    // const CalcTime = () => {
+    //     const today = new Date();
+    //     if ((today.getHours() >= 0) && (today.getHours() < 12)) {
+    //         return "Good morning";
+    //     }
+    //     else if ((today.getHours() >= 12) && (today.getHours() <= 17)) {
+    //         return "Good afternoon";
+    //     }
+    //     else if ((today.getHours() > 17) && (today.getHours() < 20)) {
+    //         return "Good evening";
+    //     }
+    //     else if ((today.getHours() >= 20) && (today.getHours() <= 23)) {
+    //         return "Good night";
+    //     }
+    // };
     //
     const navigate = useNavigate();
+
     const handleSignIn = () => {
         return (user === undefined ? navigate("/login") : navigate("/"));
     };
+
+    const handleClick = () => {
+        return (user === undefined ?
+            (
+                <Login />
+            ) : (
+                <CartDiv />
+            ));
+    };
+
     const handleSignOut = () => {
         localStorage.removeItem("currUser");
         if (user !== undefined) {
@@ -287,23 +377,27 @@ const Navbar = ({ user, setUser }) => {
                         </Left>
                         <LeftCenter>
                             <SearchContainer>
-                                {/* value={product}  */}
-                                <Input
-                                    type="text"
-                                    placeholder="Search"
-                                    onChange={onSearchChange}
-                                />
-                                <List>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        placeholder="Search"
+                                        onChange={onSearchChange}
+                                    />
+                                </div>
+                                <TableList>
                                     {foundList.map(product => {
-                                        return <div><tr key={product.id}>{product.title}</tr>
-                                        <Image src={product.img} alt="" width="70vw" height="70vh"/>
-                                        </div>
+                                        return <tbody>
+                                            <td>
+                                                <button key={product.id} onClick={(e) => onSelectedItem(e)}>
+                                                    {product.title}
+                                                </button>
+                                                <button>
+                                                    <Image src={product.img} alt="" width="50vw" height="50vh" onClick={(e) => onSelectedItem(e)} />
+                                                </button>
+                                            </td>
+                                        </tbody>
                                     })}
-                                </List>
-                                {<table data={foundList} >
-
-                                </table>}
-
+                                </TableList>
                             </SearchContainer>
                         </LeftCenter>
                         <Center>
@@ -403,17 +497,27 @@ const Navbar = ({ user, setUser }) => {
                                     )
                                 }
                             </SignInOut>
-                            <MenuItem>
-                                {
-                                    // user === undefined ? onClick = { handleSignIn } :
-
-                                    <Link to="/ShoppingCart">
+                            <nav>
+                                <MenuItem className="nav_box">
+                                    <SpanMyShop className="my_shop"></SpanMyShop>
+                                    <CartDiv className="cart" onClick={() => (user === undefined ?
+                                        (
+                                            navigate("Login")
+                                        ) : (
+                                            navigate("Cart", cart = { cart }, setCart = { setCart }, handleChange = { handleChange })
+                                        ))}>
+                                        <SpanKid1>
+                                            <i className="fas fa-cart-plus" ></i>
+                                        </SpanKid1>
+                                        <SpanKid2>{size}</SpanKid2>
+                                    </CartDiv>
+                                    {/* <Link to="/ShoppingCart">
                                         <Badge badgeContent={0} color="secondary" >
                                             <ShoppingCartOutlined />
                                         </Badge>
-                                    </Link>
-                                }
-                            </MenuItem>
+                                    </Link> */}
+                                </MenuItem>
+                            </nav>
                         </Right>
                     </Wrapper>
                 </Container>

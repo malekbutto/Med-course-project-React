@@ -3,7 +3,7 @@ import { Phone } from "@material-ui/icons";
 import { Facebook, Instagram } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -67,11 +67,17 @@ const ContactItem = styled.div`
     display: flex;
     align-items: center;
 `;
+const CartDiv = styled.div`
+    cursor: pointer;
+`;
 // const Payment = styled.img`
 //     width: 50%;
 // `;
 
-const Footer = () => {
+const Footer = ({user, setUser, cart, setCart, handleChange}) => {
+
+    const navigate = useNavigate();
+
     return (
         <Container>
             <Left>
@@ -99,7 +105,13 @@ const Footer = () => {
                     <ListItem><Link to="/SweetsCategory" target={"_top"}>Sweets</Link></ListItem>
                     <ListItem><Link to="/PastriesCategory" target={"_top"}>Pastries</Link></ListItem>
                     <ListItem><Link to="/OurCuisineCategory" target={"_top"}>Our Cuisine</Link></ListItem>
-                    <ListItem><Link to="/Cart" target={"_top"}>Cart</Link></ListItem>
+                    <ListItem><CartDiv onClick={() => (user === undefined ?
+                                            (
+                                                navigate("/login")
+                                                // <Link to="/Login" target={"_top"}></Link>
+                                            ) : (
+                                                navigate("Cart", cart={cart}, setCart={setCart}, handleChange={handleChange} )
+                                            ))}>Cart</CartDiv></ListItem>
                 </List>
             </Center>
             <Right>

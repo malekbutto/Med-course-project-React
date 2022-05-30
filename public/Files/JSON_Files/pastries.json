@@ -5,7 +5,8 @@
         "bg": "f5fbfd",
         "title": "Beef Meat",
         "desc": "Pastry filled with Beef Meat",
-        "price": 40
+        "price": 40,
+        "amount": 1
     },
     {
         "id": 2,
@@ -13,7 +14,8 @@
         "bg": "f5fbfd",
         "title": "Chicken",
         "desc": "Pastry filled with Chicken",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "bg": "f5fbfd",
         "title": "Potato",
         "desc": "Pastry filled with Potato",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 4,
@@ -29,7 +32,8 @@
         "bg": "f5fbfd",
         "title": "Potato Discs",
         "desc": "Potato discs covered by bread crumbs",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 5,
@@ -37,7 +41,8 @@
         "bg": "f5fbfd",
         "title": "Sausage",
         "desc": "Pastry filled with Sausage",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 6,
@@ -45,7 +50,8 @@
         "bg": "f5fbfd",
         "title": "Tuna",
         "desc": "Pastry filled with Tuna",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 7,
@@ -53,7 +59,8 @@
         "bg": "f5fbfd",
         "title": "Pizza",
         "desc": "Pizza Pastry",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 8,
@@ -61,7 +68,8 @@
         "bg": "f5fbfd",
         "title": "Pizza Filling",
         "desc": "Pastry filled with Pizza mix",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 9,
@@ -69,7 +77,8 @@
         "bg": "f5fbfd",
         "title": "Olives",
         "desc": "Pastry filled with Olives",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 10,
@@ -77,7 +86,8 @@
         "bg": "f5fbfd",
         "title": "Mozzarella Sticks",
         "desc": "Mozzarella cheese covered by bread crumbs",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 11,
@@ -85,7 +95,8 @@
         "bg": "f5fbfd",
         "title": "Fatayer",
         "desc": "Fatayer filled with Spinach or Zaatar",
-        "price": 65
+        "price": 65,
+        "amount": 1
     },
     {
         "id": 12,
@@ -93,6 +104,7 @@
         "bg": "f5fbfd",
         "title": "Kibbeh",
         "desc": "Kibbeh is a family of dishes based on spiced ground meat, onions, and grain, popular in Middle Eastern cuisine. In Levantine cuisine, kibbeh is usually made by pounding bulgur wheat together with meat into a fine paste and forming it into balls with toasted pine nuts and spices",
-        "price": 4
+        "price": 4,
+        "amount": 1
     }
 ]

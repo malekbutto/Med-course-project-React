@@ -6,7 +6,7 @@ import Footer from '../Components/Footer';
 import { ToastContainer } from 'react-toastify';
 
 
-const Home = () => {
+const Home = ({handleAddToCart}) => {
 
     return (
         <div>
@@ -22,7 +22,7 @@ const Home = () => {
             />
             {/* <Slider /> */}
             <Categories />
-            <Products />
+            <Products handleAddToCart={handleAddToCart}/>
             <Footer />
         </div>
     )

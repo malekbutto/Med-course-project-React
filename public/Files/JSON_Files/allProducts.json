@@ -26,7 +26,8 @@
             "bg": "fcf1ed",
             "title": "Trilece Caramel",
             "desc": "A Turkish sweet cake covered by caramel",
-            "price": 15
+            "price": 15,
+            "amount": 1
         },
         {
             "id": 2,
@@ -34,7 +35,8 @@
             "bg": "fcf1ed",
             "title": "Trilece Strawberry",
             "desc": "A Turkish sweet cake covered by strawberry gel layer",
-            "price": 15
+            "price": 15,
+            "amount": 1
         },
         {
             "id": 3,
@@ -42,7 +44,8 @@
             "bg": "fcf1ed",
             "title": "Trilece Pistachio",
             "desc": "A Turkish sweet cake covered by pistachio",
-            "price": 15
+            "price": 15,
+            "amount": 1
         },
         {
             "id": 4,
@@ -50,7 +53,8 @@
             "bg": "fcf1ed",
             "title": "Lutos",
             "desc": "Lutos cake",
-            "price": 12
+            "price": 12,
+            "amount": 1
         },
         {
             "id": 5,
@@ -58,7 +62,8 @@
             "bg": "fcf1ed",
             "title": "Lebanese Nights Dessert",
             "desc": "Made from a silky semolina based pudding, topped with Ashta (thick cream), whipping cream and pistachios",
-            "price": 15
+            "price": 15,
+            "amount": 1
         },
         {
             "id": 6,
@@ -66,7 +71,8 @@
             "bg": "fcf1ed",
             "title": "Kinder Bueno",
             "desc": "Kinder Bueno cake",
-            "price": 12
+            "price": 12,
+            "amount": 1
         },
         {
             "id": 7,
@@ -74,7 +80,8 @@
             "bg": "fcf1ed",
             "title": "Tiramisu",
             "desc": "A coffee-flavoured Italian dessert. It is made of ladyfingers dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese, flavoured with cocoa",
-            "price": 12
+            "price": 12,
+            "amount": 1
         },
         {
             "id": 8,
@@ -82,7 +89,8 @@
             "bg": "fcf1ed",
             "title": "Khash-khash",
             "desc": "Layered crackers with cream and toasted vermicelli",
-            "price": 15
+            "price": 15,
+            "amount": 1
         },
         {
             "id": 9,
@@ -90,7 +98,8 @@
             "bg": "fcf1ed",
             "title": "Alfajores",
             "desc": "It's a sandwich made of two discs of dough with a filling in between",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
             "id": 10,
@@ -98,7 +107,8 @@
             "bg": "fcf1ed",
             "title": "Macaron",
             "desc": "Sweet meringue-based confection made with egg white, icing sugar, granulated sugar, almond meal, and food colouring.",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
             "id": 11,
@@ -106,7 +116,8 @@
             "bg": "fcf1ed",
             "title": "Betefour",
             "desc": "Egyptian butter cookies",
-            "price": 40
+            "price": 40,
+            "amount": 1
         },
         {
             "id": 12,
@@ -114,7 +125,8 @@
             "bg": "fcf1ed",
             "title": "Contessa",
             "desc": "Addictive Arabian cuisine",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
             "id": 13,
@@ -122,7 +134,8 @@
             "bg": "fcf1ed",
             "title": "English Cake",
             "desc": "The famous English Cake",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
             "id": 14,
@@ -130,7 +143,8 @@
             "bg": "fcf1ed",
             "title": "Dates Cake / Ma'amoul",
             "desc": "Flour or semolina cakes filled with dates",
-            "price": 90
+            "price": 90,
+            "amount": 1
         },
         {
             "id": 15,
@@ -138,7 +152,8 @@
             "bg": "fcf1ed",
             "title": "Ghraybeh",
             "desc": "Delicious and delicate Middle Eastern cookies that melt in your mouth",
-            "price": 40
+            "price": 40,
+            "amount": 1
         },
         {
             "id": 16,
@@ -146,7 +161,8 @@
             "bg": "fcf1ed",
             "title": "Sweet Cups",
             "desc": "Various sweet cups with different tasties",
-            "price": 4
+            "price": 4,
+            "amount": 1
         },
         {
             "id": 17,
@@ -154,7 +170,8 @@
             "bg": "fcf1ed",
             "title": "Strawberry Cake",
             "desc": "Fresh strawberries, this strawberry cake is one of the simplest, most delicious cakes",
-            "price": 120
+            "price": 120,
+            "amount": 1
         },
         {
             "id": 18,
@@ -162,7 +179,8 @@
             "bg": "fcf1ed",
             "title": "Ferrero Rocher Cake",
             "desc": "This Ferrero Rocher Cake is your favorite chocolate hazelnut treat in cake form! Chocolate hazelnut cake layers and with a Nutella buttercream",
-            "price": 100
+            "price": 100,
+            "amount": 1
         },
         {
             "id": 19,
@@ -170,7 +188,8 @@
             "bg": "fcf1ed",
             "title": "Nutella Cake",
             "desc": "This Nutella Cake recipe is every Nutella lover’s dream cake! It’s a moist chocolate cake with a rich chocolate Nutella buttercream frosting smothered between each layer",
-            "price": 100
+            "price": 100,
+            "amount": 1
         },
         {
             "id": 20,
@@ -178,163 +197,183 @@
             "bg": "fcf1ed",
             "title": "Oreo Cake",
             "desc": "Impressive chocolate cake which layered and topped with Oreo whipped cream",
-            "price": 100
+            "price": 100,
+            "amount": 1
         }
     ],
     "pastries": [
         {
-            "id": 21,
+            "id": 51,
             "img": "./Images/Category/Pastries/Beef_Meat.jpg",
             "bg": "f5fbfd",
             "title": "Beef Meat",
             "desc": "Pastry filled with Beef Meat",
-            "price": 40
+            "price": 40,
+            "amount": 1
         },
         {
-            "id": 22,
+            "id": 52,
             "img": "./Images/Category/Pastries/Chicken.jpg",
             "bg": "f5fbfd",
             "title": "Chicken",
             "desc": "Pastry filled with Chicken",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 23,
+            "id": 53,
             "img": "./Images/Category/Pastries/Potato.jpg",
             "bg": "f5fbfd",
             "title": "Potato",
             "desc": "Pastry filled with Potato",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 24,
+            "id": 54,
             "img": "./Images/Category/Pastries/Potato_Discs.jpg",
             "bg": "f5fbfd",
             "title": "Potato Discs",
             "desc": "Potato discs covered by bread crumbs",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 25,
+            "id": 55,
             "img": "./Images/Category/Pastries/Sausage.jpg",
             "bg": "f5fbfd",
             "title": "Sausage",
             "desc": "Pastry filled with Sausage",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 26,
+            "id": 56,
             "img": "./Images/Category/Pastries/Tuna.jpg",
             "bg": "f5fbfd",
             "title": "Tuna",
             "desc": "Pastry filled with Tuna",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 27,
+            "id": 57,
             "img": "./Images/Category/Pastries/Pizza1.jpg",
             "bg": "f5fbfd",
             "title": "Pizza",
             "desc": "Pizza Pastry",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 28,
+            "id": 58,
             "img": "./Images/Category/Pastries/Pizza2.jpg",
             "bg": "f5fbfd",
             "title": "Pizza Filling",
             "desc": "Pastry filled with Pizza mix",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 29,
+            "id": 59,
             "img": "./Images/Category/Pastries/Olives.jpg",
             "bg": "f5fbfd",
             "title": "Olives",
             "desc": "Pastry filled with Olives",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 30,
+            "id": 60,
             "img": "./Images/Category/Pastries/Mozzarella_Sticks.jpg",
             "bg": "f5fbfd",
             "title": "Mozzarella Sticks",
             "desc": "Mozzarella cheese covered by bread crumbs",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 31,
+            "id": 61,
             "img": "./Images/Category/Pastries/Fatayer.jpg",
             "bg": "f5fbfd",
             "title": "Fatayer",
             "desc": "Fatayer filled with Spinach or Zaatar",
-            "price": 65
+            "price": 65,
+            "amount": 1
         },
         {
-            "id": 32,
+            "id": 62,
             "img": "./Images/Category/Pastries/Kibbeh.jpg",
             "bg": "f5fbfd",
             "title": "Kibbeh",
             "desc": "Kibbeh is a family of dishes based on spiced ground meat, onions, and grain, popular in Middle Eastern cuisine. In Levantine cuisine, kibbeh is usually made by pounding bulgur wheat together with meat into a fine paste and forming it into balls with toasted pine nuts and spices",
-            "price": 4
+            "price": 4,
+            "amount": 1
         }
     ],
     "ourCuisine": [
         {
-            "id": 33,
+            "id": 81,
             "img": "./Images/Category/OurCuisine/Cabbage_Roll.jpg",
             "bg": "fbf0f4",
             "title": "Cabbage Roll",
             "desc": "Filled with rice & Beaf or Lamb meat",
-            "price": 50
+            "price": 50,
+            "amount": 1
         },
         {
-            "id": 34,
+            "id": 82,
             "img": "./Images/Category/OurCuisine/Grape_leaves.jpg",
             "bg": "fbf0f4",
             "title": "Grape leaves",
             "desc": "Filled with rcse & Beaf or Lamb meat",
-            "price": 50
+            "price": 50,
+            "amount": 1
         },
         {
-            "id": 35,
+            "id": 83,
             "img": "./Images/Category/OurCuisine/Maftool.jpg",
             "bg": "fbf0f4",
             "title": "Maftool",
             "desc": "“Palestinian couscous” with chicken and chickpeas",
-            "price": 40
+            "price": 40,
+            "amount": 1
         },
         {
-            "id": 36,
+            "id": 84,
             "img": "./Images/Category/OurCuisine/Schnitzel.jpg",
             "bg": "fbf0f4",
             "title": "Schnitzel",
             "desc": "Traditional chicken meat",
-            "price": 35
+            "price": 35,
+            "amount": 1
         },
         {
-            "id": 37,
+            "id": 85,
             "img": "./Images/Category/OurCuisine/Shawarma_Roll.jpg",
             "bg": "fbf0f4",
             "title": "Shawarma Roll",
             "desc": "Saj Bread filled with Beaf meat",
-            "price": 40
+            "price": 40,
+            "amount": 1
         },
         {
-            "id": 38,
+            "id": 86,
             "img": "./Images/Category/OurCuisine/Shish_Barak.jpg",
             "bg": "fbf0f4",
             "title": "Shish Barak",
             "desc": "These are Middle Eastern meat filled dumplings cooked in a yogurt based sauce. It is one of the top comfort foods in Arabic cuisine",
-            "price": 60
+            "price": 60,
+            "amount": 1
         },
         {
-            "id": 39,
+            "id": 87,
             "img": "./Images/Category/OurCuisine/Sweet_Pumpkin.jpg",
             "bg": "fbf0f4",
             "title": "Sweet Pumpkin",
             "desc": "Pumpkin cooked and covered by Sugar&Water syrop",
-            "price": 40
+            "price": 40,
+            "amount": 1
         }
     ]
 }

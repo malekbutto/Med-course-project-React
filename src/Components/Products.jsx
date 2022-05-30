@@ -1,4 +1,3 @@
-import { popularProducts } from '../data'
 import styled from "styled-components";
 import Product from './Product'
 import axios from "axios";
@@ -12,10 +11,11 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Products = () => {
+const Products = ({handleAddToCart}) => {
 
-  const [productImage, setProductImage] = useState([]);
   const [data, setData] = useState([]);
+  const [productImage, setProductImage] = useState();
+
   let allProducts;
 
   useEffect(() => {
@@ -26,10 +26,10 @@ const Products = () => {
       allProducts = sweets.concat(pastries, ourCuisine);
 
       setData(allProducts);
-  //     if (allProducts.img.includes('fakepath'))
-  //       setProductImage('./Images/Category/No_Image.jpeg');
-  //     else
-  //       setProductImage(allProducts.img);
+      // if (allProducts.img.includes('fakepath'))
+      //   setProductImage('./Images/Category/No_Image.jpeg');
+      // else
+      //   setProductImage(allProducts.img);
     }
     getProducts();
   }, []);
@@ -39,7 +39,7 @@ const Products = () => {
   return (
     <Container>
       {data.map(item => (
-        <Product item={item} key={item.id} />
+        <Product item={item} key={item.id} handleAddToCart={handleAddToCart}/>
       ))}
     </Container>
   )

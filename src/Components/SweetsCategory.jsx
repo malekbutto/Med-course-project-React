@@ -1,27 +1,10 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
 import { sweets } from '../data';
 import { mobile } from "../responsive";
-// import { sweets } from '../data'
 import styled from "styled-components";
-// import Sweets from './Sweets';
 import Footer from './Footer';
 import axios from "axios";
 import { React, useEffect, useState } from "react";
-import Sweets from './Sweets';
-
-// const Container = styled.div`
-//   padding: 20px;
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-// `;
-// const Title = styled.h1`
-//     display: flex;
-//     font weight: 700;
-//     margin: auto;
-//     align-items: center;
-//     justify-content: center;
-// `;
 
 const TopTitle = styled.h1`
     display: flex;
@@ -67,20 +50,6 @@ const Wrapper = styled.div`
     transition: all 1.5s ease;
     transform: translateX(${(props) => (props.slideIndex * -100)}vw);
 `;
-// const FilterContainer = styled.div`
-//     display: flex;
-//     justify-content: space-between;
-// `;
-// const Filter = styled.div`
-//     margin: 20px;
-//     ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
-// `;
-// const FilterText = styled.span`
-//     font-size: 20px;
-//     font-weight: 600;
-//     margin-right: 20px;
-//     ${mobile({ marginRight: "0px" })}
-//   `;
 const Slide = styled.div`
     width: 100vw;
     height: 85%;
@@ -121,7 +90,7 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const SweetsCategory = () => {
+const SweetsCategory = ({handleAddToCart}) => {
 
   const [img, setImg] = useState();
   const [title, setTitle] = useState();
@@ -137,8 +106,6 @@ const SweetsCategory = () => {
   //   };
   //   getProducts();
   // }, []);
-
-
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
@@ -156,7 +123,7 @@ const SweetsCategory = () => {
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {sweets.map((item) => (
+          {sweets?.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} />
@@ -165,7 +132,7 @@ const SweetsCategory = () => {
                 <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
                 <Price>{item.price} nis</Price>
-                <Button>Add To Cart</Button>
+                <Button onClick={() => handleAddToCart(item)}>Add To Cart</Button>
               </InfoContainer>
             </Slide>
           ))}

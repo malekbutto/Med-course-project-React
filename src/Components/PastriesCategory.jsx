@@ -4,8 +4,6 @@ import { mobile } from "../responsive";
 import Footer from './Footer';
 import axios from "axios";
 import { React, useEffect, useState } from "react";
-import Pastries from './Pastries';
-
 //Components
 import Drawer from '@material-ui/core/Drawer';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -14,33 +12,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Badge from '@material-ui/core/Badge';
 //Styled
 import styled from "styled-components";
-import { useQuery } from 'react-query';
 import { CircleNotifications, LineAxisOutlined } from '@mui/icons-material';
-//types
-// export type CartItemType = {
-//   id: number;
-//   img: String;
-//   bg: String;
-//   title: String;
-//   description: String;
-//   price: number;
-//   amount: Number;
-// };
-
-
-// const Container = styled.div`
-//   padding: 20px;
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-// `;
-// const Title = styled.h1`
-//     display: flex;
-//     font weight: 700;
-//     margin: auto;
-//     align-items: center;
-//     justify-content: center;
-// `;
 
 const TopTitle = styled.h1`
     display: flex;
@@ -126,36 +98,33 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-// const getProducts = async (): Promise<CartItemType> =>
 
-const PastriesCategory = () => {
+const PastriesCategory = ({handleAddToCart}) => {
 
-  const [data, setData] = useState();
-  let pastriesData;
+  // const [data, setData] = useState();
+  // let pastriesData;
 
-  useEffect(() => {
-    const getProducts = async () => {
-      pastriesData = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
-      setData(pastriesData);
-      console.log(pastriesData)
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     pastriesData = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
+  //     setData(pastriesData);
+  //     console.log(pastriesData)
 
-    }
-    getProducts();
-  }, []);
+  //   }
+  //   getProducts();
+  // }, []);
 
 
   const getTotalItems = () => null;
-
-  const handleAddToCart = () => null;
 
   const handleRemoveFromCart = () => null;
 
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (pastriesData.length - 1));
+      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (pastries.length - 1));
     } else {
-      setSlideIndex(slideIndex < (pastriesData.length - 1) ? (slideIndex + 1) : 0);
+      setSlideIndex(slideIndex < (pastries.length - 1) ? (slideIndex + 1) : 0);
     }
   };
 
@@ -173,7 +142,7 @@ const PastriesCategory = () => {
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {data.map((item) => (
+          {pastries.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} alt='SlideImage' />
@@ -182,7 +151,7 @@ const PastriesCategory = () => {
                 <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
                 <Price>{item.price} nis</Price>
-                <Button className="btn btn-primary shop-item-button">Add To Cart</Button>
+                <Button onClick={() => handleAddToCart(item)}>Add To Cart</Button>
               </InfoContainer>
             </Slide>
           ))}

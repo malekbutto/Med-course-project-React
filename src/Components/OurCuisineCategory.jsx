@@ -105,26 +105,26 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const OurCuisineCategory = () => {
+const OurCuisineCategory = ({handleAddToCart}) => {
 
-  const [ourCuisineCategory, setOurCuisineCategory] = useState();
+  // const [ourCuisineCategory, setOurCuisineCategory] = useState();
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const ourCuisineData = await axios.get("http://localhost:3000/ourCuisine").then((res) => res.data);
-      setOurCuisineCategory(ourCuisineData);
-    }
-    getProducts();
-  }, []);
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     const ourCuisineData = await axios.get("http://localhost:3000/ourCuisine").then((res) => res.data);
+  //     setOurCuisineCategory(ourCuisineData);
+  //   }
+  //   getProducts();
+  // }, []);
 
 
 
   var [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (ourCuisineCategory.length - 1));
+      setSlideIndex(slideIndex > 0 ? (slideIndex - 1) : (ourCuisine.length - 1));
     } else {
-      setSlideIndex(slideIndex < (ourCuisineCategory.length - 1) ? (slideIndex + 1) : 0);
+      setSlideIndex(slideIndex < (ourCuisine.length - 1) ? (slideIndex + 1) : 0);
     }
   };
 
@@ -136,7 +136,7 @@ const OurCuisineCategory = () => {
           <ArrowLeftOutlined />
         </Arrow>
         <Wrapper slideIndex={slideIndex}>
-          {ourCuisineCategory.map((item) => (
+          {ourCuisine.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
                 <Image src={item.img} alt='SlideImage' />
@@ -145,7 +145,7 @@ const OurCuisineCategory = () => {
                 <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
                 <Price>{item.price} nis</Price>
-                <Button className="btn btn-primary shop-item-button">Add To Cart</Button>
+                <Button onClick={() => handleAddToCart(item)}>Add To Cart</Button>
               </InfoContainer>
             </Slide>
           ))}

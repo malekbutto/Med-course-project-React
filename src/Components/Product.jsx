@@ -20,6 +20,30 @@ const Info = styled.div`
     transition: all 0.5s ease;
     cursor: pointer;
 `;
+const Details = styled.div`
+    opacity: 0;
+    width: 150%;
+    height: 100%;
+    position: relative;
+    top: 40;
+    left: 40;
+    background-color: rgba(0, 0, 0, 0.0);
+    z-index: 2;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    cursor: pointer;
+`;
+const Price = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+`;
 const Title = styled.h1`
     font-size: 24px;
     text-align: center;
@@ -35,6 +59,12 @@ const Container = styled.div`
     background-color: #${(props) => props.bg};  
     position: relative;
     &:hover ${Info}{
+        opacity: 1;
+    },
+    &:hover ${Title} {
+        opacity: 1;
+    },
+    &:hover ${Details} {
         opacity: 1;
     }
 `;
@@ -68,38 +98,39 @@ const Icon = styled.div`
     }
 `;
 
-const Product = ({ item }) => {
 
-    // const [productImage, setProductImage] = useState();
+
+const Product = ({item, handleAddToCart}) => {
+
+    const [productImage, setProductImage] = useState();
     // console.log(productImg);
 
-    // useEffect(() => {
-    //     if (productImg.img.includes('fakepath'))
-    //         setProductImage('./Images/Category/No_Image.jpeg');
-    //     else
-    //         setProductImage(productImg.img);
-    // }, [productImage]);
+    useEffect(() => {
+        if (item.img.includes('fakepath'))
+            setProductImage('./Images/Category/No_Image.jpeg');
+        else
+            setProductImage(item.img);
+    }, [productImage]);
 
     return (
         <Container bg={item.bg}>
+            {/* <Title>
+                {item.title}
+            </Title> */}
             <Circle>
-                <Image src={item.img} alt='ProductImage' />
+                <Image src={productImage} alt='ProductImage' />
                 <Info>
-                    <Icon>
+                    <Icon onClick={() => handleAddToCart(item)}>
                         <ShoppingCartOutlined />
                     </Icon>
-                    {/* <Icon>
-                        <SearchOutlined />
-                    </Icon> */}
-                    {/* <Icon>
-                        <FavoriteBorderOutlined />
-                    </Icon> */}
                 </Info>
-                <Title>
-                    {item.title}
-                </Title>
+                <Details>
+                    <Price>
+                        {item.price} nis
+                    </Price>
+                </Details>
             </Circle>
-        </Container>
+        </Container >
 
     )
 }

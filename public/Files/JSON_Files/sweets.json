@@ -6,7 +6,8 @@
         "bg": "fcf1ed",
         "title": "Trilece Caramel",
         "desc": "A Turkish sweet cake covered by caramel",
-        "price": 15
+        "price": 15,
+        "amount": 1
     },
     {
         "id": 2,
@@ -14,7 +15,8 @@
         "bg": "fcf1ed",
         "title": "Trilece Strawberry",
         "desc": "A Turkish sweet cake covered by strawberry gel layer",
-        "price": 15
+        "price": 15,
+        "amount": 1
     },
     {
         "id": 3,
@@ -22,7 +24,8 @@
         "bg": "fcf1ed",
         "title": "Trilece Pistachio",
         "desc": "A Turkish sweet cake covered by pistachio",
-        "price": 15
+        "price": 15,
+        "amount": 1
     },
     {
         "id": 4,
@@ -30,7 +33,8 @@
         "bg": "fcf1ed",
         "title": "Lutos",
         "desc": "Lutos cake",
-        "price": 12
+        "price": 12,
+        "amount": 1
     },
     {
         "id": 5,
@@ -38,7 +42,8 @@
         "bg": "fcf1ed",
         "title": "Lebanese Nights Dessert",
         "desc": "Made from a silky semolina based pudding, topped with Ashta (thick cream), whipping cream and pistachios",
-        "price": 15
+        "price": 15,
+        "amount": 1
     },
     {
         "id": 6,
@@ -46,7 +51,8 @@
         "bg": "fcf1ed",
         "title": "Kinder Bueno",
         "desc": "Kinder Bueno cake",
-        "price": 12
+        "price": 12,
+        "amount": 1
     },
     {
         "id": 7,
@@ -54,7 +60,8 @@
         "bg": "fcf1ed",
         "title": "Tiramisu",
         "desc": "A coffee-flavoured Italian dessert. It is made of ladyfingers dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese, flavoured with cocoa",
-        "price": 12
+        "price": 12,
+        "amount": 1
     },
     {
         "id": 8,
@@ -62,7 +69,8 @@
         "bg": "fcf1ed",
         "title": "Khash-khash",
         "desc": "Layered crackers with cream and toasted vermicelli",
-        "price": 15
+        "price": 15,
+        "amount": 1
     },
     {
         "id": 9,
@@ -70,7 +78,8 @@
         "bg": "fcf1ed",
         "title": "Alfajores",
         "desc": "It's a sandwich made of two discs of dough with a filling in between",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 10,
@@ -78,7 +87,8 @@
         "bg": "fcf1ed",
         "title": "Macaron",
         "desc": "Sweet meringue-based confection made with egg white, icing sugar, granulated sugar, almond meal, and food colouring.",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 11,
@@ -86,7 +96,8 @@
         "bg": "fcf1ed",
         "title": "Betefour",
         "desc": "Egyptian butter cookies",
-        "price": 40
+        "price": 40,
+        "amount": 1
     },
     {
         "id": 12,
@@ -94,7 +105,8 @@
         "bg": "fcf1ed",
         "title": "Contessa",
         "desc": "Addictive Arabian cuisine",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 13,
@@ -102,7 +114,8 @@
         "bg": "fcf1ed",
         "title": "English Cake",
         "desc": "The famous English Cake",
-        "price": 35
+        "price": 35,
+        "amount": 1
     },
     {
         "id": 14,
@@ -110,7 +123,8 @@
         "bg": "fcf1ed",
         "title": "Dates Cake / Ma'amoul",
         "desc": "Flour or semolina cakes filled with dates",
-        "price": 90
+        "price": 90,
+        "amount": 1
     },
     {
         "id": 15,
@@ -118,7 +132,8 @@
         "bg": "fcf1ed",
         "title": "Ghraybeh",
         "desc": "Delicious and delicate Middle Eastern cookies that melt in your mouth",
-        "price": 40
+        "price": 40,
+        "amount": 1
     },
     {
         "id": 16,
@@ -126,7 +141,8 @@
         "bg": "fcf1ed",
         "title": "Sweet Cups",
         "desc": "Various sweet cups with different tasties",
-        "price": 4
+        "price": 4,
+        "amount": 1
     },
     {
         "id": 17,
@@ -134,7 +150,8 @@
         "bg": "fcf1ed",
         "title": "Strawberry Cake",
         "desc": "Fresh strawberries, this strawberry cake is one of the simplest, most delicious cakes",
-        "price": 120
+        "price": 120,
+        "amount": 1
     },
     {
         "id": 18,
@@ -142,7 +159,8 @@
         "bg": "fcf1ed",
         "title": "Ferrero Rocher Cake",
         "desc": "This Ferrero Rocher Cake is your favorite chocolate hazelnut treat in cake form! Chocolate hazelnut cake layers and with a Nutella buttercream",
-        "price": 100
+        "price": 100,
+        "amount": 1
     },
     {
         "id": 19,
@@ -150,7 +168,8 @@
         "bg": "fcf1ed",
         "title": "Nutella Cake",
         "desc": "This Nutella Cake recipe is every Nutella lover’s dream cake! It’s a moist chocolate cake with a rich chocolate Nutella buttercream frosting smothered between each layer",
-        "price": 100
+        "price": 100,
+        "amount": 1
     },
     {
         "id": 20,
@@ -158,7 +177,8 @@
         "bg": "fcf1ed",
         "title": "Oreo Cake",
         "desc": "Impressive chocolate cake which layered and topped with Oreo whipped cream",
-        "price": 100
+        "price": 100,
+        "amount": 1
     }
 ]
 }

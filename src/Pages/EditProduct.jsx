@@ -61,7 +61,7 @@ const Select = styled.select`
 const Option = styled.option`
     font-size: 14px;
     font-weight: 600;
-    fontFamily: Poppins,
+    fontFamily: tahoma;
 `;
 const PFP = styled.div`
     margin: auto;
@@ -86,7 +86,6 @@ const FooterDiv = styled.div`
 
 const EditProduct = () => {
 
-    // const [productDetails, setProductDetails] = useState([]);
     const [productsList, setProductsList] = useState([]);
     const [productId, setProductId] = useState();
     const [productName, setProductName] = useState("");
@@ -98,7 +97,6 @@ const EditProduct = () => {
     const [pastriesCategory, setPastriesCategory] = useState();
     const [ourCuisineCategory, setOurCuisineCategory] = useState();
 
-    // const [category, setCategory] = useState();
 
     let category;
     let tempProduct;
@@ -132,10 +130,6 @@ const EditProduct = () => {
         }
         getProducts();
         }, []);
-
-    // useEffect(() => {
-
-    // },[productImage])
 
     const editProduct = (ev) => {
         ev.preventDefault();
