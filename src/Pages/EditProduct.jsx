@@ -6,6 +6,7 @@ import { React, useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     width: 90vw;
@@ -88,7 +89,7 @@ const EditProduct = () => {
 
     const [productsList, setProductsList] = useState([]);
     const [productId, setProductId] = useState();
-    const [productName, setProductName] = useState("");
+    const [productName, setProductName] = useState();
     const [productDesc, setProductDesc] = useState();
     const [productImage, setProductImage] = useState();
     const [productPrice, setProductPrice] = useState();
@@ -96,11 +97,14 @@ const EditProduct = () => {
     const [sweetsCategory, setSweetsCategory] = useState();
     const [pastriesCategory, setPastriesCategory] = useState();
     const [ourCuisineCategory, setOurCuisineCategory] = useState();
+    const [categoryPath, SetCategoryPath] = useState();
+    
 
-
-    let category;
+    var category;
     let tempProduct;
     let validInput;
+
+    const navigate = useNavigate();
 
     const validation = (e) => {
         if (productPrice > 250) {
@@ -129,45 +133,15 @@ const EditProduct = () => {
             setOurCuisineCategory(ourCuisineData.data);
         }
         getProducts();
-        }, []);
+    }, []);
 
-    const editProduct = (ev) => {
-        ev.preventDefault();
+    useEffect(() => {
+    }, [productsList])
 
-        if (validInput) {
-            axios.get(filePath).then((res) => {
-                tempProduct = res.data.find(
-                    (item) =>
-                        item.title === productName
-                );
-                const product = {
-                    id: productId,
-                    img: productImage,
-                    title: productName,
-                    desc: productDesc,
-                    price: productPrice
-                };
-                setFilePath(filePath + productId);
-                axios.put(filePath + "/" + productId, product);
-                console.log(filePath);
-                console.log(product);
-                document.forms[0].reset();
-
-                toast.success(productName + " edited successfully!", {
-                    position: "top-right",
-                    autoClose: 1500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-            });
-        }
-    }
 
     const CategoryChoosed = (e) => {
         category = e.target.value;
+        console.log(category);
         showProducts(e);
     }
 
@@ -175,6 +149,7 @@ const EditProduct = () => {
         switch (category) {
             case "sweets":
                 setFilePath("http://localhost:3000/sweets");
+                SetCategoryPath("SweetsCategory");
                 setProductsList(sweetsCategory.map((product) => {
                     return <Option key={product.id}>{product.title}</Option>
                 }
@@ -182,6 +157,7 @@ const EditProduct = () => {
                 break;
             case "pastries":
                 setFilePath("http://localhost:3000/pastries");
+                SetCategoryPath("PastriesCategory");
                 setProductsList(pastriesCategory.map((product) => {
                     return <Option key={product.id}>{product.title}</Option>
                 }
@@ -189,6 +165,7 @@ const EditProduct = () => {
                 break;
             case "ourCuisine":
                 setFilePath("http://localhost:3000/ourCuisine");
+                SetCategoryPath("OurCuisineCategory");
                 setProductsList(ourCuisineCategory.map((product) => {
                     return <Option key={product.id}>{product.title}</Option>
                 }
@@ -215,6 +192,39 @@ const EditProduct = () => {
         })
     }
 
+
+    const editProduct = (ev) => {
+        ev.preventDefault();
+
+        if (validInput) {
+            axios.get(filePath).then((res) => {
+                tempProduct = res.data.find(
+                    (item) =>
+                        item.title === productName
+                );
+                const product = {
+                    id: productId,
+                    img: productImage,
+                    title: productName,
+                    desc: productDesc,
+                    price: productPrice
+                };
+                setFilePath(filePath + productId);
+                axios.put(filePath + "/" + productId, product);
+
+                toast.success(productName + " edited successfully!", {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                navigate("../" + categoryPath);
+            });
+        }
+    }
 
     return (
         <div>
@@ -263,8 +273,8 @@ const EditProduct = () => {
                                 minLength="1"
                                 maxLength="25"
                                 autoComplete="ProductName"
-                                onChange={(e)=>setProductName(e.target.value)}
-                                defaultValue={productName}
+                                onChange={(e) => setProductName(e.target.value)}
+                                value={productName}
                             >
                             </Input>
                             <br />
@@ -280,7 +290,7 @@ const EditProduct = () => {
                                 rows={3}
                                 cols={5}
                                 autoComplete="description"
-                                defaultValue={productDesc}
+                                value={productDesc}
                                 onChange={(ev) => setProductDesc(ev.target.value.replace(/[^a-z]/, ' '))}
                             >
                             </Textarea>
@@ -305,7 +315,7 @@ const EditProduct = () => {
                                 required
                                 fullWidth
                                 autoComplete="Price"
-                                defaultValue={productPrice}
+                                value={productPrice}
                                 onChange={(ev) => setProductPrice(ev.target.value.replace(/\D/g, ''))}
                             >
                             </Input>
