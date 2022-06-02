@@ -11,7 +11,7 @@ const Container = styled.div`
   ${mobile({ padding: "0px", flexDirection: "column" })}
 `;
 
-const Categories = () => {
+const Categories = ({user, setUser, cart, setCart, handleAddToCart, handleChange}) => {
 
   const [categories, setCategories] = useState([]);
 
@@ -23,10 +23,11 @@ const Categories = () => {
     getCategory();
   }, []);
 
+  
   return (
     <Container>
       {categories.map(item => (
-        <CategoryItem item={item} key={item.id} />
+        <CategoryItem user={user} setUser={setUser} cart={cart} setCart={setCart} handleAddToCart={handleAddToCart} handleChange={handleChange} item={item} key={item.id} />
       ))}
     </Container>
   )
