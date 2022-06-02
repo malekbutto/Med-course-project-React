@@ -118,8 +118,8 @@ const Product = ({item, handleAddToCart}) => {
             <Circle>
                 <Image src={productImage} alt='ProductImage' />
                 <Info>
-                    <Icon onClick={() => handleAddToCart(item)}>
-                        <ShoppingCartOutlined />
+                    <Icon >
+                        <ShoppingCartOutlined onClick={() => handleAddToCart(item)}/>
                     </Icon>
                 </Info>
                 <Details>

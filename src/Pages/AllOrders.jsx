@@ -42,7 +42,7 @@ const Input = styled.input`
 `;
 
 
-const AllOrders = ({ ordersList }) => {
+const AllOrders = ({user, setUser, cart, setCart, handleChange, title, url, ordersList }) => {
     return (
         <div>
             <Container>
@@ -53,7 +53,7 @@ const AllOrders = ({ ordersList }) => {
                     </div>
                 </Wrapper>
             </Container>
-            <Footer />
+            <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange}/>
         </div>
     )
 }

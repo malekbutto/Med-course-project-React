@@ -134,7 +134,7 @@ const PastriesCategory = ({handleAddToCart}) => {
           {data.map((item) => (
             <Slide bg={item.bg} key={item.id}>
               <ImgContainer>
-                <Image src={item.img} alt='SlideImage' />
+                <Image src={item.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.img } alt='SlideImage' />
               </ImgContainer>
               <InfoContainer>
                 <Title>{item.title}</Title>

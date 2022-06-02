@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import axios from "axios";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { sweets, pastries, popularProducts, ourCuisine } from '../data';
 // import sweets from './File/';
@@ -77,7 +77,7 @@ const FooterDiv = styled.div`
     ${mobile({ display: "none" })}
 `;
 
-const AddProduct = () => {
+const AddProduct = ({user, setUser, cart, setCart, handleChange}) => {
     // const [Id, setId] = useState();
     const [img, setImg] = useState();
     const [productName, setProductName] = useState();
@@ -148,7 +148,6 @@ const AddProduct = () => {
             price: productPrice,
             amount: 1,
         };
-        document.forms[0].reset();
 
         if (validInput) {
             axios.post(filePath, product);
@@ -243,7 +242,7 @@ const AddProduct = () => {
                 </Wrapper>
             </Container>
             <FooterDiv>
-                <Footer />
+                <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />
             </FooterDiv>
         </div>
     )

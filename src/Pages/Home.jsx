@@ -5,7 +5,7 @@ import Footer from '../Components/Footer';
 import { ToastContainer } from 'react-toastify';
 
 
-const Home = ({handleAddToCart, user, setUser}) => {
+const Home = ({user, setUser, cart, setCart, handleAddToCart, handleChange}) => {
 
     return (
         <div>
@@ -19,9 +19,9 @@ const Home = ({handleAddToCart, user, setUser}) => {
                 draggable
                 limit={1}
             />
-            <Categories />
+            <Categories user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />
             <Products handleAddToCart={handleAddToCart}/>
-            <Footer user={user} setUser={setUser}/>
+            <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange}/>
         </div>
     )
 }

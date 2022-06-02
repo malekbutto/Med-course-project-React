@@ -52,7 +52,7 @@ const SocialIcon = styled.div`
 `;
 
 
-const About = () => {
+const About = ({user, setUser, cart, setCart, handleChange}) => {
 
     return (
         <div>
@@ -81,7 +81,7 @@ const About = () => {
                 </SocialContainer>
                 </Wrapper>
             </Container>
-            <Footer />
+            <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />
         </div>
     )
 }

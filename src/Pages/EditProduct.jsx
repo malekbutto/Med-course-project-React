@@ -85,7 +85,7 @@ const FooterDiv = styled.div`
 `;
 
 
-const EditProduct = () => {
+const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
 
     const [productsList, setProductsList] = useState([]);
     const [productId, setProductId] = useState();
@@ -326,7 +326,7 @@ const EditProduct = () => {
                 </Wrapper>
             </Container>
             <FooterDiv>
-                <Footer />
+                <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />
             </FooterDiv>
         </div>
     )

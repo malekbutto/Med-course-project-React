@@ -76,7 +76,7 @@ const FooterDiv = styled.div`
     ${mobile({ display: "none" })}
 `;
 
-const DeleteProduct = () => {
+const DeleteProduct = ({user, setUser, cart, setCart, handleChange}) => {
 
     const [productsList, setProductsList] = useState();
     const [productId, setProductId] = useState();
@@ -213,7 +213,7 @@ const DeleteProduct = () => {
                 </Wrapper>
             </Container>
             <FooterDiv>
-                <Footer />
+                <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />
             </FooterDiv>
         </div>
     )

@@ -50,7 +50,7 @@ const Button = styled.button`
     margin-bottom: 10px;
 `;
 
-const Login = ({setUser }) => {
+const Login = ({user, setUser }) => {
     const navigate = useNavigate(); 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -66,7 +66,7 @@ const Login = ({setUser }) => {
             if (tempUser !== undefined && tempUser !== null) {
               delete tempUser.password;
               localStorage.setItem("currUser", JSON.stringify(tempUser));
-              navigate("/");
+              navigate("/", user={user});
             }
           });
         };

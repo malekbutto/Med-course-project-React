@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {mobile} from "../responsive";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -47,14 +47,16 @@ const Button = styled.button`
     font-weight: 600;
     border-radius: 50%;
 `;
-const CategoryItem = ({ item }) => {
-
+const CategoryItem = ({user, setUser, cart, setCart, handleAddToCart, handleChange, item }) => {
+    
+    const navigate = useNavigate();
+    
     return (
         <Container>
             <Image src={item.img} alt='CategoryImage' />
             <Info>
                 <Title>{item.title}</Title>
-                <Button><Link to={item.url} target="_top">Watch</Link></Button>
+                <Button onClick={()=>navigate(item.url)}>Watch</Button>
             </Info>
         </Container>
     )

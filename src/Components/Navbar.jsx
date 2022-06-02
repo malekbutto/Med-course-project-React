@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Search } from '@material-ui/icons';
 import styled from 'styled-components';
 import { mobile } from "../responsive";
@@ -8,6 +8,8 @@ import { createTheme } from "@mui/system";
 import Button from "@mui/material/Button";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import { Autocomplete } from "@mui/material";
+import { Box, TextField } from "@material-ui/core";
 
 
 const Container = styled.div`
@@ -113,6 +115,9 @@ const LeftCenter = styled.div`
     // justify-content: start;
     padding: 0px 50px;
     width: 100%;
+`;
+const Span = styled.span`
+    padding: 1px;
 `;
 const Center = styled.div`
     flex: 1;
@@ -220,13 +225,20 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
     const [matchProducts, setMatchProducts] = useState([]);
     const [data, setData] = useState([]);
     const [foundList, setFoundList] = useState([]);
+    const [foundListArray, setFoundListArray] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [Id, setId] = useState();
+    const [searchedValue, setSearchedValue] = useState();
+    const [inputValue, setInputValue] = useState();
 
-    let foundListArray;
+    let input;
+
+
+    // let foundListArray;
 
     // Search
-    const onSearchClicked = () => {
-
+    // const onSearchClicked = () => {
+    useEffect(() => {
         const getProducts = async () => {
             const sweets = await axios.get("http://localhost:3000/sweets").then((res) => res.data);
             const pastries = await axios.get("http://localhost:3000/pastries").then((res) => res.data);
@@ -238,39 +250,50 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
             setData(allProducts);
         };
         getProducts();
+    }, []
+    )
+
+
+    const setInput = input => {
+        setSearchedValue(input);
     }
 
-    const onSearchChange = (e) => {
-        // if (e.target.value == "")
-        //     foundListArray = "";
-        // else
-        if (e.target.value && e.target.value.toString().trim().length > 0) {
-            foundListArray = data.filter((product) => {
-                return product.title.toLowerCase().includes(e.target.value.toLowerCase());
-            });
-            setFoundList(foundListArray);
-        }
-        setMatchProducts(e.target.value);
-    };
+    // const onSearchChange = (e) => {
+    //     // if (e.target.value == "")
+    //     //     foundListArray = "";
+    //     // else
+    //     if (e.target.value && e.target.value.toString().trim().length > 0) {
+    //         setFoundListArray(data.filter((product) => {
+    //             return product.title.toLowerCase().includes(e.target.value.toLowerCase());
+    //         }));
+    //         setFoundList(foundListArray);
+    //     }
+    //     setMatchProducts(e.target.value);
+    //     console.log(matchProducts);
+    // };
 
-    const onSelectedFromSearchBar = async (e) => {
+    const onSelectedFromSearchBar = () => {
         let categoryName;
-        let Id;
-        const clickedProduct = e.target;
-        console.log(foundListArray);
-        axios.get(foundListArray).then((res) => {
-            Id = res.data.find(
+        let tempUser;
+        console.log(searchedValue);
+        axios.get(data).then((res) => {
+            tempUser = res.data.find(
                 (obj) =>
-                    obj.img === clickedProduct
+                    obj.title === searchedValue
             );
+            setId(tempUser.id);
+
         })
 
-        if (clickedProduct.includes("Sweets"))
-            categoryName = "SweetsCategory";
-        else if (clickedProduct.src.includes("Pastries"))
-            categoryName = "PastriesCategory";
-        else if (clickedProduct.src.includes("OurCuisine"))
-            categoryName = "OurCuisineCategory";
+        if (searchedValue.includes("Sweets")) {
+            categoryName = "/category/sweets";
+            console.log(categoryName);
+            console.log(Id);
+        }
+        else if (searchedValue.includes("Pastries"))
+            categoryName = "/category/pastries";
+        else if (searchedValue.includes("OurCuisine"))
+            categoryName = "/category/ourCuisine";
 
         navigate("./" + categoryName, { state: { id: Id } });
     }
@@ -302,22 +325,68 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
                             </Link>
                         </Left>
                         <LeftCenter>
-                            <SearchContainer>
+                            {/* <SearchContainer>
                                 <Input
                                     type="text"
                                     placeholder="Search"
                                     onChange={onSearchChange}
                                     onClick={onSearchClicked}
-                                />
-                                {foundList && foundList.map((product, i) =>
+                                /> */}
+                            <Autocomplete
+                                id="product-select"
+                                sx={{ width: 200 }}
+                                options={data}
+                                autoHighlight
+                                getOptionLabel={(option) => `${option.title}`}
+                                value={searchedValue}
+                                onChange={(e, newValue) => console.log(newValue.title)}
+                                inputValue={inputValue}
+                                onInputChange={(e, newInputValue) => setSearchedValue(newInputValue)}
+                                autoSelect={true}
+                                noOptionsText={"No Products founds"}
+                                renderOption={(props, option) => (
+                                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props} key={option.id}>
+                                        <Span><img
+                                            loading="lazy"
+                                            width="70"
+                                            src={option.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : option.img}
+                                            alt=""
+                                            onClick={onSelectedFromSearchBar}
+                                        />
+                                        </Span>
+                                        <Span>{option.title}</Span>
+                                    </Box>
+                                )}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Search a product"
+                                        variant="outlined"
+
+                                    // getoptionlabel={(option)=> `${option.id}`}
+                                    // inputProps={{
+                                    //     ...params.inputProps,
+                                    //     autoComplete: 'new-password', // disable autocomplete and autofill
+                                    // }}
+                                    // onChange={onSearchChange}
+                                    // onClick={onSearchClicked}
+                                    // onChange={(event: any, newValue: string  null) => setSearchedValue(newValue)}
+                                    />
+                                )}
+
+                            />
+
+
+
+                            {/* {foundList && foundList.map((product, i) =>
                                     <SearchList>
                                         <button key={i} onClick={(e) => onSelectedFromSearchBar(e)}>
-                                            {product.title}
-                                            <Hr />
+                                            <img src={product.img} alt="" width={"40px"} height={"40px"} />
                                         </button>
+                                        <Hr />
                                     </SearchList>
-                                )}
-                                {/* <div>
+                                )} */}
+                            {/* <div>
                                     <Input
                                         type="text"
                                         placeholder="Search"
@@ -339,7 +408,7 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
                                         </TBODY>
                                     })}
                                 </TableList> */}
-                            </SearchContainer>
+                            {/* </SearchContainer> */}
                         </LeftCenter>
                         <Center>
                             <LogoCenter>
@@ -370,7 +439,7 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
                         </Center>
                         <RightCenter>
                             <AddProduct>
-                                <Link to="/AddProduct">
+                                <Link to="/AddProduct" user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange}>
                                     {user?.fName === "Malek" ? (
                                         <Button sx={buttonStyle}
                                             variant="contained"
@@ -381,7 +450,7 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
                                 </Link>
                             </AddProduct>
                             <EditProduct>
-                                <Link to="/EditProduct">
+                                <Link to="/EditProduct" user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange}>
                                     {user?.fName === "Malek" ? (
                                         <Button sx={buttonStyle}
                                             variant="contained"
@@ -392,7 +461,7 @@ const Navbar = ({ user, setUser, size, cart, setCart, handleChange }) => {
                                 </Link>
                             </EditProduct>
                             <DeleteProduct>
-                                <Link to="/DeleteProduct">
+                                <Link to="/DeleteProduct" user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange}>
                                     {user?.fName === "Malek" ? (
                                         <Button sx={buttonStyle}
                                             variant="contained"

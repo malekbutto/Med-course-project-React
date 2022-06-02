@@ -138,10 +138,13 @@ const Button = styled.button`
     background-color: black;
     color: white;
     font-weight: 600;
+    '&:hover' {
+        color: red
+    };
 `;
 
 
-const Cart = ({ cart, setCart, handleChange }) => {
+const Cart = ({ user, setUser, cart, setCart, handleChange }) => {
 
     const [price, setPrice] = useState(0);
     const [productImage, setProductImage] = useState();
@@ -204,7 +207,7 @@ const Cart = ({ cart, setCart, handleChange }) => {
                 progress: undefined,
             });
         else
-            navigate("/PlaceOrder");
+            navigate("/PlaceOrder", setCart={setCart});
     }
 
     return (
@@ -222,8 +225,6 @@ const Cart = ({ cart, setCart, handleChange }) => {
                                             <Image src={item.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.img } alt={item.title} width="250px" length="250px"></Image>
                                             <b>{item.title}</b>
                                         </ProductDetail>
-                                        {/* <ProductName>
-                                        </ProductName> */}
                                         <PriceDetails>
                                             <ProductPrice>
                                                 <b>Price: </b>{item.price}
@@ -261,7 +262,7 @@ const Cart = ({ cart, setCart, handleChange }) => {
                     </Summary>
                 </Bottom>
             </Wrapper>
-            <Footer />
+            <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange}/>
         </Container >
     )
 }

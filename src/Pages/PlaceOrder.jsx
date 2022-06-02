@@ -61,7 +61,7 @@ const FooterDiv = styled.div`
     ${mobile({ display: "none" })}
 `;
 
-const PlaceOrder = ({ cart, handleOrdersList }) => {
+const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
 
     const [phone, setPhone] = useState();
 
@@ -91,11 +91,10 @@ const PlaceOrder = ({ cart, handleOrdersList }) => {
                 progress: undefined,
             });
             navigate("../Home");
+            console.log(cart)
+            setCart(undefined);
         }
     }
-
-
-
 
     return (
         <div>
@@ -132,7 +131,7 @@ const PlaceOrder = ({ cart, handleOrdersList }) => {
                                 autoComplete="Address"
                             />
                             <br />
-                            <label name="Phone">Phone:</label>
+                            <label name="Phone">Mobile Phone:</label>
                             <Input
                                 type="text"
                                 id="Phone"
@@ -169,9 +168,11 @@ const PlaceOrder = ({ cart, handleOrdersList }) => {
                                 font-size="30px"
                                 disabled={true}
                                 defaultValue={cart.map((item) => {
-                                    return " " + item.title + " (" + item.amount.toString() + ")"
-
+                                    return (
+                                        " " + item.title + " (" + item.amount.toString() + ")"
+                                    )
                                 })}
+
                             >
                             </Textarea>
                             <br />
@@ -182,7 +183,7 @@ const PlaceOrder = ({ cart, handleOrdersList }) => {
                 </Wrapper>
             </Container>
             <FooterDiv>
-                <Footer />
+                <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} />
             </FooterDiv>
         </div >
     )

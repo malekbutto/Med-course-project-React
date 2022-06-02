@@ -105,16 +105,16 @@ const Footer = ({user, setUser, cart, setCart, handleChange}) => {
                     Site Map
                 </Title>
                 <List>
-                    <ListItem><Link to="/SweetsCategory" target={"_top"}>Sweets</Link></ListItem>
-                    <ListItem><Link to="/PastriesCategory" target={"_top"}>Pastries</Link></ListItem>
-                    <ListItem><Link to="/OurCuisineCategory" target={"_top"}>Our Cuisine</Link></ListItem>
+                    <ListItem><Link to="/CategoryDetails" url="http://localhost:3000/sweets" title="The Sweets" target={"_top"}>Sweets</Link></ListItem>
+                    <ListItem><Link to="/CategoryDetails" url="http://localhost:3000/pastries" title="The Pastries" target={"_top"}>Pastries</Link></ListItem>
+                    <ListItem><Link to="/CategoryDetails" url="http://localhost:3000/ourCuisine" title="Our Cuisine" target={"_top"}>Our Cuisine</Link></ListItem>
                     <ListItem onClick={() => (user === undefined ?
                                             (
-                                                navigate("../Login", user={user}, setUser={setUser})
+                                                navigate("/Login", user={user}, setUser={setUser})
                                                 // <Link to="/Login" target={"_top"} />
                                             ) : (
                                                 // <Link to="/Cart" target={"_top"} cart={cart} setCart={setCart} handleChange={handleChange} />
-                                                navigate("../Cart", cart={cart}, setCart={setCart}, handleChange={handleChange} )
+                                                navigate("/Cart", cart={cart}, setCart={setCart}, handleChange={handleChange} )
                                             ))}>Cart</ListItem>
                 </List>
             </Center>
