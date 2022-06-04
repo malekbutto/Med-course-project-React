@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import { Fab, makeStyles } from "@material-ui/core";
 
 
 const Container = styled.div`
@@ -43,6 +44,12 @@ const Input = styled.input`
     padding: 5x;
     ${mobile({ height: "30%" })}
 `;
+const Select = styled.select`
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 18px;
+    ${mobile({ margin: "10px 0px" })}
+`;
 const Textarea = styled.textarea`
         resize: none;
 `;
@@ -64,8 +71,20 @@ const FooterDiv = styled.div`
 const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
 
     const [phone, setPhone] = useState();
+    const [cartList, setCartList] = useState([]);
+    const [hover, sethover] = useState(false);
+    let totalPrice = 0;
 
+    
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setCartList(cart.map((product) => {
+            return <option key={product.id}>{product.amount} - {product.title}</option>
+        }
+        ));
+    }, [])
+
 
     const confirmOrder = (ev) => {
         ev.preventDefault();
@@ -90,8 +109,12 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
                 draggable: true,
                 progress: undefined,
             });
+            const CName = ev.target[0].value;
+            const Address = ev.target[1].value;
+            const email = ev.target[3].value;
+
             navigate("../Home");
-            console.log(cart)
+            handleOrdersList(CName, Address, phone, email, cart, totalPrice)
             setCart(undefined);
         }
     }
@@ -103,7 +126,7 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
                     <div>
                         <Form onSubmit={confirmOrder}>
                             <Title>Place Your Order</Title>
-                            <label name="ProductName">Customer Name:</label>
+                            <label name="ProductName">Customer Full Name:</label>
                             <Input
                                 type="text"
                                 id="CustomerName"
@@ -156,27 +179,30 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
                             />
                             <br />
                             <label name="Cart">Your Cart:</label>
-                            <Textarea
+                            <Select
                                 type="text"
                                 id="Cart"
                                 name="Cart"
                                 required
                                 fullWidth
-                                rows={4}
+                                rows={1}
                                 cols={5}
-                                size="3"
+                                size="4"
                                 font-size="30px"
                                 disabled={true}
-                                defaultValue={cart.map((item) => {
-                                    return (
-                                        " " + item.title + " (" + item.amount.toString() + ")"
-                                    )
-                                })}
-
                             >
-                            </Textarea>
+                                {cartList}
+                            </Select>
                             <br />
-                            <Button type='submit' fullWidth onClick={() => handleOrdersList(cart)}>Place Order</Button>
+                            <label name="TotalPrice">Total Price:</label>
+                            <Fab >
+                                {cart.map((item)=>{
+                                    totalPrice = item.amount*item.price
+                                })}
+                                {totalPrice}
+                            </Fab>
+                            <br />
+                            <Button type='submit' >Place Order</Button>
 
                         </Form>
                     </div>

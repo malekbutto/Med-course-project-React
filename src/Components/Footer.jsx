@@ -105,9 +105,9 @@ const Footer = ({user, setUser, cart, setCart, handleChange}) => {
                     Site Map
                 </Title>
                 <List>
-                    <ListItem><Link to="/CategoryDetails" url="http://localhost:3000/sweets" title="The Sweets" target={"_top"}>Sweets</Link></ListItem>
-                    <ListItem><Link to="/CategoryDetails" url="http://localhost:3000/pastries" title="The Pastries" target={"_top"}>Pastries</Link></ListItem>
-                    <ListItem><Link to="/CategoryDetails" url="http://localhost:3000/ourCuisine" title="Our Cuisine" target={"_top"}>Our Cuisine</Link></ListItem>
+                    <ListItem onClick={()=>navigate("/category/sweets")} title={"The Sweets"}>Sweets</ListItem>
+                    <ListItem onClick={()=>navigate("/category/pastries")} title={"The Pastries"}>Pastries</ListItem>
+                    <ListItem onClick={()=>navigate("/category/ourCuisine")} title={"Our Cuisine"}>Our Cuisine</ListItem>
                     <ListItem onClick={() => (user === undefined ?
                                             (
                                                 navigate("/Login", user={user}, setUser={setUser})

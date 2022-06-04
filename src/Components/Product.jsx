@@ -2,7 +2,6 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { React, useEffect, useState } from "react";
 
-
 const Info = styled.div`
     opacity: 0;
     width: 100%;
@@ -96,12 +95,9 @@ const Icon = styled.div`
     }
 `;
 
-
-
 const Product = ({item, handleAddToCart}) => {
 
     const [productImage, setProductImage] = useState();
-    // console.log(productImg);
 
     useEffect(() => {
         if (item.img.includes('fakepath'))
@@ -112,14 +108,11 @@ const Product = ({item, handleAddToCart}) => {
 
     return (
         <Container bg={item.bg}>
-            {/* <Title>
-                {item.title}
-            </Title> */}
             <Circle>
                 <Image src={productImage} alt='ProductImage' />
                 <Info>
-                    <Icon >
-                        <ShoppingCartOutlined onClick={() => handleAddToCart(item)}/>
+                    <Icon onClick={() => handleAddToCart(item)}>
+                        <ShoppingCartOutlined/>
                     </Icon>
                 </Info>
                 <Details>
@@ -129,7 +122,6 @@ const Product = ({item, handleAddToCart}) => {
                 </Details>
             </Circle>
         </Container >
-
     )
 }
 

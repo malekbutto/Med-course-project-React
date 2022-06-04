@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { Autocomplete } from "@mui/material";
 import { Box, TextField } from "@material-ui/core";
-import SearchBar from "../Components/SearchBar";
 
 
 const Container = styled.div`
@@ -250,6 +249,23 @@ const Navbar = ({ user, setUser, size }) => {
     }, []
     )
 
+    // const history = useHistory();
+
+
+    // const onSearchChange = (e) => {
+    //     // if (e.target.value == "")
+    //     //     foundListArray = "";
+    //     // else
+    //     if (e.target.value && e.target.value.toString().trim().length > 0) {
+    //         setFoundListArray(data.filter((product) => {
+    //             return product.title.toLowerCase().includes(e.target.value.toLowerCase());
+    //         }));
+    //         setFoundList(foundListArray);
+    //     }
+    //     setMatchProducts(e.target.value);
+    //     console.log(matchProducts);
+    // };
+
     useEffect(() => {
         searchedInput = searcheValue;
     })
@@ -306,8 +322,8 @@ const Navbar = ({ user, setUser, size }) => {
                             </Link>
                         </Left>
                         <LeftCenter>
-                        <SearchBar data={data} />
-                            {/* <Autocomplete
+
+                            <Autocomplete
                                 id="product-select"
                                 sx={{ width: 200 }}
                                 options={data}
@@ -350,7 +366,7 @@ const Navbar = ({ user, setUser, size }) => {
                                     // onChange={(event: any, newValue: string  null) => setSearchedValue(newValue)}
                                     />
                                 )}
-                            /> */}
+                            />
                         </LeftCenter>
                         <Center>
                             <LogoCenter>

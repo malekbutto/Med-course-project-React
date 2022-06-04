@@ -47,7 +47,7 @@ const Button = styled.button`
     font-weight: 600;
     border-radius: 50%;
 `;
-const CategoryItem = ({user, setUser, cart, setCart, handleAddToCart, handleChange, item }) => {
+const CategoryItem = ({ item }) => {
     
     const navigate = useNavigate();
     

@@ -93,19 +93,16 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const CategoryDetails = ({ user, setUser, cart, setCart, handleAddToCart, handleChange, title, url }) => {
+const CategoryDetails = ({ user, setUser, cart, setCart, handleAddToCart, handleChange, title }) => {
 
     const [data, setData] = useState([]);
     const location = useLocation();
 
     useEffect(() => {
-        console.log(location.state);
+        // console.log(location.state);
     }, [])
 
     const params = useParams();
-    console.log(params.CategoryDetails);
-    console.log(user);
-    console.log(title);
 
     useEffect(() => {
 
@@ -136,7 +133,6 @@ const CategoryDetails = ({ user, setUser, cart, setCart, handleAddToCart, handle
                 <Wrapper slideIndex={slideIndex}>
                     {data.map((item) => (
                         <Slide bg={item.bg} key={item.id}>
-                            {console.log(item.img)}
                             <ImgContainer>
                                 <Image src={item.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.img} alt='SlideImage' />
                             </ImgContainer>

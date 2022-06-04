@@ -141,15 +141,14 @@ const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
 
     const CategoryChoosed = (e) => {
         category = e.target.value;
-        console.log(category);
         showProducts(e);
     }
 
-    const showProducts = (e) => {
+    const showProducts = () => {
         switch (category) {
             case "sweets":
                 setFilePath("http://localhost:3000/sweets");
-                SetCategoryPath("SweetsCategory");
+                SetCategoryPath("category/sweets");
                 setProductsList(sweetsCategory.map((product) => {
                     return <Option key={product.id}>{product.title}</Option>
                 }
@@ -157,7 +156,7 @@ const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
                 break;
             case "pastries":
                 setFilePath("http://localhost:3000/pastries");
-                SetCategoryPath("PastriesCategory");
+                SetCategoryPath("category/pastries");
                 setProductsList(pastriesCategory.map((product) => {
                     return <Option key={product.id}>{product.title}</Option>
                 }
@@ -165,7 +164,7 @@ const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
                 break;
             case "ourCuisine":
                 setFilePath("http://localhost:3000/ourCuisine");
-                SetCategoryPath("OurCuisineCategory");
+                SetCategoryPath("category/ourCuisine");
                 setProductsList(ourCuisineCategory.map((product) => {
                     return <Option key={product.id}>{product.title}</Option>
                 }
@@ -263,7 +262,7 @@ const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
                                 {productsList}
                             </Select>
                             <br />
-                            <label name="Category" >Product Name:</label>
+                            <label name="ProductName" >Product Name:</label>
                             <Input
                                 type="text"
                                 id="ProductName"
@@ -278,7 +277,7 @@ const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
                             >
                             </Input>
                             <br />
-                            <label name="Category" >Description:</label>
+                            <label name="Description">Description:</label>
                             <Textarea
                                 type="text"
                                 id="description"

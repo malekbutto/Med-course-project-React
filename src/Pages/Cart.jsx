@@ -144,11 +144,11 @@ const Button = styled.button`
 `;
 
 
-const Cart = ({ user, setUser, cart, setCart, handleChange }) => {
+const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
 
     const [price, setPrice] = useState(0);
-    const [productImage, setProductImage] = useState();
     const [hover, sethover] = useState(false);
+    let total = 0;
 
     const useStyles = makeStyles(theme => ({
         iconHover: {
@@ -165,26 +165,13 @@ const Cart = ({ user, setUser, cart, setCart, handleChange }) => {
 
     const classes = useStyles();
 
-    // useEffect(() => {
-    //     console.log(cart)
-    //     if (cart.img?.includes('fakepath'))
-    //         setProductImage('./Images/Category/No_Image.jpeg');
-    //     else
-    //         setProductImage(cart.img);
-    // }, []);
-
-    // useEffect(()=>{
-    //     console.log(cart)
-    // })
-
     const handleRemove = (id) => {
-        const arr = cart.filter((item) => item.id !== id);
+        const arr = cart.filter((item) => item.Item.id !== id);
         setCart(arr);
         handlePrice();
     };
 
     const handlePrice = () => {
-        let total = 0;
         cart.map((item) => (total += item.amount * item.price));
         setPrice(total);
     };
@@ -207,7 +194,7 @@ const Cart = ({ user, setUser, cart, setCart, handleChange }) => {
                 progress: undefined,
             });
         else
-            navigate("/PlaceOrder", setCart={setCart});
+            navigate("/PlaceOrder", setCart = { setCart }, setCartList = { setCartList });
     }
 
     return (
@@ -215,14 +202,14 @@ const Cart = ({ user, setUser, cart, setCart, handleChange }) => {
             <Wrapper>
                 <Title>Your Basket</Title>
                 <Bottom>
-                    <Info className="cart-items">
+                    <Info>
                         <Product>
                             <TopText>{cart?.length === 0 && <div>Cart Is Empty</div>}</TopText>
                             {cart?.map((item) => (
                                 <div key={item.id}>
                                     <Details>
                                         <ProductDetail>
-                                            <Image src={item.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.img } alt={item.title} width="250px" length="250px"></Image>
+                                            <Image src={item.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.img} alt={item.title} width="250px" length="250px"></Image>
                                             <b>{item.title}</b>
                                         </ProductDetail>
                                         <PriceDetails>
@@ -262,7 +249,7 @@ const Cart = ({ user, setUser, cart, setCart, handleChange }) => {
                     </Summary>
                 </Bottom>
             </Wrapper>
-            <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange}/>
+            <Footer user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />
         </Container >
     )
 }
