@@ -17,7 +17,9 @@ export const Container = styled.div`
     justify-content: center;
 `;
 export const Wrapper = styled.div`
-    width: 50%;
+    width: 100%;
+    text-align: center;
+    margin: 20px;
     padding: 20px;
     background-color: #f5fbfd;
     ${mobile({ width: "75%", height: "20vw" })}
@@ -27,7 +29,41 @@ export const Title = styled.h1`
     padding: 10px 0px;
     text-align: center;
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 700;
+`;
+export const THEAD = styled.thead`
+    width: 200vw;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+`;
+export const TR = styled.tr`
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+`;
+export const TH = styled.th`
+    width: auto;
+    margin: auto;
+    align-items: center;
+    justify-content: top;
+    text-align: center;
+`;
+export const TBODY = styled.tbody`
+    width: auto;
+    margin: auto;
+    align-items: center;
+    justify-content: top;
+    text-align: center;
+`;
+export const TD = styled.td`
+    width: auto;
+    margin: auto;
+    align-items: center;
+    justify-content: top;
+    text-align: center;
 `;
 export const TableTitle = styled.div`
     font-size: 20px;

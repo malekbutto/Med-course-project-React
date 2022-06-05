@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Fab } from "@material-ui/core";
-import { Container, Wrapper, Title, Form, Input,
-    Select, Button, FooterDiv } from '../Styled_Components/AddProduct_Styled';
+import {
+    Container, Wrapper, Title, Form, Input,
+    Select, Button, FooterDiv
+} from '../Styled_Components/AddProduct_Styled';
 
 const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
 
@@ -16,8 +18,8 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setCartList(cart.map((product) => {
-            return <option key={product.id}>{product.amount} - {product.title}</option>
+        setCartList(cart?.map((product) => {
+            return <option key={product.ProductId}>{product.Amount} - {product.Product_Name}</option>
         }
         ));
     }, [cart])
@@ -49,9 +51,18 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
             const Address = ev.target[1].value;
             const email = ev.target[3].value;
 
-            navigate("../Home");
-            handleOrdersList(CName, Address, phone, email, cart, totalPrice)
+            if ((localStorage.getItem("AllOrders") === null) || (localStorage.getItem("AllOrders") === undefined)) {
+                localStorage.setItem("AllOrders", JSON.stringify([{ UserId: user.userID, OrderId: 1, Customer_Name: CName, Address: Address, Phone: phone, Email: email, Cart: cart, Total_Price: totalPrice }]))
+                localStorage.removeItem("openOrder");
+            }
+            else {
+                let AllOrdersData = JSON.parse(localStorage.getItem("AllOrders"));
+                AllOrdersData.push({ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, Customer_Name: CName, Address: Address, Phone: phone, Email: email, Cart: cart, Total_Price: totalPrice });
+                localStorage.setItem("AllOrders", JSON.stringify(AllOrdersData));
+                localStorage.removeItem("openOrder");
+            }
             setCart(undefined);
+            navigate("../Home");
         }
     }
 
@@ -131,10 +142,10 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
                             <br />
                             <label name="TotalPrice">Total Price:</label>
                             <Fab >
-                                {cart.map((item)=>{
-                                    return totalPrice = item.amount*item.price
-                                })}
-                                {totalPrice}
+                                {cart.map(x =>{
+                                    totalPrice += x.Price*x.Amount;
+                                    })}
+                                {totalPrice} 
                             </Fab>
                             <br />
                             <Button type='submit' >Place Order</Button>
@@ -148,5 +159,7 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
         </div >
     )
 }
-
+// ?.map((item) => {
+//     return totalPrice = (item.Amount * item.Price)
+// })
 export default PlaceOrder;

@@ -1,28 +1,50 @@
 import axios from "axios";
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { Container, Wrapper, Title, Form, Input, Button } from '../Styled_Components/Login_Styled';
 
-const Login = ({user, setUser }) => {
-    const navigate = useNavigate(); 
+const Login = ({ user, setUser }) => {
+    const navigate = useNavigate();
+    let tempUser;
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.get("./Files/JSON_Files/users.json").then((res) => {
+        const data = axios.get("./Files/JSON_Files/users.json").then((res) => {
             const inputUserName = e.target[0].value.toLowerCase();
             const inputPassword = e.target[1].value;
-            const tempUser = res.data.find(
-              (obj) =>
-                obj.username === inputUserName &&
-                obj.password === inputPassword
+            tempUser = res.data.find(
+                (obj) =>
+                    obj.username === inputUserName &&
+                    obj.password === inputPassword
             );
+            if (tempUser !== undefined && tempUser!==null)
+                toast.success("Welcome " + tempUser.fName, {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            else
+                toast.error("Invalid User Name / Password!", {
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             setUser(tempUser);
             if (tempUser !== undefined && tempUser !== null) {
-              delete tempUser.password;
-              localStorage.setItem("currUser", JSON.stringify(tempUser));
-              navigate("/Home", user={user});
+                delete tempUser.password;
+                localStorage.setItem("currUser", JSON.stringify(tempUser));
+                navigate("/Home", user = { user });
             }
-          });
-        };
+        });
+    };
 
     return (
         <Container>

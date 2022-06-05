@@ -13,7 +13,6 @@ const CategoryDetails = ({ user, setUser, cart, setCart, handleAddToCart, handle
     const params = useParams();
 
     useEffect(() => {
-        // console.log(location.state);
     }, [])
 
     useEffect(() => {

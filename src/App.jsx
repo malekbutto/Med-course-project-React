@@ -21,27 +21,34 @@ const App = () => {
 
   const [user, setUser] = useState();
   const [cart, setCart] = useState([]);
-  const [ordersList, setOrdersList] = useState([]);
 
   const checkForUser = () => {
     if (JSON.parse(localStorage.getItem("currUser") !== null))
       setUser(JSON.parse(localStorage.getItem("currUser")));
     else setUser(undefined);
   };
+
+  const checkForOpenOrder = () => {
+    //ls - Local Storage
+    // let lsUser = JSON.parse(localStorage.getItem("currUser"));
+    // if (JSON.parse(localStorage.getItem("openOrder") !== null) && (lsUser.userID === user.userID))
+    if (JSON.parse(localStorage.getItem("openOrder") !== null))
+      setCart(JSON.parse(localStorage.getItem("openOrder")));
+    else setCart(undefined);
+  };
+
   useEffect(() => {
     checkForUser();
-    // let currOrder = JSON.parse(localStorage.getItem("openOrder"));
-    // setCart(currOrder);
+    checkForOpenOrder();
   }, []);
 
   const handleAddToCart = async (item) => {
+    
     const arr = [item];
     if (cart === undefined) {
       await setCart(arr);
     }
 
-    if (cart?.indexOf(item) !== -1) return;
-    setCart([...cart, item]);
     toast.success(item.title + " added to Cart!", {
       position: "top-right",
       autoClose: 700,
@@ -52,71 +59,65 @@ const App = () => {
       progress: undefined,
     });
 
-    var amount = item.amount;
-
-    if ((localStorage.getItem("openOrder") === null) || (localStorage.getItem("openOrder") === undefined))
-      localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount }]))
-    else {
-      
-      var currOrder = JSON.parse(localStorage.getItem("openOrder"));
-      currOrder.forEach(obj => {
-        if (obj.ProductId === item.id)
-          amount += 1;
-      })
-      console.log(currOrder);
-      currOrder.push({ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: amount });
-      localStorage.setItem("openOrder", JSON.stringify(currOrder));
-      setCart(...currOrder);
+    if ((localStorage.getItem("openOrder") === null) || (localStorage.getItem("openOrder") === undefined)) {
+      localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice:(item.amount*item.price), OrderTotalPrice: 0 }]))
     }
+    else {
+      var currOrder = JSON.parse(localStorage.getItem("openOrder"));
+      let sameProduct = currOrder.find((x) => x.ProductId === item.id);
+      let index = currOrder.indexOf(sameProduct);
+
+      if (index < 0) {
+        let AllOrdersData = JSON.parse(localStorage.getItem("AllOrders"));
+        currOrder.push({ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice:(item.amount*item.price), OrderTotalPrice: 0 });
+        localStorage.setItem("openOrder", JSON.stringify(currOrder));
+      }
+      else {
+        currOrder[index].Amount += 1;
+        localStorage.setItem("openOrder", JSON.stringify(currOrder));
+      }
+    }
+    setCart(currOrder);
   };
 
   const handleChange = (item, d) => {
     const ind = cart.indexOf(item);
     const arr = cart;
-    arr[ind].amount += d;
+    arr[ind].Amount += d;
 
-    if (arr[ind].amount === 0)
-      arr[ind].amount = 1;
+    if (arr[ind].Amount === 0)
+      arr[ind].Amount = 1;
     setCart([...arr]);
 
+    var currOrder = JSON.parse(localStorage.getItem("openOrder"));
+    let sameProduct = currOrder.find((x) => x.ProductId === item.ProductId);
+    let index = currOrder.indexOf(sameProduct);
 
-    // let currOrder = JSON.parse(localStorage.getItem("openOrder"));
-    // localStorage.removeItem("openOrder");
-    // currOrder.push({ UserId: user.userID, OrderId: 1, Item: item.id, Amount: item.amount });
-    // localStorage.setItem("openOrder", JSON.stringify(currOrder));
+    currOrder[index].Amount+=d;
+    currOrder[index].TotalPrice =(currOrder[index].Amount*currOrder[index].Price);
 
+    localStorage.setItem("openOrder", JSON.stringify(currOrder));
+    setCart(currOrder);
   };
 
-  const handleOrdersList = (CName, Address, phone, email, cart, totalPrice) => {
-
-    if ((localStorage.getItem("AllOrders") === null) || (localStorage.getItem("AllOrders") === undefined)) {
-      localStorage.setItem("AllOrders", JSON.stringify([{ UserId: user.userID, OrderId: 1, Customer_Name: CName, Address: Address, Phone: phone, Email: email, Cart: cart, Total_Price: totalPrice }]))
-      localStorage.removeItem("openOrder");
-    }
-    else {
-      let AllOrdersData = JSON.parse(localStorage.getItem("AllOrders"));
-      AllOrdersData.push({ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, Customer_Name: CName, Address: Address, Phone: phone, Email: email, Cart: cart, Total_Price: totalPrice });
-      localStorage.setItem("AllOrders", JSON.stringify(AllOrdersData));
-      localStorage.removeItem("openOrder");
-    }
-  }
+  
 
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar user={user} setUser={setUser} size={cart === undefined ? 0 : cart?.length} />}>
+          <Route path="/" element={<Navbar user={user} setUser={setUser} setCart={setCart} size={cart === undefined ? 0 : cart.length} />}>
             <Route index element={<Home />} />
             <Route path="Home" element={<Home user={user} setUser={setUser} cart={cart} setCart={setCart} handleAddToCart={handleAddToCart} handleChange={handleChange} />} />
             <Route path="About" element={<About user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />} />
             <Route path="AddProduct" element={<AddProduct user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />} />
             <Route path="EditProduct" element={<EditProduct user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />} />
             <Route path="DeleteProduct" element={<DeleteProduct user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />} />
-            <Route path="AllOrders" element={<AllOrders user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} ordersList={ordersList} setOrdersList={setOrdersList} />} />
+            <Route path="AllOrders" element={<AllOrders user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />} />
             <Route path="Login" element={<Login user={user} setUser={setUser} />} />
             <Route path="/category/:CategoryDetails" element={<CategoryDetails user={user} setUser={setUser} cart={cart} setCart={setCart} handleAddToCart={handleAddToCart} handleChange={handleChange} />} />
             <Route path="Cart" element={<Cart user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />} />
-            <Route path="PlaceOrder" element={<PlaceOrder user={user} cart={cart} setCart={setCart} handleChange={handleChange} handleOrdersList={handleOrdersList} />} />
+            <Route path="PlaceOrder" element={<PlaceOrder user={user} cart={cart} setCart={setCart} handleChange={handleChange} />} />
           </Route>
         </Routes>
       </BrowserRouter>

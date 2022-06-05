@@ -28,13 +28,10 @@ const theme = createTheme({
     },
 });
 
-const Navbar = ({ user, setUser, size }) => {
+const Navbar = ({ user, setUser, setCart, size }) => {
 
     const [data, setData] = useState([]);
-    const [searcheValue, setSearcheValue] = useState();
     const navigate = useNavigate();
-
-    let searchedInput;
 
     // Search
     useEffect(() => {
@@ -46,12 +43,7 @@ const Navbar = ({ user, setUser, size }) => {
             setData(allProducts);
         };
         getProducts();
-    }, []
-    )
-
-    useEffect(() => {
-        searchedInput = searcheValue;
-    })
+    }, [])
 
     const handleSignIn = () => {
         return (user === undefined ? navigate("/login") : navigate("/Home"));
@@ -61,6 +53,7 @@ const Navbar = ({ user, setUser, size }) => {
         localStorage.removeItem("currUser");
         if (user !== undefined) {
             setUser(undefined);
+            setCart(undefined);
             return navigate("/Home");
         }
     };
@@ -98,8 +91,6 @@ const Navbar = ({ user, setUser, size }) => {
                                     onClick={() => navigate("/About")}
                                 >
                                     About
-
-
                                 </Button>
                             </MiddleButton>
                         </Center>

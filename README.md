@@ -1,70 +1,55 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sweets & More
 
-## Available Scripts
+Online shopping website for our family shop, which contains many
+products to sell, devided by categories.
 
-In the project directory, you can run:
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Axios
+- CRUD functions
+- UseState
+- UseNavigate
+- Toastify
+- Material-UI library
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Documentation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- This project was built with React (npx create-react-app).
+- All products details stored in a local server ("http://localhost:3000/"), There’s a local JSON file (user.json) where you can find 2 kind of users:
+  - Admin user --> Admin (password: 12345)
+  - Basic user --> user (password: 123)
+- This project uses “Axios” to deal with the CRUD functions in the JSON file/server, and UseState to render the data every time the component has called.
+- The project supports CRUD functions – Creating, Reading, Updating and Deleting products, which is allowed only for Admin user.
+- Each user can update/remove his cart list, only admin can delete purchased orders.
+- The project uses “React-Router” for page/component routing.
+- The project includes a header (navbar) with links to navigate (using UseNavigate) to other pages/components, and a Footer where you can "contact" the shop owners / developer.
+- The user can search for a product in the search bar and filter the result and navigate to the category of that product.
+- All forms inside the project secured and checked by functions / form validation.
+- Every action of CRUD function is notified with “Toastify” box to inform the user with successfully/unsuccessfully action.
+- The project includes Icons from Material-UI library.
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open the project folder in Visual Studio Code.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open 2 terminals, in each terminal, run the following codes:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  json-server --watch allProducts.json
+  npm start
+```
+    
+## Author - Malek Butto
 
-### `npm run eject`
+- [@Facebook](https://www.facebook.com/malek.butto/)
+- [@Instagram](https://www.instagram.com/malekbutto/)
+- [@LinkedIn](https://www.linkedin.com/in/malek-butto/)
+- [@Github](https://github.com/malekbutto/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🚀 About Me
+A full stack developer Student...

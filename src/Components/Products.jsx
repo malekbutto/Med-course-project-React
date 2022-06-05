@@ -1,7 +1,7 @@
 import Product from './Product'
 import axios from "axios";
 import { React, useEffect, useState } from "react";
-import { Container } from '../Styled_Components/Product_Styled';
+import { Container } from '../Styled_Components/Products_Styled';
 
 const Products = ({handleAddToCart}) => {
 

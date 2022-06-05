@@ -6,11 +6,13 @@ import { Add, Remove } from "@material-ui/icons";
 import { Fab } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import { toast } from 'react-toastify';
-import {Container, Wrapper, Title, TopText, Bottom, Info,
-        Product, ProductDetail, Image, Details, PriceDetails,
-        ProductAmountContainer, ProductAmount, ProductPrice,
-        Hr, Summary, SummaryTitle, SummaryItem, SummaryItemText,
-        SummaryItemPrice, Button } from '../Styled_Components/Cart_Styled';
+import {
+    Container, Wrapper, Title, TopText, Bottom, Info,
+    Product, ProductDetail, Image, Details, PriceDetails,
+    ProductAmountContainer, ProductAmount, ProductPrice,
+    Hr, Summary, SummaryTitle, SummaryItem, SummaryItemText,
+    SummaryItemPrice, Button
+} from '../Styled_Components/Cart_Styled';
 
 const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
 
@@ -33,13 +35,18 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
     }));
 
     const handleRemove = (id) => {
-        const arr = cart.filter((item) => item.Item.id !== id);
+        const arr = cart?.filter((item) => item.ProductId !== id);
         setCart(arr);
         handlePrice();
+
+        var currOrder = JSON.parse(localStorage.getItem("openOrder"));
+        let filtered = currOrder.filter((x) => x.ProductId !== id);
+        localStorage.setItem("openOrder", JSON.stringify(filtered));
+        setCart(filtered);
     };
 
     const handlePrice = () => {
-        cart.map((item) => (total += item.amount * item.price));
+        cart?.map((item) => (total += item.Amount * item.Price));
         setPrice(total);
     };
 
@@ -69,23 +76,23 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
                 <Bottom>
                     <Info>
                         <Product>
-                            <TopText>{cart?.length === 0 && <div>Cart Is Empty</div>}</TopText>
+                            <TopText>{cart?.length === 0 ? "Cart Is Empty" : ""}</TopText>
                             {cart?.map((item) => (
-                                <div key={item.id}>
+                                <div key={item.ProductId}>
                                     <Details>
                                         <ProductDetail>
-                                            <Image src={item.img.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.img} alt={item.title} width="250px" length="250px"></Image>
-                                            <b>{item.title}</b>
+                                            <Image src={item.ProductImg.includes('fakepath') ? './Images/Category/No_Image.jpeg' : item.ProductImg} alt={item.Product_Name} width="250px" length="250px"></Image>
+                                            <b>{item.Product_Name}</b>
                                         </ProductDetail>
                                         <PriceDetails>
                                             <ProductPrice>
-                                                <b>Price: </b>{item.price}
+                                                <b>Price: </b>{item.Price}
                                             </ProductPrice>
                                             <ProductAmountContainer>
                                                 <Button onClick={() => handleChange(item, 1)}>
                                                     <Add />
                                                 </Button>
-                                                <ProductAmount>{item.amount}</ProductAmount>
+                                                <ProductAmount>{item.Amount}</ProductAmount>
                                                 <Button onClick={() => handleChange(item, -1)}>
                                                     <Remove />
                                                 </Button>
@@ -93,7 +100,7 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
                                             <Fab onMouseOver={() => sethover(true)}
                                                 onMouseOut={() => sethover(false)}
                                                 size="small" color="secondary" aria-label="Remove"
-                                                cursor="pointer" onClick={() => handleRemove(item.id)}>
+                                                cursor="pointer" onClick={() => handleRemove(item.ProductId)}>
                                                 <DeleteIcon />
                                             </Fab>
                                         </PriceDetails>
