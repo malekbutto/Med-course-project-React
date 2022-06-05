@@ -1,33 +1,27 @@
+//Pages
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import About from './Pages/About';
-import Navbar from './Components/Navbar';
-// import PastriesCategory from './Components/PastriesCategory';
-// import SweetsCategory from './Components/SweetsCategory';
-// import OurCuisineCategory from './Components/OurCuisineCategory';
-import Cart from './Pages/Cart';
-import PlaceOrder from './Pages/PlaceOrder';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { React, useState, useEffect } from "react";
-//Components
-import Drawer from '@material-ui/core/Drawer';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Grid from '@material-ui/core/Grid';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Badge from '@material-ui/core/Badge';
-
 import AddProduct from './Pages/AddProduct';
 import EditProduct from './Pages/EditProduct';
 import DeleteProduct from './Pages/DeleteProduct';
 import AllOrders from './Pages/AllOrders';
-import Footer from './Components/Footer';
-import { ToastContainer, toast } from 'react-toastify';
+import PlaceOrder from './Pages/PlaceOrder';
+//Components
+import Navbar from './Components/Navbar';
+import Cart from './Components/Cart';
 import CategoryDetails from './Components/CategoryDetails';
-
+//React / React-router-dom
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { React, useState, useEffect } from "react";
+//toastify
+import { ToastContainer, toast } from 'react-toastify';
 
 const App = () => {
 
   const [user, setUser] = useState();
+  const [cart, setCart] = useState([]);
+  const [ordersList, setOrdersList] = useState([]);
 
   const checkForUser = () => {
     if (JSON.parse(localStorage.getItem("currUser") !== null))
@@ -39,10 +33,6 @@ const App = () => {
     // let currOrder = JSON.parse(localStorage.getItem("openOrder"));
     // setCart(currOrder);
   }, []);
-
-  const [cart, setCart] = useState([]);
-  const [ordersList, setOrdersList] = useState([]);
-  let ordersList2 = [];
 
   const handleAddToCart = async (item) => {
     const arr = [item];
@@ -62,25 +52,19 @@ const App = () => {
       progress: undefined,
     });
 
+    var amount = item.amount;
+
     if ((localStorage.getItem("openOrder") === null) || (localStorage.getItem("openOrder") === undefined))
       localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount }]))
     else {
-      var data = {
-        ProductId: item.id,
-        Product_Name: item.title,
-        ProductImg: item.img,
-        ProductBG: item.bg,
-        Product_Desc: item.desc,
-        Price: item.price,
-        Amount: item.amount
-      };
+      
       var currOrder = JSON.parse(localStorage.getItem("openOrder"));
       currOrder.forEach(obj => {
         if (obj.ProductId === item.id)
-          this.Amount += 1;
+          amount += 1;
       })
       console.log(currOrder);
-      currOrder.push({ UserId: user.userID, OrderId: 1, data });
+      currOrder.push({ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: amount });
       localStorage.setItem("openOrder", JSON.stringify(currOrder));
       setCart(...currOrder);
     }
@@ -115,9 +99,7 @@ const App = () => {
       localStorage.setItem("AllOrders", JSON.stringify(AllOrdersData));
       localStorage.removeItem("openOrder");
     }
-
   }
-
 
   return (
     <div className='App'>
@@ -133,18 +115,14 @@ const App = () => {
             <Route path="AllOrders" element={<AllOrders user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} ordersList={ordersList} setOrdersList={setOrdersList} />} />
             <Route path="Login" element={<Login user={user} setUser={setUser} />} />
             <Route path="/category/:CategoryDetails" element={<CategoryDetails user={user} setUser={setUser} cart={cart} setCart={setCart} handleAddToCart={handleAddToCart} handleChange={handleChange} />} />
-            {/* <Route path="PastriesCategory" element={<PastriesCategory handleAddToCart={handleAddToCart} />} />
-            <Route path="SweetsCategory" element={<SweetsCategory handleAddToCart={handleAddToCart} />} />
-            <Route path="OurCuisineCategory" element={<OurCuisineCategory handleAddToCart={handleAddToCart} />} /> */}
             <Route path="Cart" element={<Cart user={user} setUser={setUser} cart={cart} setCart={setCart} handleChange={handleChange} />} />
             <Route path="PlaceOrder" element={<PlaceOrder user={user} cart={cart} setCart={setCart} handleChange={handleChange} handleOrdersList={handleOrdersList} />} />
-            {/* <Route path="Footer" element={<Footer user={user} setUser={setUser} />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer
         position="bottom-right"
-        autoClose={1500}
+        autoClose={700}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

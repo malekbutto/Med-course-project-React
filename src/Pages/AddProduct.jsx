@@ -1,84 +1,13 @@
-import styled from "styled-components";
-import { mobile } from "../responsive";
-import axios from "axios";
-import { React, useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { sweets, pastries, popularProducts, ourCuisine } from '../data';
-// import sweets from './File/';
 import Footer from "../Components/Footer";
-// import { Alert } from "react-bootstrap";
+import axios from "axios";
+import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
+import { Container, Wrapper, Title, Form, Input, Textarea,
+    Select, Option, Button, FooterDiv } from '../Styled_Components/AddProduct_Styled';
 
-
-const Container = styled.div`
-    width: 90vw;
-    height: 90%;
-    background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-        ),
-        url("../images/Logo-LoginPage.JPG")
-            center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-// https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
-const Wrapper = styled.div`
-    width: 25%;
-    padding: 20px;
-    background-color: #f5fbfd;
-    ${mobile({ width: "75%", height: "20vw" })}
-`;
-const Title = styled.h1`
-    font-size: 24px;
-    font-weight: 300;
-`;
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    ${mobile({ height: "30%", margin: "auto", justifyContent: "center" })}
-`;
-const Input = styled.input`
-    flex: 1;
-    min-width: 40%;
-    margin: 0px 0px;
-    padding: 5x;
-    ${mobile({ height: "30%" })}
-`;
-const Textarea = styled.textarea`
-        resize: none;
-`;
-const Select = styled.select`
-    padding: 10px;
-    margin-right: 20px;
-    ${mobile({ margin: "10px 0px" })}
-`;
-const Option = styled.option`
-    font-size: 14px;
-    font-weight: 600;
-    fontFamily: tahoma;
-`;
-const Button = styled.button`
-    width: 40%;
-    border: none;
-    padding: 15px 20px;
-    background-color: #797EAB;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    margin: auto;
-`;
-const FooterDiv = styled.div`
-    ${mobile({ display: "none" })}
-`;
-
-const AddProduct = ({user, setUser, cart, setCart, handleChange}) => {
-    // const [Id, setId] = useState();
+const AddProduct = ({ user, setUser, cart, setCart, handleChange }) => {
     const [img, setImg] = useState();
     const [productName, setProductName] = useState();
     const [productDesc, setProductDesc] = useState();
@@ -108,7 +37,6 @@ const AddProduct = ({user, setUser, cart, setCart, handleChange}) => {
             validInput = true;
     }
 
-
     const newProduct = (ev) => {
         ev.preventDefault();
         inputCategory = ev.target[2].value;
@@ -129,18 +57,7 @@ const AddProduct = ({user, setUser, cart, setCart, handleChange}) => {
             default:
         }
 
-
-        // const jsonString = JSON.stringify(filePath);
-        // console.log(jsonString);
-
-        // axios.get(filePath).then((res) => {
-        //     console.log(res);
-        //     // setId(res.data.length);
-        //     Id = (res.data[res.data.length - 1].id);
-        //     console.log(Id);
-        // });
         const product = {
-            // id: Id,
             img: img,
             bg: selectedbg,
             title: productName,

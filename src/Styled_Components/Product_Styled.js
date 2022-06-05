@@ -1,7 +1,6 @@
-import { ShoppingCartOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 
-const Info = styled.div`
+export const Info = styled.div`
     opacity: 0;
     width: 100%;
     height: 100%;
@@ -16,11 +15,31 @@ const Info = styled.div`
     transition: all 0.5s ease;
     cursor: pointer;
 `;
-const Title = styled.h1`
-    font-size: 24px;
-    text-align: center;
+export const Details = styled.div`
+    opacity: 0;
+    width: 150%;
+    height: 100%;
+    position: relative;
+    top: 40;
+    left: 40;
+    background-color: rgba(0, 0, 0, 0.0);
+    z-index: 2;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    cursor: pointer;
 `;
-const Container = styled.div`
+export const Price = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+`;
+export const Container = styled.div`
     flex: 1;
     margin: 5px;
     min-width: 350px;
@@ -30,24 +49,27 @@ const Container = styled.div`
     justify-content: center;
     background-color: #${(props) => props.bg};  
     position: relative;
-    &:hover ${Info} {
+    &:hover ${Info}{
+        opacity: 1;
+    },
+    &:hover ${Details} {
         opacity: 1;
     }
 `;
-const Circle = styled.div`
+export const Circle = styled.div`
     width: 200px;
     height: 200px;
     border-radius: 50%;
     background-color: white;
     position: absolute;
 `;
-const Image = styled.img`
+export const Image = styled.img`
     border-radius: 50px;
     height: 28vh;
     width: 100%;
     z-index: 2;
 `;
-const Icon = styled.div`
+export const Icon = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -63,29 +85,3 @@ const Icon = styled.div`
         transform: scale(1.2);
     }
 `;
-
-const Pastries = ({ item }) => {
-    return (
-        <Container bg={item.bg}>
-            <Circle>
-                <Image src={item.img} alt='ProduntImage' />
-                <Info>
-                    <Icon>
-                        <ShoppingCartOutlined />
-                    </Icon>
-                    {/* <Icon>
-                        <SearchOutlined />
-                    </Icon> */}
-                    {/* <Icon>
-                        <FavoriteBorderOutlined />
-                    </Icon> */}
-                </Info>
-                <Title>
-                    {item.title}
-                </Title>
-            </Circle>
-        </Container>
-    )
-}
-
-export default Pastries;

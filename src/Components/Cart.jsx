@@ -1,154 +1,24 @@
-import { Remove } from "@material-ui/icons";
-import { Add } from "@material-ui/icons";
-import styled from "styled-components";
-import Footer from "../Components/Footer";
-import { mobile } from "../responsive";
+import Footer from "./Footer";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Add, Remove } from "@material-ui/icons";
 import { Fab } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import { toast } from 'react-toastify';
-import { useNavigate } from "react-router-dom";
-
-
-const Container = styled.div`
-     
-`;
-const Wrapper = styled.div`
-    padding: 20px;
-    ${mobile({ padding: "10px" })}
-`;
-const Title = styled.h1`
-    font-weight: 600;
-    text-align: center;
-`;
-const TopText = styled.h1`
-    margin: 0px 10px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-`;
-const Bottom = styled.div`
-    display: flex;
-    justify-content: space-between;
-    ${mobile({ flexDirection: "column" })}
-`;
-const Info = styled.div`
-    flex: 3;
-`;
-const Product = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: space-between;
-    ${mobile({ flexDirection: "column" })}
-`;
-const ProductDetail = styled.div`
-    flex-direction: column;
-    display: flex;
-    justify-content: space-between;
-    font-size: 24px;
-    font-weight: 200;
-`;
-const Image = styled.img`
-    width: 200px;
-`;
-const Details = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-`;
-const ProductName = styled.span`
-    font-size: 24px;
-    font-weight: 200;
-`;
-const ProductId = styled.span`
-
-`;
-const ProductSize = styled.span`
-
-`;
-const PriceDetails = styled.span`
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`;
-const ProductAmountContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    margin: 20px;
-`;
-const ProductAmount = styled.div`
-    font-size: 24px;
-    margin: 5px;
-    padding: 10px;
-    ${mobile({ margin: "5px 15px" })}
-`;
-const ProductPrice = styled.div`
-    display: flex;
-    flex-direction: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-weight: 200;
-    ${mobile({ marginBottom: "20px" })}
-    padding: 20px;
-`;
-const Hr = styled.hr`
-    background-color: #eee;
-    width: 100%;
-    border: 0.5px solid gray;
-`;
-const Summary = styled.div`
-    flex: 1;
-    border: 0.5px solid lightgray;
-    border-radius: 10px;
-    padding: 10px;
-    height: 50vh;
-`;
-const SummaryTitle = styled.h1`
-    font-weight: 200;
-`;
-const SummaryItem = styled.div`
-    margin: 30px 0px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: ${props => props.type === "total" && "500"};
-    font-size: ${props => props.type === "total" && "24px"};
-`;
-const SummaryItemText = styled.span`
-    flex: 1;
-    font-size: 24px;
-    font-weight: 600;
-`;
-const SummaryItemPrice = styled.span`
-    flex: 1;
-    font-size: 24px;
-    font-weight: 600;
-`;
-const Button = styled.button`
-    width: 100%;
-    padding: 10px;
-    cursor: pointer;
-    background-color: black;
-    color: white;
-    font-weight: 600;
-    '&:hover' {
-        color: red
-    };
-`;
-
+import {Container, Wrapper, Title, TopText, Bottom, Info,
+        Product, ProductDetail, Image, Details, PriceDetails,
+        ProductAmountContainer, ProductAmount, ProductPrice,
+        Hr, Summary, SummaryTitle, SummaryItem, SummaryItemText,
+        SummaryItemPrice, Button } from '../Styled_Components/Cart_Styled';
 
 const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
 
     const [price, setPrice] = useState(0);
     const [hover, sethover] = useState(false);
     let total = 0;
+    const navigate = useNavigate();
+    // const classes = useStyles();
 
     const useStyles = makeStyles(theme => ({
         iconHover: {
@@ -157,13 +27,10 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
                 //TODO display the text CREATE ITEM instead of AddIcon
             }
         },
-
         floatBtn: {
             marginRight: theme.spacing(1),
         },
     }));
-
-    const classes = useStyles();
 
     const handleRemove = (id) => {
         const arr = cart.filter((item) => item.Item.id !== id);
@@ -179,8 +46,6 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
     useEffect(() => {
         handlePrice();
     });
-
-    const navigate = useNavigate();
 
     const placeOrder = () => {
         if (cart.length === 0)

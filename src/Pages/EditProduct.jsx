@@ -1,89 +1,11 @@
-import styled from "styled-components";
-import { mobile } from "../responsive";
-import { sweets, pastries, ourCuisine } from '../data';
-import axios from "axios";
-import { React, useEffect, useState } from "react";
 import Footer from "../Components/Footer";
+import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
-
-const Container = styled.div`
-    width: 90vw;
-    height: 90%;
-    background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-        ),
-        url("../images/Logo-LoginPage.JPG")
-            center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-// https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
-const Wrapper = styled.div`
-    width: 25%;
-    padding: 20px;
-    background-color: #f5fbfd;
-    ${mobile({ width: "75%", height: "20vw" })}
-`;
-const Title = styled.h1`
-    font-size: 24px;
-    font-weight: 300;
-`;
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    ${mobile({ height: "30%", margin: "auto", justifyContent: "center" })}
-
-`;
-const Input = styled.input`
-    flex: 1;
-    min-width: 40%;
-    margin: 0px 0px;
-    padding: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    ${mobile({ height: "30%" })}
-`;
-const Textarea = styled.textarea`
-    resize: none;
-    font-size: 14px;
-    font-weight: 600;
-`;
-const Select = styled.select`
-    padding: 10px;
-    margin-right: 20px;
-    ${mobile({ margin: "10px 0px" })}
-`;
-const Option = styled.option`
-    font-size: 14px;
-    font-weight: 600;
-    fontFamily: tahoma;
-`;
-const PFP = styled.div`
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-`;
-const Button = styled.button`
-    width: 40%;
-    border: none;
-    padding: 15px 20px;
-    background-color: #797EAB;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    margin: auto;
-`;
-const FooterDiv = styled.div`
-    ${mobile({ display: "none" })}
-`;
-
+import { Container, Wrapper, Title, Form, Input, Textarea,
+    Select, Option, PFP, Button, FooterDiv } from '../Styled_Components/EditProduct_Styled';
 
 const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
 
@@ -303,7 +225,7 @@ const EditProduct = ({user, setUser, cart, setCart, handleChange}) => {
                             >
                             </Input>
                             <PFP>
-                                {<img src={productImage} width="100vw" height="100vh" />}
+                                {<img src={productImage} alt="" width="100vw" height="100vh" />}
                             </PFP>
                             <label name="Category" >Price:</label>
                             <Input

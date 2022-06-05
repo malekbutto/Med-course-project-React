@@ -1,84 +1,15 @@
-import { Room } from "@material-ui/icons";
-import { Phone } from "@material-ui/icons";
-import { Facebook, Instagram } from "@material-ui/icons";
-import styled from "styled-components";
-import { mobile } from "../responsive";
-import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { Facebook, Instagram, GitHub, LinkedIn, Room, Phone } from "@material-ui/icons";
+import { Container, Left, Desc, SocialContainer, SocialIcon,
+         Center, Title, List, ListItem, Right, ContactItem } from '../Styled_Components/Footer_Styled';
 
-
-const Container = styled.div`
-    display: flex;
-    ${mobile({ flexDirection: "column" })}
-`;
-const Left = styled.div`
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    ${mobile({ margin: "auto"})}
-`;
-const Desc = styled.p`
-    font-weight: bold;
-    margin: 20px 0px;
-`;
-const SocialContainer = styled.div`
-    display: flex;
-`;
-const SocialIcon = styled.div`
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    background-color: #${props => props.color};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-`;
-const Center = styled.div`
-    flex: 1;
-    padding: 20px;
-    ${mobile({ display: "none" })}
-`;
-const Title = styled.h3`
-    margin-bottom: 30px;
-`;
-const List = styled.ul`
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    justify-content: space-between;
-    flex-wrap: wrap;
-`;
-const ListItem = styled.li`
-    width: 50%;
-    margin-bottom: 10px;
-    cursor: pointer;
-`;
-const Right = styled.div`
-    flex: 1;
-    padding: 20px;
-    ${mobile({ backgroundColor: "#f5fbfd" })}
-`;
-const ContactItem = styled.div`
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-`;
-// const Payment = styled.img`
-//     width: 50%;
-// `;
-
-const Footer = ({user, setUser, cart, setCart, handleChange}) => {
+const Footer = ({ user, setUser, cart, setCart, handleChange }) => {
 
     const navigate = useNavigate();
 
-    useEffect(()=>{
-    },[user])
+    useEffect(() => {
+    }, [user])
 
 
     return (
@@ -105,18 +36,44 @@ const Footer = ({user, setUser, cart, setCart, handleChange}) => {
                     Site Map
                 </Title>
                 <List>
-                    <ListItem onClick={()=>navigate("/category/sweets")} title={"The Sweets"}>Sweets</ListItem>
-                    <ListItem onClick={()=>navigate("/category/pastries")} title={"The Pastries"}>Pastries</ListItem>
-                    <ListItem onClick={()=>navigate("/category/ourCuisine")} title={"Our Cuisine"}>Our Cuisine</ListItem>
+                    <ListItem onClick={() => navigate("/category/sweets")} title={"The Sweets"}>Sweets</ListItem>
+                    <ListItem onClick={() => navigate("/category/pastries")} title={"The Pastries"}>Pastries</ListItem>
+                    <ListItem onClick={() => navigate("/category/ourCuisine")} title={"Our Cuisine"}>Our Cuisine</ListItem>
                     <ListItem onClick={() => (user === undefined ?
-                                            (
-                                                navigate("/Login", user={user}, setUser={setUser})
-                                                // <Link to="/Login" target={"_top"} />
-                                            ) : (
-                                                // <Link to="/Cart" target={"_top"} cart={cart} setCart={setCart} handleChange={handleChange} />
-                                                navigate("/Cart", cart={cart}, setCart={setCart}, handleChange={handleChange} )
-                                            ))}>Cart</ListItem>
+                        (
+                            navigate("/Login", user = { user }, setUser = { setUser })
+                        ) : (
+                            navigate("/Cart", cart = { cart }, setCart = { setCart }, handleChange = { handleChange })
+                        ))}>Cart</ListItem>
                 </List>
+                <Desc>
+                    Powered By: Malek Butto
+                </Desc>
+                <SocialContainer>
+                    <a href="https://www.facebook.com/malek.butto/">
+                        <SocialIcon color="3B5999">
+                            <Facebook />
+                        </SocialIcon>
+                    </a>
+                    <a href="https://www.instagram.com/malekbutto/">
+                        <SocialIcon color="E4405F">
+                            <Instagram />
+                        </SocialIcon>
+                    </a>
+                    <a href="https://github.com/malekbutto/">
+                        <SocialIcon color="333333">
+                            <GitHub />
+                        </SocialIcon>
+                    </a>
+                    <a href="https://www.linkedin.com/in/malek-butto/">
+                        <SocialIcon color="0A66C2">
+                            <LinkedIn />
+                        </SocialIcon>
+                    </a>
+                </SocialContainer>
+                <ContactItem>
+                    <Phone style={{ marginRight: "10px" }} />+972 52-379-2338
+                </ContactItem>
             </Center>
             <Right>
                 <Title>Contact</Title>

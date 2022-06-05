@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import axios from "axios";
 
 const SearchBar = ({ data }) => {
   const navigate = useNavigate();
   const [searchFilter, setSearchFilter] = useState([]);
-
 
   return (
     <div className="search">

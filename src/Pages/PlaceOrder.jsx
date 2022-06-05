@@ -1,81 +1,18 @@
-import styled from "styled-components";
-import { mobile } from "../responsive";
-import { React, useEffect, useState } from "react";
 import Footer from "../Components/Footer";
+import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
-import { Fab, makeStyles } from "@material-ui/core";
-
-
-const Container = styled.div`
-    width: 90vw;
-    height: 90%;
-    background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-        ),
-        url("../images/Logo-LoginPage.JPG")
-            center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-const Wrapper = styled.div`
-    width: 25%;
-    padding: 20px;
-    background-color: #f5fbfd;
-    ${mobile({ width: "75%", height: "20vw" })}
-`;
-const Title = styled.h1`
-    font-size: 24px;
-    font-weight: 300;
-`;
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    ${mobile({ height: "30%", margin: "auto", justifyContent: "center" })}
-`;
-const Input = styled.input`
-    flex: 1;
-    min-width: 40%;
-    margin: 0px 0px;
-    padding: 5x;
-    ${mobile({ height: "30%" })}
-`;
-const Select = styled.select`
-    padding: 10px;
-    margin-right: 20px;
-    font-size: 18px;
-    ${mobile({ margin: "10px 0px" })}
-`;
-const Textarea = styled.textarea`
-        resize: none;
-`;
-const Button = styled.button`
-    width: 40%;
-    border: none;
-    padding: 15px 20px;
-    background-color: #797EAB;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    margin: auto;
-`;
-const FooterDiv = styled.div`
-    ${mobile({ display: "none" })}
-`;
+import { Fab } from "@material-ui/core";
+import { Container, Wrapper, Title, Form, Input,
+    Select, Button, FooterDiv } from '../Styled_Components/AddProduct_Styled';
 
 const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
 
     const [phone, setPhone] = useState();
     const [cartList, setCartList] = useState([]);
-    const [hover, sethover] = useState(false);
     let totalPrice = 0;
 
-    
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -83,15 +20,14 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
             return <option key={product.id}>{product.amount} - {product.title}</option>
         }
         ));
-    }, [])
-
+    }, [cart])
 
     const confirmOrder = (ev) => {
         ev.preventDefault();
         if (phone.length < 10) {
             toast.error("Invalid phone number format!", {
                 position: "top-center",
-                autoClose: 1500,
+                autoClose: 700,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -102,7 +38,7 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
         else {
             toast.success("Your order registered successfully!", {
                 position: "top-right",
-                autoClose: 1500,
+                autoClose: 700,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -135,7 +71,6 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
                                 required
                                 minLength="1"
                                 maxLength="25"
-                                height="100px"
                                 max-height="25px"
                                 autoFocus
                                 fullWidth
@@ -197,13 +132,12 @@ const PlaceOrder = ({ user, setUser, cart, setCart, handleOrdersList }) => {
                             <label name="TotalPrice">Total Price:</label>
                             <Fab >
                                 {cart.map((item)=>{
-                                    totalPrice = item.amount*item.price
+                                    return totalPrice = item.amount*item.price
                                 })}
                                 {totalPrice}
                             </Fab>
                             <br />
                             <Button type='submit' >Place Order</Button>
-
                         </Form>
                     </div>
                 </Wrapper>

@@ -4,7 +4,6 @@ import Products from '../Components/Products';
 import Footer from '../Components/Footer';
 import { ToastContainer } from 'react-toastify';
 
-
 const Home = ({user, setUser, cart, setCart, handleAddToCart, handleChange}) => {
 
     return (

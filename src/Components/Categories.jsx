@@ -1,15 +1,7 @@
-import styled from "styled-components";
 import CategoryItem from "./CategoryItem"
-import { mobile } from "../responsive";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-const Container = styled.div`
-  display: flex;
-  padding: 20px;
-  justify-content: space-between;
-  ${mobile({ padding: "0px", flexDirection: "column" })}
-`;
+import {Container } from '../Styled_Components/Categories_Styled';
 
 const Categories = ({user, setUser, cart, setCart, handleAddToCart, handleChange}) => {
 
