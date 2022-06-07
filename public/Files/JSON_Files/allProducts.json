@@ -4,25 +4,25 @@
             "id": 1,
             "img": "./Images/Category/Sweets.jpg",
             "title": "Sweets",
-            "url": "/SweetsCategory"
+            "url": "/category/sweets"
         },
         {
             "id": 2,
             "img": "./Images/Category/Pastries.jpg",
             "title": "Pastries",
-            "url": "/PastriesCategory"
+            "url": "/category/pastries"
         },
         {
             "id": 3,
             "img": "./Images/Category/OurCuisine.jpg",
             "title": "Our Cuisine",
-            "url": "/OurCuisineCategory"
+            "url": "/category/ourCuisine"
         }
     ],
     "sweets": [
         {
             "id": 1,
-            "img": "./Images/Category/Sweets/Trilece_Caramel2.jpg",
+            "img": "/Images/Category/Sweets/Trilece_Caramel2.jpg",
             "bg": "fcf1ed",
             "title": "Trilece Caramel",
             "desc": "A Turkish sweet cake covered by caramel",
@@ -31,7 +31,7 @@
         },
         {
             "id": 2,
-            "img": "./Images/Category/Sweets/Trilece_Strawberry.jpg",
+            "img": "/Images/Category/Sweets/Trilece_Strawberry.jpg",
             "bg": "fcf1ed",
             "title": "Trilece Strawberry",
             "desc": "A Turkish sweet cake covered by strawberry gel layer",
@@ -40,7 +40,7 @@
         },
         {
             "id": 3,
-            "img": "./Images/Category/Sweets/Trilece_Pistachio.jpg",
+            "img": "/Images/Category/Sweets/Trilece_Pistachio.jpg",
             "bg": "fcf1ed",
             "title": "Trilece Pistachio",
             "desc": "A Turkish sweet cake covered by pistachio",
@@ -49,7 +49,7 @@
         },
         {
             "id": 4,
-            "img": "./Images/Category/Sweets/Lutos.jpg",
+            "img": "/Images/Category/Sweets/Lutos.jpg",
             "bg": "fcf1ed",
             "title": "Lutos",
             "desc": "Lutos cake",
@@ -58,7 +58,7 @@
         },
         {
             "id": 5,
-            "img": "./Images/Category/Sweets/Lebanese_Nights_Dessert.jpg",
+            "img": "/Images/Category/Sweets/Lebanese_Nights_Dessert.jpg",
             "bg": "fcf1ed",
             "title": "Lebanese Nights Dessert",
             "desc": "Made from a silky semolina based pudding, topped with Ashta (thick cream), whipping cream and pistachios",
@@ -67,7 +67,7 @@
         },
         {
             "id": 6,
-            "img": "./Images/Category/Sweets/Kinder_Bueno.jpg",
+            "img": "/Images/Category/Sweets/Kinder_Bueno.jpg",
             "bg": "fcf1ed",
             "title": "Kinder Bueno",
             "desc": "Kinder Bueno cake",
@@ -76,7 +76,7 @@
         },
         {
             "id": 7,
-            "img": "./Images/Category/Sweets/Tiramisu.jpg",
+            "img": "/Images/Category/Sweets/Tiramisu.jpg",
             "bg": "fcf1ed",
             "title": "Tiramisu",
             "desc": "A coffee-flavoured Italian dessert. It is made of ladyfingers dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese, flavoured with cocoa",
@@ -85,7 +85,7 @@
         },
         {
             "id": 8,
-            "img": "./Images/Category/Sweets/Khashkhash.jpg",
+            "img": "/Images/Category/Sweets/Khashkhash.jpg",
             "bg": "fcf1ed",
             "title": "Khash-khash",
             "desc": "Layered crackers with cream and toasted vermicelli",
@@ -94,7 +94,7 @@
         },
         {
             "id": 9,
-            "img": "./Images/Category/Sweets/Alfajores.jpg",
+            "img": "/Images/Category/Sweets/Alfajores.jpg",
             "bg": "fcf1ed",
             "title": "Alfajores",
             "desc": "It's a sandwich made of two discs of dough with a filling in between",
@@ -103,7 +103,7 @@
         },
         {
             "id": 10,
-            "img": "./Images/Category/Sweets/Macaron.jpg",
+            "img": "/Images/Category/Sweets/Macaron.jpg",
             "bg": "fcf1ed",
             "title": "Macaron",
             "desc": "Sweet meringue-based confection made with egg white, icing sugar, granulated sugar, almond meal, and food colouring.",
@@ -112,7 +112,7 @@
         },
         {
             "id": 11,
-            "img": "./Images/Category/Sweets/Betefour.jpg",
+            "img": "/Images/Category/Sweets/Betefour.jpg",
             "bg": "fcf1ed",
             "title": "Betefour",
             "desc": "Egyptian butter cookies",
@@ -121,7 +121,7 @@
         },
         {
             "id": 12,
-            "img": "./Images/Category/Sweets/Contessa.jpg",
+            "img": "/Images/Category/Sweets/Contessa.jpg",
             "bg": "fcf1ed",
             "title": "Contessa",
             "desc": "Addictive Arabian cuisine",
@@ -130,7 +130,7 @@
         },
         {
             "id": 13,
-            "img": "./Images/Category/Sweets/English_Cake.jpg",
+            "img": "/Images/Category/Sweets/English_Cake.jpg",
             "bg": "fcf1ed",
             "title": "English Cake",
             "desc": "The famous English Cake",
@@ -139,7 +139,7 @@
         },
         {
             "id": 14,
-            "img": "./Images/Category/Sweets/Dates_Cake.jpg",
+            "img": "/Images/Category/Sweets/Dates_Cake.jpg",
             "bg": "fcf1ed",
             "title": "Dates Cake / Ma'amoul",
             "desc": "Flour or semolina cakes filled with dates",
@@ -148,7 +148,7 @@
         },
         {
             "id": 15,
-            "img": "./Images/Category/Sweets/Ghraybeh.jpg",
+            "img": "/Images/Category/Sweets/Ghraybeh.jpg",
             "bg": "fcf1ed",
             "title": "Ghraybeh",
             "desc": "Delicious and delicate Middle Eastern cookies that melt in your mouth",
@@ -157,7 +157,7 @@
         },
         {
             "id": 16,
-            "img": "./Images/Category/Sweets/Cups.jpg",
+            "img": "/Images/Category/Sweets/Cups.jpg",
             "bg": "fcf1ed",
             "title": "Sweet Cups",
             "desc": "Various sweet cups with different tasties",
@@ -166,7 +166,7 @@
         },
         {
             "id": 17,
-            "img": "./Images/Category/Sweets/Strawberry_Cake.jpg",
+            "img": "/Images/Category/Sweets/Strawberry_Cake.jpg",
             "bg": "fcf1ed",
             "title": "Strawberry Cake",
             "desc": "Fresh strawberries, this strawberry cake is one of the simplest, most delicious cakes",
@@ -175,7 +175,7 @@
         },
         {
             "id": 18,
-            "img": "./Images/Category/Sweets/Ferrero_Rocher_Cake.jpg",
+            "img": "/Images/Category/Sweets/Ferrero_Rocher_Cake.jpg",
             "bg": "fcf1ed",
             "title": "Ferrero Rocher Cake",
             "desc": "This Ferrero Rocher Cake is your favorite chocolate hazelnut treat in cake form! Chocolate hazelnut cake layers and with a Nutella buttercream",
@@ -184,7 +184,7 @@
         },
         {
             "id": 19,
-            "img": "./Images/Category/Sweets/Nutella_Cake.jpg",
+            "img": "/Images/Category/Sweets/Nutella_Cake.jpg",
             "bg": "fcf1ed",
             "title": "Nutella Cake",
             "desc": "This Nutella Cake recipe is every Nutella lover’s dream cake! It’s a moist chocolate cake with a rich chocolate Nutella buttercream frosting smothered between each layer",
@@ -193,18 +193,27 @@
         },
         {
             "id": 20,
-            "img": "./Images/Category/Sweets/Oreo_Cake.jpg",
+            "img": "/Images/Category/Sweets/Oreo_Cake.jpg",
             "bg": "fcf1ed",
             "title": "Oreo Cake",
             "desc": "Impressive chocolate cake which layered and topped with Oreo whipped cream",
             "price": 100,
             "amount": 1
+        },
+        {
+            "img": "C:\\fakepath\\pngwing.com.png",
+            "bg": "fcf1ed",
+            "title": "dfdvd",
+            "desc": "dfdgdf",
+            "price": "44",
+            "amount": 1,
+            "id": 21
         }
     ],
     "pastries": [
         {
             "id": 51,
-            "img": "./Images/Category/Pastries/Beef_Meat.jpg",
+            "img": "/Images/Category/Pastries/Beef_Meat.jpg",
             "bg": "f5fbfd",
             "title": "Beef Meat",
             "desc": "Pastry filled with Beef Meat",
@@ -213,7 +222,7 @@
         },
         {
             "id": 52,
-            "img": "./Images/Category/Pastries/Chicken.jpg",
+            "img": "/Images/Category/Pastries/Chicken.jpg",
             "bg": "f5fbfd",
             "title": "Chicken",
             "desc": "Pastry filled with Chicken",
@@ -222,7 +231,7 @@
         },
         {
             "id": 53,
-            "img": "./Images/Category/Pastries/Potato.jpg",
+            "img": "/Images/Category/Pastries/Potato.jpg",
             "bg": "f5fbfd",
             "title": "Potato",
             "desc": "Pastry filled with Potato",
@@ -231,7 +240,7 @@
         },
         {
             "id": 54,
-            "img": "./Images/Category/Pastries/Potato_Discs.jpg",
+            "img": "/Images/Category/Pastries/Potato_Discs.jpg",
             "bg": "f5fbfd",
             "title": "Potato Discs",
             "desc": "Potato discs covered by bread crumbs",
@@ -240,7 +249,7 @@
         },
         {
             "id": 55,
-            "img": "./Images/Category/Pastries/Meat&Potato_Discs.jpg",
+            "img": "/Images/Category/Pastries/Meat&Potato_Discs.jpg",
             "bg": "f5fbfd",
             "title": "Meat & Potato Discs",
             "desc": "Potato discs filled with beaf meat, covered by bread crumbs",
@@ -249,7 +258,7 @@
         },
         {
             "id": 56,
-            "img": "./Images/Category/Pastries/Sausage.jpg",
+            "img": "/Images/Category/Pastries/Sausage.jpg",
             "bg": "f5fbfd",
             "title": "Sausage",
             "desc": "Pastry filled with Sausage",
@@ -258,7 +267,7 @@
         },
         {
             "id": 57,
-            "img": "./Images/Category/Pastries/Tuna.jpg",
+            "img": "/Images/Category/Pastries/Tuna.jpg",
             "bg": "f5fbfd",
             "title": "Tuna",
             "desc": "Pastry filled with Tuna",
@@ -267,7 +276,7 @@
         },
         {
             "id": 58,
-            "img": "./Images/Category/Pastries/Pizza1.jpg",
+            "img": "/Images/Category/Pastries/Pizza1.jpg",
             "bg": "f5fbfd",
             "title": "Pizza",
             "desc": "Pizza Pastry",
@@ -276,7 +285,7 @@
         },
         {
             "id": 59,
-            "img": "./Images/Category/Pastries/Pizza2.jpg",
+            "img": "/Images/Category/Pastries/Pizza2.jpg",
             "bg": "f5fbfd",
             "title": "Pizza Filling",
             "desc": "Pastry filled with Pizza mix",
@@ -285,7 +294,7 @@
         },
         {
             "id": 60,
-            "img": "./Images/Category/Pastries/Olives.jpg",
+            "img": "/Images/Category/Pastries/Olives.jpg",
             "bg": "f5fbfd",
             "title": "Olives",
             "desc": "Pastry filled with Olives",
@@ -294,7 +303,7 @@
         },
         {
             "id": 61,
-            "img": "./Images/Category/Pastries/Mozzarella_Sticks.jpg",
+            "img": "/Images/Category/Pastries/Mozzarella_Sticks.jpg",
             "bg": "f5fbfd",
             "title": "Mozzarella Sticks",
             "desc": "Mozzarella cheese covered by bread crumbs",
@@ -303,7 +312,7 @@
         },
         {
             "id": 62,
-            "img": "./Images/Category/Pastries/Fatayer.jpg",
+            "img": "/Images/Category/Pastries/Fatayer.jpg",
             "bg": "f5fbfd",
             "title": "Fatayer",
             "desc": "Fatayer filled with Spinach or Zaatar",
@@ -312,7 +321,7 @@
         },
         {
             "id": 63,
-            "img": "./Images/Category/Pastries/Kibbeh.jpg",
+            "img": "/Images/Category/Pastries/Kibbeh.jpg",
             "bg": "f5fbfd",
             "title": "Kibbeh",
             "desc": "Kibbeh is a family of dishes based on spiced ground meat, onions, and grain, popular in Middle Eastern cuisine. In Levantine cuisine, kibbeh is usually made by pounding bulgur wheat together with meat into a fine paste and forming it into balls with toasted pine nuts and spices",
@@ -323,7 +332,7 @@
     "ourCuisine": [
         {
             "id": 81,
-            "img": "./Images/Category/OurCuisine/Cabbage_Roll.jpg",
+            "img": "/Images/Category/OurCuisine/Cabbage_Roll.jpg",
             "bg": "fbf0f4",
             "title": "Cabbage Roll",
             "desc": "Filled with rice & Beaf or Lamb meat",
@@ -332,16 +341,16 @@
         },
         {
             "id": 82,
-            "img": "./Images/Category/OurCuisine/Grape_Leaves.jpg",
+            "img": "/Images/Category/OurCuisine/Grape_leaves.jpg",
             "bg": "fbf0f4",
-            "title": "Grape Leaves",
+            "title": "Grape leaves",
             "desc": "Filled with rcse & Beaf or Lamb meat",
             "price": 50,
             "amount": 1
         },
         {
             "id": 83,
-            "img": "./Images/Category/OurCuisine/Maftool.jpg",
+            "img": "/Images/Category/OurCuisine/Maftool.jpg",
             "bg": "fbf0f4",
             "title": "Maftool",
             "desc": "“Palestinian couscous” with chicken and chickpeas",
@@ -350,7 +359,7 @@
         },
         {
             "id": 84,
-            "img": "./Images/Category/OurCuisine/Schnitzel.jpg",
+            "img": "/Images/Category/OurCuisine/Schnitzel.jpg",
             "bg": "fbf0f4",
             "title": "Schnitzel",
             "desc": "Traditional chicken meat",
@@ -359,7 +368,7 @@
         },
         {
             "id": 85,
-            "img": "./Images/Category/OurCuisine/Shawarma_Roll.jpg",
+            "img": "/Images/Category/OurCuisine/Shawarma_Roll.jpg",
             "bg": "fbf0f4",
             "title": "Shawarma Roll",
             "desc": "Saj Bread filled with Beaf meat",
@@ -386,7 +395,7 @@
         },
         {
             "id": 88,
-            "img": "./Images/Category/OurCuisine/Shish_Barak.jpg",
+            "img": "/Images/Category/OurCuisine/Shish_Barak.jpg",
             "bg": "fbf0f4",
             "title": "Shish Barak",
             "desc": "These are Middle Eastern meat filled dumplings cooked in a yogurt based sauce. It is one of the top comfort foods in Arabic cuisine",
@@ -404,7 +413,7 @@
         },
         {
             "id": 90,
-            "img": "./Images/Category/OurCuisine/Sweet_Pumpkin.jpg",
+            "img": "/Images/Category/OurCuisine/Sweet_Pumpkin.jpg",
             "bg": "fbf0f4",
             "title": "Sweet Pumpkin",
             "desc": "Pumpkin cooked and covered by Sugar&Water syrop",

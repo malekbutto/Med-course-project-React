@@ -19,8 +19,11 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
     const [price, setPrice] = useState(0);
     const [hover, sethover] = useState(false);
     let total = 0;
+    var cartSize;
     const navigate = useNavigate();
     // const classes = useStyles();
+    if (cart === undefined)
+        cartSize = 0;
 
     const useStyles = makeStyles(theme => ({
         iconHover: {
@@ -58,7 +61,7 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
     });
 
     const placeOrder = () => {
-        if (cart.length === 0)
+        if (cartSize === 0)
             toast.error("Cart is empty", {
                 position: "top-center",
                 autoClose: 1500,
@@ -79,7 +82,7 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
                 <Bottom>
                     <Info>
                         <Product>
-                            <TopText>{cart?.length === 0 ? "Cart Is Empty" : ""}</TopText>
+                            <TopText>{cartSize === 0 ? "Cart Is Empty" : ""}</TopText>
                             {cart?.map((item) => (
                                 <div key={item.ProductId}>
                                     <Details>

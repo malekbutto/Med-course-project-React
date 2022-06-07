@@ -51,6 +51,7 @@ const Navbar = ({ user, setUser, setCart, size }) => {
 
     const handleSignOut = () => {
         localStorage.removeItem("currUser");
+        localStorage.removeItem("currUserID");
         if (user !== undefined) {
             setUser(undefined);
             setCart(undefined);

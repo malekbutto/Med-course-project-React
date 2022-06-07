@@ -199,15 +199,6 @@
       "desc": "Impressive chocolate cake which layered and topped with Oreo whipped cream",
       "price": 100,
       "amount": 1
-    },
-    {
-      "img": "C:\\fakepath\\pngwing.com.png",
-      "bg": "fcf1ed",
-      "title": "dfdvd",
-      "desc": "dfdgdf",
-      "price": "44",
-      "amount": 1,
-      "id": 21
     }
   ],
   "pastries": [
@@ -249,6 +240,15 @@
     },
     {
       "id": 55,
+      "img": "/Images/Category/Pastries/Meat&Potato_Discs.jpg",
+      "bg": "f5fbfd",
+      "title": "Meat & Potato Discs",
+      "desc": "Potato discs filled with beaf meat, covered by bread crumbs",
+      "price": 35,
+      "amount": 1
+    },
+    {
+      "id": 56,
       "img": "/Images/Category/Pastries/Sausage.jpg",
       "bg": "f5fbfd",
       "title": "Sausage",
@@ -257,7 +257,7 @@
       "amount": 1
     },
     {
-      "id": 56,
+      "id": 57,
       "img": "/Images/Category/Pastries/Tuna.jpg",
       "bg": "f5fbfd",
       "title": "Tuna",
@@ -266,7 +266,7 @@
       "amount": 1
     },
     {
-      "id": 57,
+      "id": 58,
       "img": "/Images/Category/Pastries/Pizza1.jpg",
       "bg": "f5fbfd",
       "title": "Pizza",
@@ -275,7 +275,7 @@
       "amount": 1
     },
     {
-      "id": 58,
+      "id": 59,
       "img": "/Images/Category/Pastries/Pizza2.jpg",
       "bg": "f5fbfd",
       "title": "Pizza Filling",
@@ -284,7 +284,7 @@
       "amount": 1
     },
     {
-      "id": 59,
+      "id": 60,
       "img": "/Images/Category/Pastries/Olives.jpg",
       "bg": "f5fbfd",
       "title": "Olives",
@@ -293,7 +293,7 @@
       "amount": 1
     },
     {
-      "id": 60,
+      "id": 61,
       "img": "/Images/Category/Pastries/Mozzarella_Sticks.jpg",
       "bg": "f5fbfd",
       "title": "Mozzarella Sticks",
@@ -302,7 +302,7 @@
       "amount": 1
     },
     {
-      "id": 61,
+      "id": 62,
       "img": "/Images/Category/Pastries/Fatayer.jpg",
       "bg": "f5fbfd",
       "title": "Fatayer",
@@ -311,7 +311,7 @@
       "amount": 1
     },
     {
-      "id": 62,
+      "id": 63,
       "img": "/Images/Category/Pastries/Kibbeh.jpg",
       "bg": "f5fbfd",
       "title": "Kibbeh",
@@ -368,24 +368,15 @@
     },
     {
       "id": 86,
-      "img": "/Images/Category/OurCuisine/Shish_Barak.jpg",
+      "img": "/Images/Category/OurCuisine/Shawarma_Tortilla.jpg",
       "bg": "fbf0f4",
-      "title": "Shish Barak",
-      "desc": "These are Middle Eastern meat filled dumplings cooked in a yogurt based sauce. It is one of the top comfort foods in Arabic cuisine",
-      "price": 60,
-      "amount": 1
-    },
-    {
-      "id": 87,
-      "img": "/Images/Category/OurCuisine/Sweet_Pumpkin.jpg",
-      "bg": "fbf0f4",
-      "title": "Sweet Pumpkin",
-      "desc": "Pumpkin cooked and covered by Sugar&Water syrop",
+      "title": "Shawarma Tortilla",
+      "desc": "Tortilla filled with Shawarma",
       "price": 40,
       "amount": 1
     },
     {
-      "id": 88,
+      "id": 87,
       "img": "/Images/Category/OurCuisine/Cheese&Olives_Roll.jpg",
       "bg": "fbf0f4",
       "title": "Cheese & Olives Roll",
@@ -394,11 +385,29 @@
       "amount": 1
     },
     {
+      "id": 88,
+      "img": "/Images/Category/OurCuisine/Shish_Barak.jpg",
+      "bg": "fbf0f4",
+      "title": "Shish Barak",
+      "desc": "These are Middle Eastern meat filled dumplings cooked in a yogurt based sauce. It is one of the top comfort foods in Arabic cuisine",
+      "price": 60,
+      "amount": 1
+    },
+    {
       "id": 89,
       "img": "/Images/Category/OurCuisine/Sheikh_Al_Mahshi.jpg",
       "bg": "fbf0f4",
       "title": "Sheikh Al-Mahshi",
-      "desc": "a popular dish in the Middle East consisting of eggplant or zucchini stuffed with minced lamb meat and nuts, bathed in a yogurt sauce or tomato sauce. It is also known as محشي الكوسة باللبن",
+      "desc": "A popular dish in the Middle East consisting of eggplant or zucchini stuffed with minced lamb meat and nuts, bathed in a yogurt sauce or tomato sauce. It is also known as محشي الكوسة باللبن",
+      "price": 40,
+      "amount": 1
+    },
+    {
+      "id": 90,
+      "img": "/Images/Category/OurCuisine/Sweet_Pumpkin.jpg",
+      "bg": "fbf0f4",
+      "title": "Sweet Pumpkin",
+      "desc": "Pumpkin cooked and covered by Sugar&Water syrop",
       "price": 40,
       "amount": 1
     }

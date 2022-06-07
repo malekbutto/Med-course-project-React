@@ -30,10 +30,15 @@ const App = () => {
 
   const checkForOpenOrder = () => {
     //ls - Local Storage
-    // let lsUser = JSON.parse(localStorage.getItem("currUser"));
-    // if (JSON.parse(localStorage.getItem("openOrder") !== null) && (lsUser.userID === user.userID))
-    if (JSON.parse(localStorage.getItem("openOrder") !== null))
-      setCart(JSON.parse(localStorage.getItem("openOrder")));
+    let OpenOrder = JSON.parse(localStorage.getItem("openOrder"));
+    let currUserID = JSON.parse(localStorage.getItem("currUserID"));
+
+    //Check if the cart items belong to the correct user
+    if (JSON.parse(localStorage.getItem("openOrder") !== null) && (OpenOrder[0].UserId === currUserID)) {
+      // if (JSON.parse(localStorage.getItem("openOrder") !== null))
+      var currOrder = JSON.parse(localStorage.getItem("openOrder"));
+      setCart(currOrder);
+    }
     else setCart(undefined);
   };
 
@@ -42,11 +47,11 @@ const App = () => {
     checkForOpenOrder();
   }, []);
 
-  const handleAddToCart = async (item) => {
-
+  const handleAddToCart = (item) => {
+    var currOrder;
     const arr = [item];
     if (cart === undefined) {
-      await setCart(arr);
+      setCart(arr);
     }
 
     toast.success(item.title + " added to Cart!", {
@@ -61,9 +66,10 @@ const App = () => {
 
     if ((localStorage.getItem("openOrder") === null) || (localStorage.getItem("openOrder") === undefined)) {
       localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice: (item.amount * item.price), OrderTotalPrice: 0 }]))
+      currOrder = JSON.parse(localStorage.getItem("openOrder"));
     }
     else {
-      var currOrder = JSON.parse(localStorage.getItem("openOrder"));
+      currOrder = JSON.parse(localStorage.getItem("openOrder"));
       let sameProduct = currOrder.find((x) => x.ProductId === item.id);
       let index = currOrder.indexOf(sameProduct);
 
@@ -83,9 +89,7 @@ const App = () => {
   const handleChange = (item, d) => {
     const ind = cart.indexOf(item);
     const arr = cart;
-    console.log(arr[ind].Amount);
-
-    if (arr[ind].Amount < 2) {
+    if (arr[ind].Amount === 1 && d === -1) {
       toast.error("Amount can't be less than 1!", {
         position: "top-center",
         autoClose: 1500,
@@ -96,12 +100,13 @@ const App = () => {
         progress: undefined,
       });
       arr[ind].Amount = 1;
+      return;
     }
-    else {
+    else
       arr[ind].Amount += d;
-      // arr[ind].Amount = 1;
-      setCart([...arr]);
-    }
+
+    setCart([...arr]);
+
 
     var currOrder = JSON.parse(localStorage.getItem("openOrder"));
     let sameProduct = currOrder.find((x) => x.ProductId === item.ProductId);

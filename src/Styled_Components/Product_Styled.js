@@ -39,6 +39,15 @@ export const Price = styled.div`
     font-size: 30px;
     font-weight: 600;
 `;
+export const Title = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+`;
 export const Container = styled.div`
     flex: 1;
     margin: 5px;

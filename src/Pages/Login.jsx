@@ -41,6 +41,7 @@ const Login = ({ user, setUser }) => {
             if (tempUser !== undefined && tempUser !== null) {
                 delete tempUser.password;
                 localStorage.setItem("currUser", JSON.stringify(tempUser));
+                localStorage.setItem("currUserID", JSON.stringify(tempUser.userID));
                 navigate("/Home", user = { user });
             }
         });

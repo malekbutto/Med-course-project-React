@@ -1,8 +1,8 @@
 import { React, useEffect, useState } from "react";
 import { ShoppingCartOutlined } from "@material-ui/icons";
-import { Info, Details, Price, Container, Circle, Image, Icon } from '../Styled_Components/Product_Styled';
+import { Info, Details, Price, Title, Container, Circle, Image, Icon } from '../Styled_Components/Product_Styled';
 
-const Product = ({item, handleAddToCart}) => {
+const Product = ({ item, handleAddToCart }) => {
 
     const [productImage, setProductImage] = useState();
 
@@ -19,13 +19,16 @@ const Product = ({item, handleAddToCart}) => {
                 <Image src={productImage} alt='ProductImage' />
                 <Info>
                     <Icon onClick={() => handleAddToCart(item)}>
-                        <ShoppingCartOutlined/>
+                        <ShoppingCartOutlined />
                     </Icon>
                 </Info>
                 <Details>
                     <Price>
                         {item.price} nis
                     </Price>
+                    <Title>
+                        {item.title}
+                    </Title>
                 </Details>
             </Circle>
         </Container >
