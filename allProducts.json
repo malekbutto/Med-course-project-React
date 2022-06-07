@@ -199,6 +199,15 @@
       "desc": "Impressive chocolate cake which layered and topped with Oreo whipped cream",
       "price": 100,
       "amount": 1
+    },
+    {
+      "img": "C:\\fakepath\\pngwing.com.png",
+      "bg": "fcf1ed",
+      "title": "dfdvd",
+      "desc": "dfdgdf",
+      "price": "44",
+      "amount": 1,
+      "id": 21
     }
   ],
   "pastries": [
@@ -372,6 +381,24 @@
       "bg": "fbf0f4",
       "title": "Sweet Pumpkin",
       "desc": "Pumpkin cooked and covered by Sugar&Water syrop",
+      "price": 40,
+      "amount": 1
+    },
+    {
+      "id": 88,
+      "img": "/Images/Category/OurCuisine/Cheese&Olives_Roll.jpg",
+      "bg": "fbf0f4",
+      "title": "Cheese & Olives Roll",
+      "desc": "Saj Bread filled with Cheese & Olives",
+      "price": 40,
+      "amount": 1
+    },
+    {
+      "id": 89,
+      "img": "/Images/Category/OurCuisine/Sheikh_Al_Mahshi.jpg",
+      "bg": "fbf0f4",
+      "title": "Sheikh Al-Mahshi",
+      "desc": "a popular dish in the Middle East consisting of eggplant or zucchini stuffed with minced lamb meat and nuts, bathed in a yogurt sauce or tomato sauce. It is also known as محشي الكوسة باللبن",
       "price": 40,
       "amount": 1
     }
