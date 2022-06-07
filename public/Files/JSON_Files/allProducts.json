@@ -240,6 +240,15 @@
         },
         {
             "id": 55,
+            "img": "./Images/Category/Pastries/Meat&Potato_Discs.jpg",
+            "bg": "f5fbfd",
+            "title": "Meat & Potato Discs",
+            "desc": "Potato discs filled with beaf meat, covered by bread crumbs",
+            "price": 35,
+            "amount": 1
+        },
+        {
+            "id": 56,
             "img": "./Images/Category/Pastries/Sausage.jpg",
             "bg": "f5fbfd",
             "title": "Sausage",
@@ -248,7 +257,7 @@
             "amount": 1
         },
         {
-            "id": 56,
+            "id": 57,
             "img": "./Images/Category/Pastries/Tuna.jpg",
             "bg": "f5fbfd",
             "title": "Tuna",
@@ -257,7 +266,7 @@
             "amount": 1
         },
         {
-            "id": 57,
+            "id": 58,
             "img": "./Images/Category/Pastries/Pizza1.jpg",
             "bg": "f5fbfd",
             "title": "Pizza",
@@ -266,7 +275,7 @@
             "amount": 1
         },
         {
-            "id": 58,
+            "id": 59,
             "img": "./Images/Category/Pastries/Pizza2.jpg",
             "bg": "f5fbfd",
             "title": "Pizza Filling",
@@ -275,7 +284,7 @@
             "amount": 1
         },
         {
-            "id": 59,
+            "id": 60,
             "img": "./Images/Category/Pastries/Olives.jpg",
             "bg": "f5fbfd",
             "title": "Olives",
@@ -284,7 +293,7 @@
             "amount": 1
         },
         {
-            "id": 60,
+            "id": 61,
             "img": "./Images/Category/Pastries/Mozzarella_Sticks.jpg",
             "bg": "f5fbfd",
             "title": "Mozzarella Sticks",
@@ -293,7 +302,7 @@
             "amount": 1
         },
         {
-            "id": 61,
+            "id": 62,
             "img": "./Images/Category/Pastries/Fatayer.jpg",
             "bg": "f5fbfd",
             "title": "Fatayer",
@@ -302,7 +311,7 @@
             "amount": 1
         },
         {
-            "id": 62,
+            "id": 63,
             "img": "./Images/Category/Pastries/Kibbeh.jpg",
             "bg": "f5fbfd",
             "title": "Kibbeh",
@@ -323,9 +332,9 @@
         },
         {
             "id": 82,
-            "img": "./Images/Category/OurCuisine/Grape_leaves.jpg",
+            "img": "./Images/Category/OurCuisine/Grape_Leaves.jpg",
             "bg": "fbf0f4",
-            "title": "Grape leaves",
+            "title": "Grape Leaves",
             "desc": "Filled with rcse & Beaf or Lamb meat",
             "price": 50,
             "amount": 1
@@ -359,6 +368,24 @@
         },
         {
             "id": 86,
+            "img": "/Images/Category/OurCuisine/Shawarma_Tortilla.jpg",
+            "bg": "fbf0f4",
+            "title": "Shawarma Tortilla",
+            "desc": "Tortilla filled with Shawarma",
+            "price": 40,
+            "amount": 1
+        },
+        {
+            "id": 87,
+            "img": "/Images/Category/OurCuisine/Cheese&Olives_Roll.jpg",
+            "bg": "fbf0f4",
+            "title": "Cheese & Olives Roll",
+            "desc": "Saj Bread filled with Cheese & Olives",
+            "price": 40,
+            "amount": 1
+        },
+        {
+            "id": 88,
             "img": "./Images/Category/OurCuisine/Shish_Barak.jpg",
             "bg": "fbf0f4",
             "title": "Shish Barak",
@@ -367,7 +394,16 @@
             "amount": 1
         },
         {
-            "id": 87,
+            "id": 89,
+            "img": "/Images/Category/OurCuisine/Sheikh_Al_Mahshi.jpg",
+            "bg": "fbf0f4",
+            "title": "Sheikh Al-Mahshi",
+            "desc": "A popular dish in the Middle East consisting of eggplant or zucchini stuffed with minced lamb meat and nuts, bathed in a yogurt sauce or tomato sauce. It is also known as محشي الكوسة باللبن",
+            "price": 40,
+            "amount": 1
+        },
+        {
+            "id": 90,
             "img": "./Images/Category/OurCuisine/Sweet_Pumpkin.jpg",
             "bg": "fbf0f4",
             "title": "Sweet Pumpkin",

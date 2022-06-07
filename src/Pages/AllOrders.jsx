@@ -51,12 +51,13 @@ const AllOrders = ({ user, setUser, cart, setCart, handleChange }) => {
                     <reactbootstrap.Table reactbootstrap="true" bordered hover>
                         <THEAD>
                             <TR>
-                                <TH>Order Id</TH>
+                                <TH>Order ID</TH>
+                                <TH>User ID</TH>
                                 <TH>Customer Name</TH>
                                 <TH>Phone</TH>
                                 <TH>Email</TH>
-                                <TH>Order Details</TH>
-                                <TH>Product Amount</TH>
+                                <TH>Order Details (Product - Amount)</TH>
+                                {/* <TH>Product Amount</TH> */}
                                 <TH>Total Price</TH>
                                 <TH>Romove Order</TH>
                             </TR>
@@ -65,11 +66,12 @@ const AllOrders = ({ user, setUser, cart, setCart, handleChange }) => {
                             {ordersList?.map((item, key) => (
                                 <TR key={key}>
                                     <TD>{item.OrderId}</TD>
+                                    <TD>{item.UserId}</TD>
                                     <TD>{item.Customer_Name}</TD>
                                     <TD>{item.Phone}</TD>
                                     <TD>{item.Email}</TD>
-                                    <TD>{item.Cart.map(x=><li key={x.OrderId}>{x.Product_Name}</li>)}</TD>
-                                    <TD>{item.Cart.map(x=><li key={x.OrderId}>{x.Amount}</li>)}</TD>
+                                    <TD style={{textAlign: "left"}}>{item.Cart.map(x=><li key={x.OrderId}>{x.Product_Name} - {x.Amount} (pcs)</li>)}</TD>
+                                    {/* <TD>{item.Cart.map(x=><li key={x.OrderId}>{x.Amount}</li>)}</TD> */}
                                     <TD>{item.Total_Price}</TD>
                                     <TD>
                                         <Fab size="small" color="secondary" aria-label="Remove"

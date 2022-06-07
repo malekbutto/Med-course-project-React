@@ -42,7 +42,10 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
         var currOrder = JSON.parse(localStorage.getItem("openOrder"));
         let filtered = currOrder.filter((x) => x.ProductId !== id);
         localStorage.setItem("openOrder", JSON.stringify(filtered));
+        currOrder = JSON.parse(localStorage.getItem("openOrder"));
         setCart(filtered);
+        if (currOrder.length === 0)
+            localStorage.removeItem("openOrder");
     };
 
     const handlePrice = () => {

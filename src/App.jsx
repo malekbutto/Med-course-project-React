@@ -43,7 +43,7 @@ const App = () => {
   }, []);
 
   const handleAddToCart = async (item) => {
-    
+
     const arr = [item];
     if (cart === undefined) {
       await setCart(arr);
@@ -60,7 +60,7 @@ const App = () => {
     });
 
     if ((localStorage.getItem("openOrder") === null) || (localStorage.getItem("openOrder") === undefined)) {
-      localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice:(item.amount*item.price), OrderTotalPrice: 0 }]))
+      localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice: (item.amount * item.price), OrderTotalPrice: 0 }]))
     }
     else {
       var currOrder = JSON.parse(localStorage.getItem("openOrder"));
@@ -69,7 +69,7 @@ const App = () => {
 
       if (index < 0) {
         let AllOrdersData = JSON.parse(localStorage.getItem("AllOrders"));
-        currOrder.push({ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice:(item.amount*item.price), OrderTotalPrice: 0 });
+        currOrder.push({ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice: (item.amount * item.price), OrderTotalPrice: 0 });
         localStorage.setItem("openOrder", JSON.stringify(currOrder));
       }
       else {
@@ -83,24 +83,41 @@ const App = () => {
   const handleChange = (item, d) => {
     const ind = cart.indexOf(item);
     const arr = cart;
-    arr[ind].Amount += d;
+    console.log(arr[ind].Amount);
 
-    if (arr[ind].Amount === 0)
+    if (arr[ind].Amount < 2) {
+      toast.error("Amount can't be less than 1!", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       arr[ind].Amount = 1;
-    setCart([...arr]);
+    }
+    else {
+      arr[ind].Amount += d;
+      // arr[ind].Amount = 1;
+      setCart([...arr]);
+    }
 
     var currOrder = JSON.parse(localStorage.getItem("openOrder"));
     let sameProduct = currOrder.find((x) => x.ProductId === item.ProductId);
     let index = currOrder.indexOf(sameProduct);
 
-    currOrder[index].Amount+=d;
-    currOrder[index].TotalPrice =(currOrder[index].Amount*currOrder[index].Price);
+    currOrder[index].Amount += d;
+    if (currOrder[index].Amount === 0) {
+      let filtered = currOrder.filter((x) => x.ProductId !== item.ProductId);
+      localStorage.setItem("openOrder", JSON.stringify(filtered));
+      setCart(filtered);
+    }
+    currOrder[index].TotalPrice = (currOrder[index].Amount * currOrder[index].Price);
 
     localStorage.setItem("openOrder", JSON.stringify(currOrder));
     setCart(currOrder);
   };
-
-  
 
   return (
     <div className='App'>
