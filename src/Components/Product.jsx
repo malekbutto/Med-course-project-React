@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { ShoppingCartOutlined } from "@material-ui/icons";
-import { Info, Details, Price, Title, Container, Circle, Image, Icon } from '../Styled_Components/Product_Styled';
+import { Info, Details, Price, Title, Container, Circle,
+         Image, Icon } from '../Styled_Components/Product_Styled';
 
 const Product = ({ item, handleAddToCart }) => {
 

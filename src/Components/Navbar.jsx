@@ -182,7 +182,6 @@ const Navbar = ({ user, setUser, setCart, size }) => {
             <Outlet />
         </>
     )
-
 };
 
 export default Navbar;

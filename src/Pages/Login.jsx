@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Container, Wrapper, Title, Form, Input, Button } from '../Styled_Components/Login_Styled';
 
 const Login = ({ user, setUser }) => {
+
     const navigate = useNavigate();
     let tempUser;
     const handleSubmit = (e) => {
@@ -17,7 +18,7 @@ const Login = ({ user, setUser }) => {
                     obj.username === inputUserName &&
                     obj.password === inputPassword
             );
-            if (tempUser !== undefined && tempUser!==null)
+            if (tempUser !== undefined && tempUser !== null)
                 toast.success("Welcome " + tempUser.fName, {
                     position: "top-right",
                     autoClose: 1500,

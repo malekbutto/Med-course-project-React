@@ -35,11 +35,11 @@ const App = () => {
 
     //Check if the cart items belong to the correct user
     if (JSON.parse(localStorage.getItem("openOrder") !== null) && (OpenOrder[0].UserId === currUserID)) {
-      // if (JSON.parse(localStorage.getItem("openOrder") !== null))
       var currOrder = JSON.parse(localStorage.getItem("openOrder"));
       setCart(currOrder);
     }
-    else setCart(undefined);
+    else
+      setCart(undefined);
   };
 
   useEffect(() => {

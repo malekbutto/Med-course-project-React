@@ -38,6 +38,7 @@ const Cart = ({ user, setUser, cart, setCart, handleChange, setCartList }) => {
     }));
 
     const handleRemove = (id) => {
+        
         const arr = cart?.filter((item) => item.ProductId !== id);
         setCart(arr);
         handlePrice();

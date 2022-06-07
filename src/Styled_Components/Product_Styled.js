@@ -45,7 +45,7 @@ export const Title = styled.div`
     justify-content: center;
     transition: all 0.5s ease;
     color: black;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
 `;
 export const Container = styled.div`
