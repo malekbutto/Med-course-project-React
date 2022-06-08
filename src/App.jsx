@@ -65,17 +65,19 @@ const App = () => {
     });
 
     if ((localStorage.getItem("openOrder") === null) || (localStorage.getItem("openOrder") === undefined)) {
-      localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice: (item.amount * item.price), OrderTotalPrice: 0 }]))
+      let AllOrdersData = JSON.parse(localStorage.getItem("AllOrders"));
+      localStorage.setItem("openOrder", JSON.stringify([{ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice: (item.amount * item.price)}]))
       currOrder = JSON.parse(localStorage.getItem("openOrder"));
     }
     else {
       currOrder = JSON.parse(localStorage.getItem("openOrder"));
       let sameProduct = currOrder.find((x) => x.ProductId === item.id);
       let index = currOrder.indexOf(sameProduct);
+      console.log(index);
 
       if (index < 0) {
         let AllOrdersData = JSON.parse(localStorage.getItem("AllOrders"));
-        currOrder.push({ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice: (item.amount * item.price), OrderTotalPrice: 0 });
+        currOrder.push({ UserId: user.userID, OrderId: AllOrdersData[AllOrdersData.length - 1].OrderId + 1, ProductId: item.id, Product_Name: item.title, ProductImg: item.img, ProductBG: item.bg, Product_Desc: item.desc, Price: item.price, Amount: item.amount, AllProductPrice: (item.amount * item.price) });
         localStorage.setItem("openOrder", JSON.stringify(currOrder));
       }
       else {
