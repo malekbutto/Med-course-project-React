@@ -242,22 +242,13 @@
             "id": 54,
             "img": "/Images/Category/Pastries/Potato_Discs.jpg",
             "bg": "f5fbfd",
-            "title": "Potato Discs",
-            "desc": "Potato discs covered by bread crumbs",
-            "price": 35,
-            "amount": 1
-        },
-        {
-            "id": 55,
-            "img": "/Images/Category/Pastries/Meat&Potato_Discs.jpg",
-            "bg": "f5fbfd",
             "title": "Meat & Potato Discs",
             "desc": "Potato discs filled with beaf meat, covered by bread crumbs",
             "price": 35,
             "amount": 1
         },
         {
-            "id": 56,
+            "id": 55,
             "img": "/Images/Category/Pastries/Sausage.jpg",
             "bg": "f5fbfd",
             "title": "Sausage",
@@ -266,7 +257,7 @@
             "amount": 1
         },
         {
-            "id": 57,
+            "id": 56,
             "img": "/Images/Category/Pastries/Tuna.jpg",
             "bg": "f5fbfd",
             "title": "Tuna",
@@ -275,7 +266,7 @@
             "amount": 1
         },
         {
-            "id": 58,
+            "id": 57,
             "img": "/Images/Category/Pastries/Pizza1.jpg",
             "bg": "f5fbfd",
             "title": "Pizza",
@@ -284,7 +275,7 @@
             "amount": 1
         },
         {
-            "id": 59,
+            "id": 58,
             "img": "/Images/Category/Pastries/Pizza2.jpg",
             "bg": "f5fbfd",
             "title": "Pizza Filling",
@@ -293,7 +284,7 @@
             "amount": 1
         },
         {
-            "id": 60,
+            "id": 59,
             "img": "/Images/Category/Pastries/Olives.jpg",
             "bg": "f5fbfd",
             "title": "Olives",
@@ -302,7 +293,7 @@
             "amount": 1
         },
         {
-            "id": 61,
+            "id": 60,
             "img": "/Images/Category/Pastries/Mozzarella_Sticks.jpg",
             "bg": "f5fbfd",
             "title": "Mozzarella Sticks",
@@ -311,7 +302,7 @@
             "amount": 1
         },
         {
-            "id": 62,
+            "id": 61,
             "img": "/Images/Category/Pastries/Fatayer.jpg",
             "bg": "f5fbfd",
             "title": "Fatayer",
@@ -320,7 +311,7 @@
             "amount": 1
         },
         {
-            "id": 63,
+            "id": 62,
             "img": "/Images/Category/Pastries/Kibbeh.jpg",
             "bg": "f5fbfd",
             "title": "Kibbeh",
